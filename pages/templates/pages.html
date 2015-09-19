@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}{{ pages.title }}{% endblock %}
+
+{% block content %}
+
+                <div class="row news-inner">
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" style="padding-left: 0%;padding-right: 0%;left: 13%;border-right-width: 10%;">
+                        <h3 style=" margin-top: 50px;"><strong>{{ pages.title }}</strong></h3>
+                        <p>{{ pages.content|safe }}</p>
+                    </div>
+                </div>
+      
+{% endblock %}

@@ -1,0 +1,19 @@
+<html>
+<head>
+     
+    <title>Django</title>
+</head>
+<body>
+    <p>Привет {{ session_name }}!</p> 
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}  
+        <input type="submit" value="Отправить">
+    </form>
+    
+    {% for news in news_list %}                
+                        <a href="{{ news.get_absolute_url }}"><h4><font color="black"><strong>{{ news.title }}</strong></font></h4></a>
+    {% endfor %}
+    
+</body>
+</html>

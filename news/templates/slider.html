@@ -1,0 +1,33 @@
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        {% for step in steps %}
+        <li data-target="#myCarousel" data-slide-to="{{ step }}" class=""></li>
+        {% endfor %}
+      </ol>
+      <div class="carousel-inner" role="listbox">
+          
+        <div class="item next left">
+          <a href="{{ lastslide.url_button }}"><img class="first-slide" src="{{ MEDIA_URL }}/{{ firstslide.image }}" style="width: 1145px;height: 475px;"></a>
+        </div>
+        {% for slide in middleslide %}  
+        <div class="item">
+          <a href="{{ lastslide.url_button }}"><img class="second-slide" src="{{ MEDIA_URL }}/{{ slide.image }}" style="width: 1145px;height: 475px;"></a>
+          <div class="container">
+          </div>
+        </div>
+        {% endfor %}  
+        <div class="item active left">
+          <a href="{{ lastslide.url_button }}"><img class="third-slide" src="{{ MEDIA_URL }}/{{ lastslide.image }}" style="width: 1145px;height: 475px;"></a>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Назад</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Вперед</span>
+      </a>
+    </div>

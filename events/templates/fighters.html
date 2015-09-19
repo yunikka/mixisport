@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}{{ fighter.fullname }}{% endblock %}
+
+{% block content %}
+
+
+               <div class="row news-inner">
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" style="padding-left: 0%;padding-right: 0%;left: 13%;border-right-width: 10%;margin-bottom: 30px;">
+                        <div class="text-center">
+                            <h3 style=" margin-top: 50px;"><strong>{{ fighter.fullname }}</strong></h3>
+                            <img src="{{ MEDIA_URL }}/{{ fighter.photo }}">
+                        </div>
+                        <br>
+                        <p>{{ fighter.add_info|safe }}</p>
+                        
+                        <h3 style=" margin-top: 50px;"><strong>Характеристики</strong></h3>
+                        
+                        <table class="table table-striped table-condensed table-bordered" >
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>Рост</strong></td>
+                                                <td>{{ fighter.height }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Вес</strong></td>
+                                                <td>{{ fighter.weight }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Возраст</strong></td>
+                                                <td>{{ fighter.birthdate }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Рекорд</strong></td>
+                                                <td>{{ fighter.record }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Страна</strong></td>
+                                                <td>{{ fighter.country }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                        
+                    </div>
+                </div>
+
+
+                                    
+
+{% endblock %}

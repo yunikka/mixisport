@@ -1,0 +1,20 @@
+{% load endless %}
+
+{% paginate news_list %}
+{% for news in news_list %}                
+                <div class="row news-inner">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style=" width: 146px;">
+                        <div class="img-inner">
+                            <img src="{{ MEDIA_URL }}/{{ news.image }}">
+                        </div>
+                    </div>
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" >
+                        <a href="{{ news.get_absolute_url }}"><h4><font color="black"><strong>{{ news.title }}</strong></font></h4></a>
+                        <ul class="blog-post-info list-inline" style="margin-top: 5px;padding-top: 5px;">
+                            <li>{{ news.created }}</li>
+                            <li><a href="{% url 'news-category' news.category.slug %}">{{ news.category }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+{% endfor %}
+{% show_more "Показать еще" %}

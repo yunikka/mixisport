@@ -1,0 +1,3 @@
+{% for page in pages %}
+| <a href="{% url 'pages' page.slug %}">{{ page.title }}</a>
+{% endfor %}
