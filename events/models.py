@@ -36,7 +36,7 @@ class Fighters(models.Model):
     
 class Events(models.Model):
     name = models.CharField(max_length=100, verbose_name="Название", help_text="Введите название события (не более 100 символов)")
-    slug = models.SlugField(verbose_name="Путь", help_text="Путь - уникальное имя страницы, которое будет присутствовать в адресной строке")
+    slug = models.SlugField(verbose_name="Путь", unique=True, help_text="Путь - уникальное имя страницы, которое будет присутствовать в адресной строке")
     location = models.CharField(max_length=100, verbose_name="Место", help_text="Укажите место проведения события")
     start_time = models.DateTimeField(default=datetime.datetime.now, verbose_name="Начало", help_text="Укажите дату/время начала события")
     visibility =  models.BooleanField(default=0, verbose_name="Видимость", help_text="Если стоит галочка, то событие отображается в общем списке")

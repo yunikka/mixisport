@@ -214,6 +214,7 @@ TINYMCE_DEFAULT_CONFIG={
 
 REDACTOR_OPTIONS = {
                        'lang': 'ru',
-                       'imageFloatMargin': '15px'                       
+                       'imageFloatMargin': '15px',
+                       'plugins': ['fontsize',],                       
 }
 REDACTOR_UPLOAD = 'images/'

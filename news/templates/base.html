@@ -5,6 +5,7 @@
 {% load socialicons %}
 {% load pages_list %}
 
+
 <html lang="en">
 
 <head>
@@ -14,7 +15,6 @@
     <meta name="viewport" content="width=1200">
 
     {% show_seotags %}
-    <meta name="author" content="Yuri Kazankin mailto:yunikka@yahoo.com">
 
     
     <link href="{{ MEDIA_URL }}favicon.ico" rel="icon" type="image/png">
@@ -96,7 +96,7 @@
                             {% show_catmenu %}
                         </ul>
                     </li>
-                    {# <li role="presentation"><a href="{% url 'events' %}">События</a></li> #}
+                    <li role="presentation"><a href="{% url 'event_list' %}">События</a></li>
                     {# <li role="presentation"><a href="#">Рейтинг</a></li> #}
                 </ul>
                 <script type="text/javascript">
@@ -118,6 +118,7 @@
         {% block content %}
         {% endblock %}        
 
+        
 <div id="footer" class="container">
     <nav class="navbar navbar-default navbar-fixed-bottom" style="min-height: 40px; font-size: 16px;">
         <div class="navbar-inner navbar-content-center">

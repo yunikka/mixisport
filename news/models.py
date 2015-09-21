@@ -19,7 +19,7 @@ class ViewableManager(models.Manager):
 class Category(models.Model):
     """Категория содержимого"""
     label = models.CharField(blank=True, max_length=50)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
 
     class Meta:
         verbose_name_plural = "Категория"
@@ -38,7 +38,7 @@ class News(models.Model):
         (4, "Архив"),
     )
     title = models.CharField(max_length=100, verbose_name="Заголовок")
-    slug = models.SlugField(verbose_name="Путь")
+    slug = models.SlugField(verbose_name="Путь", unique=True)
     category = models.ForeignKey(Category, verbose_name="Категория")
     macroregion = models.ForeignKey(MacroRegion)
     region = ChainedForeignKey(
