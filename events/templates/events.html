@@ -6,8 +6,8 @@
  
 
         <div class="row content" style="margin-bottom: 90px;margin-top: 90px;">
-            <h2 class="event center mtop-20">{{ event.name }}</h2>
-            <h5 class="event center mtop-20">{{ event.start_time }}</h5>
+            <h2 class="event left mtop-20">{{ event.name }}</h2>
+            <h5 class="event left mtop-20">{{ event.start_time }}</h5>
             {% for pair in pairs %}
             <div class="col-md-12 col-lg-12">
                 <div class="row statistic">
@@ -23,7 +23,7 @@
                                     </div>
                                     <div class="img-inner">
                                         <a href="{% url 'fighters' pair.fighters_1.slug %}"><img src="{{ MEDIA_URL }}/{{ pair.fighters_1.photo }}" style="width: 316px;height: 316px;"></a>
-                                        <a href="{% url 'fighters' pair.fighters_1.slug %}"><h4 class="unit-name">{{ pair.fighters_1.fullname }}</h4></a>
+                                        <a href="{% url 'fighters' pair.fighters_1.slug %}"><center><h2 class="unit-name">{{ pair.fighters_1.fullname }}</h2></center></a>
                                     </div>
                                     
                                 </div>
@@ -37,7 +37,7 @@
                                     </div>
                                     <div class="img-inner">
                                         <a href="{% url 'fighters' pair.fighters_2.slug %}"><img src="{{ MEDIA_URL }}/{{ pair.fighters_2.photo }}" style="width: 316px;height: 316px;"></a>
-                                        <a href="{% url 'fighters' pair.fighters_2.slug %}"><h4 class="unit-name">{{ pair.fighters_2.fullname }}</h4></a>
+                                        <a href="{% url 'fighters' pair.fighters_2.slug %}"><center><h2 class="unit-name">{{ pair.fighters_2.fullname }}</h2></center></a>
                                     </div>
                                 </div>
                             </div>
