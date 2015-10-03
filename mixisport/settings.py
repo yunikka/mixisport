@@ -40,8 +40,9 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = (
     'tinymce',
     'redactor',
-    'sorl.thumbnail',
-    'mce_filebrowser',
+#    'sorl.thumbnail',
+#    'mce_filebrowser',
+    'stdimage',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -2,8 +2,6 @@ import datetime
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import permalink
-from django.core.exceptions import ValidationError
-from django.core.validators import RegexValidator
 from redactor.fields import RedactorField
 from lib.fields import ResizeImageField
 
@@ -16,9 +14,9 @@ class Fighters(models.Model):
     photo = ResizeImageField(upload_to='img/fighters', thumb_width=316, thumb_height=316, verbose_name="Фото", help_text="Размер изображения будет изменен на 316х316, желательно предварительно кадрировать в виде квадрата")
     country = models.ForeignKey(Country, verbose_name="Страна", help_text="Выберите Страну из списка")
     birthdate = models.DateField(verbose_name="Дата рождения", help_text="Укажите дату рождения бойца")
-    height = models.IntegerField(verbose_name="Рост", help_text="Укажите рост бойца в интервале 70-299 см", validators=[RegexValidator(regex='^(([7-9][0-9])|[1-2][0-9][0-9])$',message='Неверное значение! Укажите рост бойца в интервале 70-299 см',code='invalid'),])
-    weight = models.IntegerField(verbose_name="Вес", help_text="Укажите вес бойца в интервале 30-299 кг", validators=[RegexValidator(regex='^(([3-9][0-9])|[1-2][0-9][0-9])$',message='Неверное значение! Укажите вес бойца в интервале 30-299 кг',code='invalid'),])
-    record = models.CharField(max_length=11, verbose_name="Рекорд", help_text="Укажите рекорд в формате ХХХ-ХХХ, например 32-1, не более 11 символов", validators=[RegexValidator(regex='^[0-9]+\-[0-9]+$',message='Неверное значение, Укажите в формате ХХХ-ХХХ, например 32-1',code='invalid'),])
+    height = models.DecimalField(default=0.00, verbose_name="Рост", help_text="Укажите рост бойца №1", max_digits=5, decimal_places=2)
+    weight = models.DecimalField(default=0.00, verbose_name="Вес", help_text="Укажите вес бойца №2", max_digits=5, decimal_places=2)
+    record = models.CharField(max_length=11, verbose_name="Рекорд", help_text="Укажите значение Рекорд")
     add_info = RedactorField(blank=True, verbose_name="Дополнительно", help_text="Можно ввести произвольный текст или оставить поле пустым")
 
     class Meta:
@@ -39,10 +37,10 @@ class Events(models.Model):
     slug = models.SlugField(verbose_name="Путь", unique=True, help_text="Путь - уникальное имя страницы, которое будет присутствовать в адресной строке")
     location = models.CharField(max_length=100, verbose_name="Место", help_text="Укажите место проведения события")
     start_time = models.DateTimeField(default=datetime.datetime.now, verbose_name="Начало", help_text="Укажите дату/время начала события")
-    visibility =  models.BooleanField(default=0, verbose_name="Видимость", help_text="Если стоит галочка, то событие отображается в общем списке")
+    archive =  models.BooleanField(default=0, verbose_name="Архив", help_text="Если стоит галочка, то событие уходит в архив")
 
     class Meta:
-        ordering = ['-id']
+        ordering = ['start_time']
         verbose_name_plural = "События"
         verbose_name = "Событие"
         
@@ -65,17 +63,17 @@ class EventPair(models.Model):
     country_2 = models.ForeignKey(Country, verbose_name="Страна", help_text="Выберите Страну из списка для бойца №2", related_name="country_2")
     age_1 = models.IntegerField(default=0, verbose_name="Возраст", help_text="Введите возраст бойца №1")
     age_2 = models.IntegerField(default=0, verbose_name="Возраст", help_text="Введите возраст бойца №2")
-    height_1 = models.IntegerField(verbose_name="Рост", help_text="Укажите рост бойца №1 в интервале 70-299 см", validators=[RegexValidator(regex='^(([7-9][0-9])|[1-2][0-9][0-9])$',message='Неверное значение! Укажите рост бойца в интервале 70-299 см',code='invalid'),])
-    height_2 = models.IntegerField(verbose_name="Рост", help_text="Укажите рост бойца №2 в интервале 70-299 см", validators=[RegexValidator(regex='^(([7-9][0-9])|[1-2][0-9][0-9])$',message='Неверное значение! Укажите рост бойца в интервале 70-299 см',code='invalid'),])
-    weight_1 = models.IntegerField(verbose_name="Вес", help_text="Укажите вес бойца №1 в интервале 30-299 кг", validators=[RegexValidator(regex='^(([3-9][0-9])|[1-2][0-9][0-9])$',message='Неверное значение! Укажите вес бойца в интервале 30-299 кг',code='invalid'),])
-    weight_2 = models.IntegerField(verbose_name="Вес", help_text="Укажите вес бойца №2 в интервале 30-299 кг", validators=[RegexValidator(regex='^(([3-9][0-9])|[1-2][0-9][0-9])$',message='Неверное значение! Укажите вес бойца в интервале 30-299 кг',code='invalid'),])
-    record_1 = models.CharField(max_length=11, verbose_name="Рекорд", help_text="Укажите рекорд бойца №1 в формате ХХХ-ХХХ, например 32-1, не более 11 символов", validators=[RegexValidator(regex='^[0-9]+\-[0-9]+$',message='Неверное значение, Укажите в формате ХХХ-ХХХ, например 32-1',code='invalid'),])
-    record_2 = models.CharField(max_length=11, verbose_name="Рекорд", help_text="Укажите рекорд бойца №2 в формате ХХХ-ХХХ, например 32-1, не более 11 символов", validators=[RegexValidator(regex='^[0-9]+\-[0-9]+$',message='Неверное значение, Укажите в формате ХХХ-ХХХ, например 32-1',code='invalid'),])   
+    height_1 = models.DecimalField(default=0.00, verbose_name="Рост", help_text="Укажите рост бойца №1", max_digits=5, decimal_places=2)
+    height_2 = models.DecimalField(default=0.00, verbose_name="Рост", help_text="Укажите рост бойца №2", max_digits=5, decimal_places=2)
+    weight_1 = models.DecimalField(default=0.00, verbose_name="Вес", help_text="Укажите вес бойца №1", max_digits=5, decimal_places=2)
+    weight_2 = models.DecimalField(default=0.00, verbose_name="Вес", help_text="Укажите вес бойца №2", max_digits=5, decimal_places=2)
+    record_1 = models.CharField(max_length=11, verbose_name="Рекорд", help_text="Укажите значение Рекорд бойца №1")
+    record_2 = models.CharField(max_length=11, verbose_name="Рекорд", help_text="Укажите значение Рекорд бойца №1")   
     events = models.ForeignKey(Events, verbose_name="Событие", help_text="Укажите событие к котору относится данная пара")
     in_mainpage = models.BooleanField(default=0, verbose_name="На главной?", help_text="Отображать данное событие на главной странице. Если отметить несколько событий, то будет отображать")
     
     class Meta:
-        ordering = ['-id']
+        ordering = ['id']
         verbose_name_plural = "Пары бойцов"
         verbose_name = "Пара бойцов"
         

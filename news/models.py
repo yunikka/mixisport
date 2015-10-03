@@ -7,6 +7,8 @@ from redactor.fields import RedactorField
 from smart_selects.db_fields import ChainedForeignKey 
 from regions.models import MacroRegion, Region
 from lib.fields import ResizeImageField
+from stdimage.models import StdImageField
+
 
 
 VIEWABLE_STATUS = [3, 4]
@@ -51,6 +53,8 @@ class News(models.Model):
     image = ResizeImageField(upload_to='img/title_images', verbose_name="Картинка для заголовка", thumb_width=116, thumb_height=116)
 #    content = HTMLField(blank=True, verbose_name="Текст статьи")
     content = RedactorField(blank=True, verbose_name="Текст статьи")
+#    image_after = ResizeImageField(blank=True, upload_to='img/image_after', verbose_name="Картинка после текста", thumb_width=640)
+    image_after = StdImageField(blank=True, variations={'medium': {'width': 640,}}, upload_to='img/image_after', verbose_name="Картинка после текста",)
     owner = models.ForeignKey(User, verbose_name="Автор")
     status = models.IntegerField(choices=STATUS_CHOICES, default=1, verbose_name="Статус")
     created = models.DateTimeField(default=datetime.datetime.now, verbose_name="Создано")

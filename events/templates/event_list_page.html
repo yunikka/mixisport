@@ -14,4 +14,7 @@
 {% endfor %}
 {% show_more "Показать еще" %}
 
+{% if archive == 0 %}
+<a href="{% url 'event_list_archive' %}">Архив событий</a>
+{% endif %}
  
