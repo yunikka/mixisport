@@ -9,11 +9,11 @@
       <div class="carousel-inner" role="listbox">
           
         <div class="item next left">
-          <a href="{{ lastslide.url_button }}"><img class="first-slide" src="{{ MEDIA_URL }}/{{ firstslide.image }}" style="width: 1145px;height: 475px;"></a>
+          <a href="{{ firstslide.url_button }}"><img class="first-slide" src="{{ MEDIA_URL }}/{{ firstslide.image }}" style="width: 1145px;height: 475px;"></a>
         </div>
         {% for slide in middleslide %}  
         <div class="item">
-          <a href="{{ lastslide.url_button }}"><img class="second-slide" src="{{ MEDIA_URL }}/{{ slide.image }}" style="width: 1145px;height: 475px;"></a>
+          <a href="{{ slide.url_button }}"><img class="second-slide" src="{{ MEDIA_URL }}/{{ slide.image }}" style="width: 1145px;height: 475px;"></a>
           <div class="container">
           </div>
         </div>
