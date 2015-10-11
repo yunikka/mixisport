@@ -1,9 +1,10 @@
-import datetime
+import datetime, math
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import permalink
 from redactor.fields import RedactorField
 from lib.fields import ResizeImageField
+
 
 from regions.models import Country
 
@@ -72,8 +73,27 @@ class EventPair(models.Model):
     events = models.ForeignKey(Events, verbose_name="Событие", help_text="Укажите событие к котору относится данная пара")
     in_mainpage = models.BooleanField(default=0, verbose_name="На главной?", help_text="Отображать данное событие на главной странице. Если отметить несколько событий, то будет отображать")
     
-    class Meta:
-        ordering = ['id']
-        verbose_name_plural = "Пары бойцов"
-        verbose_name = "Пара бойцов"
-        
+    def proc_vote_1(self): # функция вычисляет проценты голосова для первого бойца
+        if self.vote_1 > 0 and self.vote_2 == 0:
+            res = 100
+        elif self.vote_1 == 0 and self.vote_2 == 0:
+            res = 0
+        else:
+            res = (self.vote_1*100)/(self.vote_1+self.vote_2)
+        return round(res)
+    
+    def proc_vote_2(self): # функция вычисляет проценты голосова для второго бойца
+        if self.vote_2 > 0 and self.vote_1 == 0:
+            res = 100
+        elif self.vote_2 == 0 and self.vote_1 == 0:
+            res = 0
+        else:
+            res = (self.vote_2*100)/(self.vote_2+self.vote_1)
+        return round(res)
+    
+    def already_vote(request, self): # флаг который сообщает, что уже голосовали
+        if "vote_pair_%s" % self.id not in request.session: # проверяем наличие сессионного ключа для данной пары
+            request.session["vote_pair_%s" % self.id] = 0
+        else:
+            pass
+        return request.session["vote_pair_%s" % self.id]
