@@ -1,3 +1,4 @@
 *.pyc
+*.sh
 */migrations/
 .DS_Store
