@@ -56,8 +56,8 @@ class Events(models.Model):
 class EventPair(models.Model):
     fighters_1 = models.ForeignKey(Fighters, verbose_name="Боец №1", help_text="Выберите бойца из списка или заведите нового", related_name="first_fighter")
     fighters_2 = models.ForeignKey(Fighters, verbose_name="Боец №2", help_text="Выберите бойца из списка или заведите нового", related_name="second_fighter")
-    vote_1 = models.IntegerField(default=0, verbose_name="Количество голосов за первого бойца", editable=False)
-    vote_2 = models.IntegerField(default=0, verbose_name="Количество голосов за второго бойца", editable=False)
+    vote_1 = models.IntegerField(default=0, verbose_name="Голоса", help_text="Количество голосов за бойца №1")
+    vote_2 = models.IntegerField(default=0, verbose_name="Голоса", help_text="Количество голосов за бойца №2")
     betting_odds_1 = models.DecimalField(default=0.00, verbose_name="Коэффцицент", help_text="Букмекерский коэффцицент для бойца №1", max_digits=5, decimal_places=2)
     betting_odds_2 = models.DecimalField(default=0.00, verbose_name="Коэффцицент", help_text="Букмекерский коэффцицент для бойца №2", max_digits=5, decimal_places=2)   
     country_1 = models.ForeignKey(Country, verbose_name="Страна ", help_text="Выберите Страну из списка для бойца №1", related_name="country_1")
