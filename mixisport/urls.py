@@ -2,11 +2,14 @@ from django.conf.urls import include, url, patterns
 from django.contrib import admin
 from filebrowser.sites import site
 from django.conf import settings
-from lib.sitemaps import NewsSitemap, PagesSitemap
+from lib.sitemaps import *
 
 sitemaps = {
     'news': NewsSitemap(),
     'pages': PagesSitemap(),
+    'fighters': FightersSitemap(),
+    'eventstop': EventsTopSitemap(),
+    'eventsarchive': EventsArchiveSitemap(),
 }
 
 urlpatterns = [
