@@ -7,7 +7,7 @@ class LastNews(Feed):
 
     def items(self):
 #        return News.objects.all()
-        return News.objects.filter(status__in=[3,4]).order_by('-created')[:5]
+        return News.objects.filter(status__in=[3,4]).order_by('-created')[:30]
 
     def item_title(self, item):
         return item.title
