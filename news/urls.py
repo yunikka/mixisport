@@ -2,8 +2,7 @@ from django.conf.urls import *
 from django.views.generic import ListView
 from .models import News
 from .views import StoryDetailView, StoryListView, category, contact
-from .rss.yandex import MyFeed
-from .rss.feeds import LastNews
+from .rss.feeds import DefaultRSS, YandexRSS
 
 
 urlpatterns = patterns('',
@@ -14,6 +13,6 @@ urlpatterns = patterns('',
 urlpatterns += patterns('.views',
     url(r'^category/(?P<slug>[-\w]+)/$', category, name="news-category"),
     url(r'^contact$', contact, name="contact"),
-    url(r'^rss.xml$', LastNews()),
-    url(r'^rss/yandex$', MyFeed()),
+    url(r'^rss.xml$', DefaultRSS()),
+    url(r'^rss/yandex.xml$', YandexRSS()),
 )
