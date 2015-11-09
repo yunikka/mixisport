@@ -28,7 +28,7 @@ class SeoAdmin(admin.ModelAdmin):
 admin.site.register(Seo, SeoAdmin)
 
 class SocialIconsAdmin(admin.ModelAdmin):
-    list_display = ('name', 'url', 'icon_code',)
+    list_display = ('weight', 'name', 'url', 'icon_code',)
     search_fields = ('name', 'url', 'icon_code',)
     list_filter = ('name',)
 

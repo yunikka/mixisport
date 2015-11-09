@@ -59,9 +59,10 @@ class SocialIcons(models.Model):
     name = models.CharField(max_length=40, verbose_name="Имя", help_text="Не более 20 символов")
     url = models.URLField(verbose_name="Ссылка", help_text="Не более 200 символов")
     icon_code = models.CharField(max_length=20, verbose_name="Код pictonic", help_text="Код иконки можно посмотреть на https://pictonic.co/free")
+    weight = models.IntegerField(default=5, verbose_name="Сортировка", help_text="Чем меньше значение, тем первее будет отображена")
     
     class Meta:
-        ordering = ['name']
+        ordering = ['weight']
         verbose_name_plural = "Иконки соцсетей"
         verbose_name = "Иконка соцсети"
         
