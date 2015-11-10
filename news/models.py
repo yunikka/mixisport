@@ -50,7 +50,7 @@ class News(models.Model):
         show_all=False,
         auto_choose=True
     )
-    image = ResizeImageField(upload_to='img/title_images', verbose_name="Картинка для заголовка", thumb_width=116, thumb_height=116)
+    image = ResizeImageField(upload_to='img/title_images', verbose_name="Картинка для заголовка", thumb_width=160, thumb_height=160)
 #    content = HTMLField(blank=True, verbose_name="Текст статьи")
     content = RedactorField(blank=True, verbose_name="Текст статьи")
 #    image_after = ResizeImageField(blank=True, upload_to='img/image_after', verbose_name="Картинка после текста", thumb_width=640)

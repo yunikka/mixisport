@@ -5,10 +5,10 @@
                 <div class="row news-inner">
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style=" width: 146px;">
                         <div class="img-inner">
-                            <img src="{{ MEDIA_URL }}/{{ news.image }}">
+                            <a href="{{ news.get_absolute_url }}"><img src="{{ MEDIA_URL }}/{{ news.image }}"></a>
                         </div>
                     </div>
-                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" >
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" style="padding-left: 40px;">
                         <a href="{{ news.get_absolute_url }}"><h4><font color="black"><strong>{{ news.title }}</strong></font></h4></a>
                         <ul class="blog-post-info list-inline" style="margin-top: 5px;padding-top: 5px;">
                             <li>{{ news.created }}</li>
