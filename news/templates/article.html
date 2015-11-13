@@ -16,7 +16,28 @@
                                 <script type="text/javascript"><!--
                                     document.write(VK.Share.button(false,{type: "round", text: "Поделиться"}));
                                 --></script>                                
-                            </li>                
+                            </li>    
+                            <li>
+                            
+<div id="ok_shareWidget"></div>
+<script>
+!function (d, id, did, st) {
+  var js = d.createElement("script");
+  js.src = "https://connect.ok.ru/connect.js";
+  js.onload = js.onreadystatechange = function () {
+  if (!this.readyState || this.readyState == "loaded" || this.readyState == "complete") {
+    if (!this.executed) {
+      this.executed = true;
+      setTimeout(function () {
+        OK.CONNECT.insertShareWidget(id,did,st);
+      }, 0);
+    }
+  }};
+  d.documentElement.appendChild(js);
+}(document,"ok_shareWidget",document.URL,"{width:190,height:30,st:'rounded',sz:20,ck:2}");
+</script>                                
+                                
+                            </li>
                         </ul>
                         <br>
                         <p>{{ news.content|safe }}</p>
