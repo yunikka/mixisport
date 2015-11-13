@@ -4,16 +4,26 @@
 
 {% block content %}
 
+
                 <div class="row news-inner">
                     <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" style="padding-left: 0%;padding-right: 0%;left: 13%;border-right-width: 10%;margin-bottom: 30px;">
                         <h3 style=" margin-top: 50px;"><strong>{{ news.title }}</strong></h3>
                         <ul class="blog-post-info list-inline">
                             <li>{{ news.created }}</li>
                             <li><a href="{% url 'news-category' news.category.slug %}">{{ news.category }}</a></li>
+                            <li>
+
+<script type="text/javascript" src="http://vk.com/js/api/share.js?93" charset="windows-1251"></script>
+
+<script type="text/javascript"><!--
+document.write(VK.Share.button(false,{type: "round", text: "Сохранить"}));
+--></script>                                
+                                
+                            </li>                
                         </ul>
                         <br>
                         <p>{{ news.content|safe }}</p>
-                        <center><img alt="" src="{{ news.image_after.medium.url }}"/></a></center>
+                        <center><img alt="" src="{{ news.image_after.medium.url }}"/></a></center>                        
                     </div>
                 </div>
       
