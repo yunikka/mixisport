@@ -1,9 +1,8 @@
 from django.contrib import admin
-from mce_filebrowser.admin import MCEFilebrowserAdmin
 
 from .models import Pages
 
-class PagesAdmin(MCEFilebrowserAdmin):
+class PagesAdmin(admin.ModelAdmin):
     list_display = ('title', 'created', 'modified', 'weight')
     search_fields = ('title', 'content')
     list_filter = ('enable', 'created', 'modified')
