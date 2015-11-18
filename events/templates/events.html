@@ -29,7 +29,7 @@
                                         
                                     </div>
                                     <div class="img-inner">
-                                        <a href="{% url 'fighters' pair.fighters_1.slug %}"><img src="{{ MEDIA_URL }}/{{ pair.fighters_1.photo }}" style="width: 316px;height: 316px; border: 4px solid #000000;"></a>
+                                        <a href="{% url 'fighters' pair.fighters_1.slug %}"><img src="{{ MEDIA_URL }}{{ pair.fighters_1.photo }}" style="width: 316px;height: 316px; border: 4px solid #000000;"></a>
                                         <a href="{% url 'fighters' pair.fighters_1.slug %}"><center><h2 class="unit-name">{{ pair.fighters_1.fullname }}</h2></center></a>
                                     </div>
                                     

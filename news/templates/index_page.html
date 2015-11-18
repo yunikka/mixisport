@@ -5,7 +5,7 @@
                 <div class="row news-inner">
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style=" width: 146px;">
                         <div class="img-inner">
-                            <a href="{{ news.get_absolute_url }}"><img src="{{ MEDIA_URL }}/{{ news.image }}"></a>
+                            <a href="{{ news.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{ news.image }}"></a>
                         </div>
                     </div>
                     <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" style="padding-left: 40px;">
