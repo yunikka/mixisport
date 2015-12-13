@@ -1,5 +1,7 @@
 from django.contrib.syndication.views import Feed
 from django.utils.feedgenerator import Rss201rev2Feed
+from django.utils import timezone
+import datetime
 
 from news.models import News
 from piece.models import Seo
@@ -32,7 +34,7 @@ class SocialRSS(Feed):
     link = "/"
 
     def items(self):
-        return News.objects.filter(status__in=[3,4]).order_by('-created')[:30]
+        return News.objects.filter(status__in=[3,4]).order_by('-created').filter(created__gt=(timezone.now() - datetime.timedelta(days=1)))
 
     def item_title(self, item):
         return item.title
