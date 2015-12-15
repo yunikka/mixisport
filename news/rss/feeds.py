@@ -34,11 +34,8 @@ class SocialRSS(Feed):
     link = "/"
 
     def items(self):
-        return News.objects.filter(status__in=[3,4]).order_by('-created').filter(created__gt=(timezone.now() - datetime.timedelta(days=1)))
+        return News.objects.filter(status__in=[3,4]).filter(created__gt=(timezone.now() - datetime.timedelta(days=1))).order_by('-created')
 
-    def item_title(self, item):
-        return item.title
-    
 class YandexRSS(Feed):
     feed_type = YandexFeedGenerator  
     title = Seo.objects.get(tag=1)
