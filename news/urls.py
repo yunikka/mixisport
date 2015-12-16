@@ -2,7 +2,7 @@ from django.conf.urls import *
 from django.views.generic import ListView
 from .models import News
 from .views import StoryDetailView, StoryListView, category, contact
-from .rss.feeds import DefaultRSS, YandexRSS, SocialRSS
+from .rss.feeds import DefaultRSS, YandexRSS, SocialRSS, RSS_limit_content
 
 
 urlpatterns = patterns('',
@@ -16,4 +16,5 @@ urlpatterns += patterns('.views',
     url(r'^rss.xml$', DefaultRSS()),
     url(r'^rss/yandex.xml$', YandexRSS()),
     url(r'^rss/social.xml$', SocialRSS()),
+    url(r'^rss/limit.xml$', RSS_limit_content()),
 )
