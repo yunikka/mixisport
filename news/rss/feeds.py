@@ -45,7 +45,7 @@ class RSS_limit_content(Feed):
         return item.created
 
     def item_description(self, item):
-        return re.findall(r'^.*\<br\>', item.content)
+        return re.findall(r'^.*?\<br\>', item.content)
         #return item.content
 
 class SocialRSS(Feed):
