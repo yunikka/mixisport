@@ -2,6 +2,7 @@ from django.contrib.syndication.views import Feed
 from django.utils.feedgenerator import Rss201rev2Feed
 from django.utils import timezone
 import datetime
+import re
 
 from news.models import News
 from piece.models import Seo
@@ -44,7 +45,8 @@ class RSS_limit_content(Feed):
         return item.created
 
     def item_description(self, item):
-        return item.content[:300]
+        return re.findall(r'^.*\<br\>', item.content)
+        #return item.content
 
 class SocialRSS(Feed):
     title = Seo.objects.get(tag=1)
