@@ -45,8 +45,14 @@ class RSS_limit_content(Feed):
         return item.created
 
     def item_description(self, item):
-        #return re.findall(r'^.*?((\<br\>)|$)', item.content)
-        return item.content
+        result = re.findall(r'^.*?<br>', item.content)
+        # Если регулярное выражение ничего не нашло, значит в контенте нет <br> и просто отдаем весь контент
+        if len(result) == 0:
+            result = item.content
+        else:
+            result = result[0]
+        return result
+        #return item.content
 
 class SocialRSS(Feed):
     title = Seo.objects.get(tag=1)
