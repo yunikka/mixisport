@@ -25,4 +25,5 @@ urlpatterns += patterns('',
     url(r'^redactor/', include('redactor.urls')),
     url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     url(r'^chaining/', include('smart_selects.urls')),
+    url(r'^comments/', include('django_comments.urls')),
 )

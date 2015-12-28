@@ -47,8 +47,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
+    'django.contrib.sites',
     'endless_pagination',
     'smart_selects',
+    'django_comments',
     'news',
     'regions',   
     'piece',
@@ -135,3 +137,5 @@ REDACTOR_OPTIONS = {
                        'plugins': ['fontsize',],                       
 }
 REDACTOR_UPLOAD = 'images/'
+
+SITE_ID = 1

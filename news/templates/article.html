@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load comments %}
 
 {% block title %}{{ news.title }}{% endblock %}
 
@@ -6,7 +7,7 @@
 
 
                 <div class="row news-inner">
-                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" style="padding-left: 0%;padding-right: 0%;left: 13%;border-right-width: 10%;margin-bottom: 30px;">
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" style="padding-left: 0%;padding-right: 0%;left: 13%;border-right-width: 10%;margin-bottom: 120px;">
                         <h3 style=" margin-top: 50px;"><strong>{{ news.title }}</strong></h3>
                         <ul class="blog-post-info list-inline">
                             <li>{{ news.created }}</li>
@@ -57,7 +58,55 @@
                         </ul>
                         <br>
                         <p>{{ news.content|safe }}</p>
-                        <center><img alt="" src="{{ news.image_after.medium.url }}"/></a></center>                        
+                        <center><img alt="" src="{{ news.image_after.medium.url }}"/></a></center>
+                        
+                        <h3 style=" margin-top: 50px;">Комментарии:</h3>
+                        {% get_comment_form for news as form %}
+                          <form class="form-horizontal" action="{% comment_form_target %}" method="post" role="form">
+                            {% csrf_token %}
+                            <div class="form-group">
+                              <div class="col-md-6 margin-bottom-sm-20">
+                                <input type="text" class="form-control" id="comment-name" name="name" placeholder="Ваше имя?" />
+                              </div>
+                              <div class="col-md-6 margin-bottom-sm-20">
+                                <input type="email" class="form-control" id="comment-email" name="email" placeholder="Ваш email?" />
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <div class="col-xs-12">
+                                <textarea class="form-control" rows="8" id="comment-comment" name="comment" placeholder="Оставьте комментарий"></textarea>
+                              </div> <!-- /col-xs-12 -->
+                            </div> <!-- /form-group -->
+                            
+                            {{ form.content_type }}
+                            {{ form.object_pk }}
+                            {{ form.timestamp }}
+                            {{ form.security_hash }}
+                           
+                            <div class="form-group">
+                              <div class="col-xs-12">
+                                <input type="hidden" name="next" value="{{ news.get_absolute_url }}" />
+                                <input type="submit" class="btn btn-primary btn-sm" id="submit" name="submit" value="Отправить" />
+                              </div> <!-- /col-xs-12 -->
+                            </div> <!-- /form-group -->
+                          </form>                        
+                        
+                        
+                        {% get_comment_list for news as comment_list %}
+                        
+                        {% for comment in comment_list %}
+                        <p>
+                        <ul class="blog-post-info list-inline">
+                            <li>{{ comment.submit_date }}</li>
+                            <li><b>{{ comment.user_name }}</b></li>
+                        </ul>
+                        {{ comment.comment }}
+                        
+                        {% endfor %}
+                        </p>
+
+                        
                     </div>
                 </div>
       
