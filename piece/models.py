@@ -14,8 +14,8 @@ class Slider(models.Model):
 class SliderItem(models.Model):
     slider = models.ForeignKey(Slider)
     title = models.CharField(max_length=30, verbose_name="Имя фото", help_text="Не более 30 символов")
-#    text = models.CharField(max_length=100, verbose_name="Текст", help_text="Не более 100 символов")
-#    button = models.CharField(max_length=30, verbose_name="Текст кнопки",  help_text="Не более 30 символов")
+    text = models.CharField(max_length=100, verbose_name="Текст", help_text="Не более 100 символов")
+    button = models.CharField(max_length=30, verbose_name="Текст кнопки",  help_text="Не более 30 символов")
     url_button = models.URLField(verbose_name="Ссылка", help_text="Не более 200 символов")
     image = ResizeImageField(upload_to='img/slider_images', verbose_name="Изображение 1140х475", help_text="Размер изображения в пропорции 1140х475",thumb_width=1140, thumb_height=475)
     enable = models.BooleanField(verbose_name="Включен?")
