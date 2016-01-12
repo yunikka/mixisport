@@ -23,7 +23,7 @@ class EventsInline(admin.StackedInline):
     fieldsets = [
         ('Бойцы', {'fields': (('fighters_1','fighters_2',),('betting_odds_1','betting_odds_2',),('vote_1','vote_2',))}),
         ('Харакетристики', {'fields': (('country_1','country_2',),('age_1','age_2',),('height_1','height_2',),('weight_1','weight_2',),('record_1','record_2',),)}),
-        ('Дополнительные настройки', {'fields': ('in_mainpage',),}),
+        ('Дополнительные настройки', {'fields': ('in_mainpage','weight',),}),
     ]
     
 class EventsAdmin(admin.ModelAdmin):

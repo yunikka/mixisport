@@ -28,7 +28,7 @@ def events(request, slug, template='events.html'):
         
     context = {
         'event': Events.objects.get(id=event.id),
-        'pairs': EventPair.objects.filter(events=event.id),
+        'pairs': EventPair.objects.filter(events=event.id).order_by('weight'),
         'session_flag': session_flag,
     }
     return render_to_response(template, context, RequestContext(request))

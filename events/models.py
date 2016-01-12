@@ -72,7 +72,11 @@ class EventPair(models.Model):
     record_2 = models.CharField(max_length=11, verbose_name="Рекорд", help_text="Укажите значение Рекорд бойца №1")   
     events = models.ForeignKey(Events, verbose_name="Событие", help_text="Укажите событие к котору относится данная пара")
     in_mainpage = models.BooleanField(default=0, verbose_name="На главной?", help_text="Отображать данное событие на главной странице. Если отметить несколько событий, то будет отображать")
+    weight = models.IntegerField(default=0, verbose_name="Значимость", help_text="Чем больше значение, тем выше будет отображена пара")
     
+    class Meta:
+        ordering = ["-id"]
+
     def proc_vote_1(self): # функция вычисляет проценты голосова для первого бойца
         if self.vote_1 > 0 and self.vote_2 == 0:
             res = 100
