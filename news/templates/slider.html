@@ -1,4 +1,4 @@
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 1140px;height: 713px;">
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -9,33 +9,33 @@
       <div class="carousel-inner" role="listbox">
           
         <div class="item next left">
-          <a href="{{ firstslide.url_button }}"><img class="first-slide" src="{{ MEDIA_URL }}{{ firstslide.image }}" style="width: 1145px;height: 475px;"></a>
+          <a href="{{ firstslide.url_button }}"><img class="first-slide" src="{{ MEDIA_URL }}{{ firstslide.image }}"></a>
           {% if firstslide.text != "" %}
           <div class="container">
             <div class="carousel-caption" style="right: 2%;left: 2%;">
-              <p>{{ firstslide.text }}</p>
+              <p style="font-size: 120%">{{ firstslide.text }}</p>
             </div>
           </div>
           {% endif %}
         </div>
         {% for slide in middleslide %}  
         <div class="item">
-          <a href="{{ slide.url_button }}"><img class="second-slide" src="{{ MEDIA_URL }}{{ slide.image }}" style="width: 1145px;height: 475px;"></a>
+          <a href="{{ slide.url_button }}"><img class="second-slide" src="{{ MEDIA_URL }}{{ slide.image }}"></a>
           {% if slide.text != "" %}
           <div class="container">              
             <div class="carousel-caption" style="right: 2%;left: 2%;">
-              <p>{{ slide.text }}</p>
+              <p style="font-size: 120%">{{ slide.text }}</p>
             </div>                            
           </div>
           {% endif %}
         </div>
         {% endfor %}  
         <div class="item active left">
-          <a href="{{ lastslide.url_button }}"><img class="third-slide" src="{{ MEDIA_URL }}{{ lastslide.image }}" style="width: 1145px;height: 475px;"></a>
+          <a href="{{ lastslide.url_button }}"><img class="third-slide" src="{{ MEDIA_URL }}{{ lastslide.image }}"></a>
           {% if lastslide.text != "" %}
           <div class="container">              
             <div class="carousel-caption" style="right: 2%;left: 2%;">
-              <p>{{ lastslide.text }}</p>
+              <p style="font-size: 120%">{{ lastslide.text }}</p>
             </div>                            
           </div>
           {% endif %}
