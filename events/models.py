@@ -39,6 +39,7 @@ class Events(models.Model):
     location = models.CharField(max_length=100, verbose_name="Место", help_text="Укажите место проведения события")
     start_time = models.DateTimeField(default=datetime.datetime.now, verbose_name="Начало", help_text="Укажите дату/время начала события")
     archive =  models.BooleanField(default=0, verbose_name="Архив", help_text="Если стоит галочка, то событие уходит в архив")
+    image_up = models.ImageField(blank=True, upload_to='img/image_events', verbose_name="Картинка события",)
 
     class Meta:
         ordering = ['start_time']

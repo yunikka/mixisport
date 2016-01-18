@@ -1,12 +1,16 @@
 {% extends "base.html" %}
+{% load comments %}
 
 {% block title %}{{ event.name }}{% endblock %}
 
 {% block content %}
  
-
-        {#<div class="row content" style="margin-bottom: 90px;margin-top: 90px;">#}
-        <div class="col-sm-9 col-md-9 col-lg-9 col-md-offset-2" style="margin-bottom: 90px;margin-top: 90px;">
+        {% if event.image_up %}
+        <div class="col-sm-12 col-md-12 col-lg-12 col-md-offset-1"> 
+            <img src="{{ MEDIA_URL }}{{ event.image_up }}" style="width: 100%">
+        </div>
+        {% endif %}
+        <div class="col-sm-9 col-md-9 col-lg-9 col-md-offset-2" style="margin-bottom: 90px;margin-top: 30px;">            
             <h2 class="event left mtop-20">{{ event.name }}</h2>
             <h4 class="event left mtop-20">{{ event.location }}</h4>
             <h5 class="event left mtop-20">{{ event.start_time }}</h5>
@@ -162,6 +166,54 @@
                 </div>
             </div>
             {% endwith %} {% endfor %}
+            
+            <h3 style=" margin-top: 50px;">Комментарии:</h3>
+            {% get_comment_form for event as form %}
+            <form class="form-horizontal" action="{% comment_form_target %}" method="post" role="form">
+            {% csrf_token %}
+
+            <div class="form-group">
+              <div class="col-md-12 margin-bottom-sm-20">
+                <input type="hidden" class="form-control" id="comment-name" name="email" value="no@e.mail" />
+              </div>
+            </div>                            
+
+            <div class="form-group">
+              <div class="col-md-12 margin-bottom-sm-20">
+                <input type="text" class="form-control" id="comment-name" name="name" placeholder="Ваше имя?" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-xs-12">
+                <textarea class="form-control" rows="8" id="comment-comment" name="comment" placeholder="Оставьте комментарий"></textarea>
+              </div>
+            </div>
+
+            {{ form.content_type }}
+            {{ form.object_pk }}
+            {{ form.timestamp }}
+            {{ form.security_hash }}
+
+            <div class="form-group">
+              <div class="col-xs-12">
+                <input type="hidden" name="next" value="{{ event.get_absolute_url }}" />
+                <input type="submit" class="btn btn-primary btn-sm" id="submit" name="submit" value="Отправить" />
+              </div>
+            </div>
+          </form>                        
+
+        {% get_comment_list for event as comment_list %}
+
+        {% for comment in comment_list reversed %}
+        <ul class="blog-post-info list-inline">
+            <li style="font-size: 80%">{{ comment.submit_date }}</li>
+            <li><b>{{ comment.user_name }}</b></li>
+        </ul>
+        {{ comment.comment }}
+
+        {% endfor %}
+            
         </div>                              
 
 {% endblock %}
