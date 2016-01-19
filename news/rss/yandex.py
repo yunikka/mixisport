@@ -38,14 +38,8 @@ class Rss(Rss201rev2Feed):
     
     def add_root_elements(self, handler):
         super(Rss, self).add_root_elements(handler)
-        handler.addQuickElement(u'yandex:logo', '',
-            {
-                 'url': u'/media/img/rss/logo100.png',
-             })     
-        handler.addQuickElement(u'yandex:logo type="square"', '',
-            {
-                 'url': u'/media/img/rss/logo180.png',
-             })     
+        handler.addQuickElement(u'yandex:logo', 'http://mixisport.com/media/img/rss/logo100.png',)     
+        handler.addQuickElement(u'yandex:logo type="square"', 'http://mixisport.com/media/img/rss/logo180.png')     
 
 class RssYandex(Rss):
     def rss_attributes(self):
@@ -56,13 +50,11 @@ class RssYandex(Rss):
     def add_item_elements(self, handler, item):
         if item['content'] is not None:
             handler.addQuickElement(u'yandex:full-text', item['content'])
-        handler.addQuickElement(u'yandex:logo', item['link'])
         super(RssYandex, self).add_item_elements(handler, item)
         
 class YandexRSS(Feed):
     feed_type = RssYandex
     title = Seo.objects.get(tag=1)
-    image = 'http://mixisport.com/media/img/logo.png'
     description = Seo.objects.get(tag=2)
     
     link = "/"
@@ -76,7 +68,7 @@ class YandexRSS(Feed):
     def item_pubdate(self, item):
         return item.created
 
-def item_description(self, item):
+    def item_description(self, item):
         result = re.findall(r'^.*?<br>', item.content)
         # Если регулярное выражение ничего не нашло, значит в контенте нет <br> и просто отдаем весь контент
         if len(result) == 0:
