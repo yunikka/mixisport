@@ -6,8 +6,8 @@
 {% block content %}
  
         {% if event.image_up %}
-        <div class="col-sm-12 col-md-12 col-lg-12"> 
-            <img src="{{ MEDIA_URL }}{{ event.image_up }}" style="width: 100%">
+        <div class="col-sm-9 col-md-9 col-lg-9 col-md-offset-2"> 
+            <img src="{{ MEDIA_URL }}{{ event.image_up }}" style="width: 100%;margin-top: 30px;">
         </div>
         {% endif %}
         <div class="col-sm-9 col-md-9 col-lg-9 col-md-offset-2" style="margin-bottom: 90px;margin-top: 30px;">            
