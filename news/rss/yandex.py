@@ -29,13 +29,7 @@ class Rss(Rss201rev2Feed):
         self.write_items(handler)
         self.endChannelElement(handler)
         handler.endElement(u"rss")
-    
-    def add_item_elements(self, handler, item):
-        if item['description'] is not None:
-            handler.addQuickElement(u'description', item['description'])
-            item['description'] = None
-        super(Rss, self).add_item_elements(handler, item)
-    
+        
     def add_root_elements(self, handler):
         super(Rss, self).add_root_elements(handler)
         handler.addQuickElement(u'yandex:logo', 'http://mixisport.com/media/img/rss/logo100.png',)     
@@ -48,8 +42,8 @@ class RssYandex(Rss):
         return attrs
     
     def add_item_elements(self, handler, item):
-        if item['content'] is not None:
-            handler.addQuickElement(u'yandex:full-text', item['content'])
+        if item['description'] is not None:
+            handler.addQuickElement(u'yandex:full-text', item['description'])
         super(RssYandex, self).add_item_elements(handler, item)
         
 class YandexRSS(Feed):
