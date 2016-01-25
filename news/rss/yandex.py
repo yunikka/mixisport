@@ -54,7 +54,7 @@ class YandexRSS(Feed):
     link = "/"
     
     def items(self):
-        return News.objects.filter(status__in=[3,4]).filter(created__gt=(timezone.now() - datetime.timedelta(days=30))).order_by('-created')
+        return News.objects.filter(status__in=[3,4]).filter(created__gt=(timezone.now() - datetime.timedelta(days=7))).order_by('-created')
 
     def item_title(self, item):
         return item.title
