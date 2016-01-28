@@ -4,6 +4,7 @@ from django.utils.feedgenerator import Rss201rev2Feed
 
 import re
 from django.utils import timezone
+from pytz import timezone as tz
 import datetime
 
 from news.models import News
@@ -60,7 +61,7 @@ class YandexRSS(Feed):
         return item.title
         
     def item_pubdate(self, item):
-        return item.created
+        return item.created.replace(tzinfo=tz('Etc/GMT-3'))
 
     def item_description(self, item):
         result = re.findall(r'^.*?<br>', item.content)
