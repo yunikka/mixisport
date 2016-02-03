@@ -6,7 +6,6 @@ from redactor.fields import RedactorField
 from lib.fields import ResizeImageField
 from stdimage.models import StdImageField
 
-
 from regions.models import Country
 
 
@@ -22,7 +21,7 @@ class Fighters(models.Model):
     add_info = RedactorField(blank=True, verbose_name="Дополнительно", help_text="Можно ввести произвольный текст или оставить поле пустым")
 
     class Meta:
-        ordering = ['-id']
+        ordering = ['fullname']
         verbose_name_plural = "Бойцы"
         verbose_name = "Боец"
         
@@ -40,8 +39,8 @@ class Events(models.Model):
     location = models.CharField(max_length=100, verbose_name="Место", help_text="Укажите место проведения события")
     start_time = models.DateTimeField(default=datetime.datetime.now, verbose_name="Начало", help_text="Укажите дату/время начала события")
     archive =  models.BooleanField(default=0, verbose_name="Архив", help_text="Если стоит галочка, то событие уходит в архив")
-    #image_up = models.ImageField(blank=True, upload_to='img/image_events', verbose_name="Картинка  события",)
-    image_up = StdImageField(blank=True, variations={'thumbnail': {'width': 160,}}, upload_to='img/image_events', verbose_name="Картинка  события",)
+    image_up = models.ImageField(blank=True, upload_to='img/image_events', verbose_name="Картинка события",)
+    image_thumbnail = StdImageField(blank=True, variations={'thumbnail': {'width': 160,}}, upload_to='img/image_events/thumbnail', verbose_name="Миниатюра для заголовка")
 
     class Meta:
         ordering = ['start_time']
