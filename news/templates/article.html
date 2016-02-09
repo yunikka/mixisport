@@ -61,52 +61,28 @@
                         <center><img alt="" src="{{ news.image_after.medium.url }}"/></a></center>
                         <p>{{ news.content|safe }}</p>                        
                         
-                        <h3 style=" margin-top: 50px;">Комментарии:</h3>
-                        {% get_comment_form for news as form %}
-                          <form class="form-horizontal" action="{% comment_form_target %}" method="post" role="form">
-                            {% csrf_token %}
-                            
-                            <div class="form-group">
-                              <div class="col-md-12 margin-bottom-sm-20">
-                                <input type="hidden" class="form-control" id="comment-name" name="email" value="no@e.mail" />
-                              </div>
-                            </div>                            
-                            
-                            <div class="form-group">
-                              <div class="col-md-12 margin-bottom-sm-20">
-                                <input type="text" class="form-control" id="comment-name" name="name" placeholder="Ваше имя?" />
-                              </div>
-                            </div>
-                            
-                            <div class="form-group">
-                              <div class="col-xs-12">
-                                <textarea class="form-control" rows="8" id="comment-comment" name="comment" placeholder="Оставьте комментарий"></textarea>
-                              </div>
-                            </div>
-                            
-                            {{ form.content_type }}
-                            {{ form.object_pk }}
-                            {{ form.timestamp }}
-                            {{ form.security_hash }}
+                        <div id="disqus_thread"></div>
+                        <script>
+                            /**
+                            * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                            * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+                            */
                            
-                            <div class="form-group">
-                              <div class="col-xs-12">
-                                <input type="hidden" name="next" value="{{ news.get_absolute_url }}" />
-                                <input type="submit" class="btn btn-primary btn-sm" id="submit" name="submit" value="Отправить" />
-                              </div>
-                            </div>
-                          </form>                        
-                                                
-                        {% get_comment_list for news as comment_list %}
-                        
-                        {% for comment in comment_list reversed %}
-                        <ul class="blog-post-info list-inline">
-                            <li style="font-size: 80%">{{ comment.submit_date }}</li>
-                            <li><b>{{ comment.user_name }}</b></li>
-                        </ul>
-                        {{ comment.comment }}
-                        
-                        {% endfor %}
+                            var disqus_config = function () {
+                            this.page.url = 'http://mixisport.com{{ news.get_absolute_url }}'; // Replace PAGE_URL with your page's canonical URL variable
+                            this.page.identifier = {{ news.pk }}; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                            };
+                            
+                            (function() { // DON'T EDIT BELOW THIS LINE
+                            var d = document, s = d.createElement('script');
+
+                            s.src = '//mixisport.disqus.com/embed.js';
+
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                            })();
+                        </script>
+                        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
                     </div>
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="left: 15%;margin-top: 100px;">
