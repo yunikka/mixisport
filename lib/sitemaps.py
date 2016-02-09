@@ -5,7 +5,7 @@ from pages.models import Pages
 from events.models import Fighters, Events
 
 class NewsSitemap(Sitemap):
-    changefreq = "never"
+    changefreq = "daily"
     priority = 0.5
 
     def items(self):

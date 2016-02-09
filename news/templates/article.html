@@ -7,11 +7,13 @@
 
 
                 <div class="row news-inner">
-                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" style="padding-left: 0%;padding-right: 0%;left: 13%;border-right-width: 10%;margin-bottom: 120px;">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left: 0%;padding-right: 0%;left: 13%;border-right-width: 10%;margin-bottom: 120px;">
                         <h3 style=" margin-top: 50px;"><strong>{{ news.title }}</strong></h3>
                         <ul class="blog-post-info list-inline">
                             <li>{{ news.created }}</li>
                             <li><a href="{% url 'news-category' news.category.slug %}">{{ news.category }}</a></li>
+                        </ul>    
+                        <ul class="list-inline">
                             <li>
                                 <script type="text/javascript" src="http://vk.com/js/api/share.js?93" charset="windows-1251"></script>
                                 <script type="text/javascript"><!--
@@ -106,6 +108,9 @@
                         
                         {% endfor %}
 
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="left: 15%;margin-top: 100px;">
+                        <iframe width="300" height="700" frameborder="0" scrolling="no"  src="http://click.readme.ru/informer/htm/33871.htm"></iframe>
                     </div>
                 </div>
       
