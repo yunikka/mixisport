@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Slider, SliderItem, Ticker, Seo, SocialIcons
+from .models import Slider, SliderItem, Ticker, Seo, SocialIcons, Commerce
 
 class SliderInline(admin.TabularInline):
     model = SliderItem    
@@ -33,3 +33,10 @@ class SocialIconsAdmin(admin.ModelAdmin):
     list_filter = ('name',)
 
 admin.site.register(SocialIcons, SocialIconsAdmin)
+
+class CommerceAdmin(admin.ModelAdmin):
+    list_display = ('code_type','enable',)
+    search_fields = ('code_type', 'codetext',)
+    list_filter = ('enable',)
+
+admin.site.register(Commerce, CommerceAdmin)

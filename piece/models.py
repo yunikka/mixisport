@@ -68,3 +68,20 @@ class SocialIcons(models.Model):
         
     def __str__(self):
         return self.name
+    
+class Commerce(models.Model):
+    
+    TYPE_NAME = (
+        (0, "Информер: статья, справа"),
+    )
+
+    code_type = models.IntegerField(choices=TYPE_NAME, default=0, unique=True, verbose_name="Имя", help_text="Тип кода")
+    codetext = models.TextField(verbose_name="Код", help_text="Введите код, соответствующий выбранному типу")
+    enable = models.BooleanField(verbose_name="Включить?", default=0)
+    
+    class Meta:
+        verbose_name_plural = "Коммерция"
+        verbose_name = "Код"
+        
+    def __str__(self):
+        return self.TYPE_NAME[self.code_type][1]
