@@ -5,18 +5,29 @@
 {% block content %}
 
 
-               <div class="row news-inner">
-                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" style="padding-left: 0%;padding-right: 0%;left: 13%;border-right-width: 10%;margin-bottom: 30px;">
-                        <div class="text-center">
-                            <h3 style=" margin-top: 50px;"><strong>{{ fighter.fullname }}</strong></h3>
-                            <img src="{{ MEDIA_URL }}{{ fighter.photo }}">
-                        </div>
-                        <br>
-                        <p>{{ fighter.add_info|safe }}</p>
+               <div class="row">
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        {% if fighter.photo_left %}
+                        <img src="{{ fighter.photo_left.url }}" style="width:100%" />
+                        {% endif %}
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                            <div class="text-left">
+                                <h3><strong>{{ fighter.fullname }}</strong></h3>
+                            </div>
+
+                          <ul class="nav nav-tabs" role="tablist">
+                            <li class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Инфо</a></li>
+                            <li><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Биография</a></li>
+                            <li><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Бои</a></li>
+                          </ul>
                         
-                        <h3 style=" margin-top: 50px;"><strong>Характеристики</strong></h3>
                         
-                        <table class="table table-striped table-condensed table-bordered" >
+                          <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="home">
+                                <br>
+                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                    <table class="table table-striped table-condensed table-bordered" >
                                         <tbody>
                                             <tr>
                                                 <td><strong>Рост</strong></td>
@@ -40,6 +51,43 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                </div>
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><img src="{{ MEDIA_URL }}{{ fighter.photo }}"></div>
+                                
+                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                            <p class="text-danger text-center"><strong>Победы</strong></p>
+                                            {% for stat in stats %}
+                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><p class="text-warning">{{ stat.get_type_display }}</p></td></div>
+                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{stat.proc_victory}}%;"><p class="text-center">{{ stat.victory }} ({{stat.proc_victory}}%)</p></div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+
+                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                            <p class="text-danger text-center"><strong>Поражения</strong></p>
+                                            {% for stat in stats %}
+                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><p class="text-warning">{{ stat.get_type_display }}</p></td></div>
+                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{stat.proc_defeat}}%;"><p class="text-center">{{ stat.defeat }} ({{stat.proc_defeat}}%)</p></div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>                                 
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="profile">{{ fighter.biography|safe }}</div>
+                            <div role="tabpanel" class="tab-pane" id="messages">
+                            {% for battle in battles %}
+                                <a href="{% url 'statistics' battle.eventpair.id %}"><h4><strong>{{ battle.eventpair.events.name }}</strong>: {{ battle.eventpair.fighters_1 }} VS {{ battle.eventpair.fighters_2 }}</h4></a>
+                                
+                            {% endfor %}
+                            </div>
+                          </div>
+                            
+
                         
                     </div>
                 </div>

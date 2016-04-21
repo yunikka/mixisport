@@ -12,13 +12,14 @@ from regions.models import Country
 class Fighters(models.Model):
     fullname = models.CharField(max_length=40, verbose_name="Полное имя", help_text="Введите полное имя бойца (не более 40 символов)")
     slug = models.SlugField(verbose_name="Путь", help_text="Путь - уникальное имя страницы, которое будет присутствовать в адресной строке")
-    photo = ResizeImageField(upload_to='img/fighters', thumb_width=316, thumb_height=316, verbose_name="Фото", help_text="Размер изображения будет изменен на 316х316, желательно предварительно кадрировать в виде квадрата")
+    photo = ResizeImageField(upload_to='img/fighters', thumb_width=316, thumb_height=316, verbose_name="Фото в разделе ИНФО", help_text="Размер изображения будет изменен на 316х316, желательно предварительно кадрировать в виде квадрата")
+    photo_left = models.ImageField(upload_to='img/fighters_left', default=None, verbose_name="Фото слева", help_text="Размер изображения будет растянуто. Рекомендуется вертикальное позиционирование")
     country = models.ForeignKey(Country, verbose_name="Страна", help_text="Выберите Страну из списка")
     birthdate = models.DateField(verbose_name="Дата рождения", help_text="Укажите дату рождения бойца")
     height = models.DecimalField(default=0.00, verbose_name="Рост", help_text="Укажите рост бойца №1", max_digits=5, decimal_places=2)
     weight = models.DecimalField(default=0.00, verbose_name="Вес", help_text="Укажите вес бойца №2", max_digits=5, decimal_places=2)
     record = models.CharField(max_length=11, verbose_name="Рекорд", help_text="Укажите значение Рекорд")
-    add_info = RedactorField(blank=True, verbose_name="Дополнительно", help_text="Можно ввести произвольный текст или оставить поле пустым")
+    biography = RedactorField(blank=True, verbose_name="Биография", help_text="Можно ввести произвольный текст или оставить поле пустым")
 
     class Meta:
         ordering = ['fullname']
@@ -32,6 +33,44 @@ class Fighters(models.Model):
     def get_absolute_url(self):
         return ('fighters', (), {'slug': self.slug})
     
+class Statistics(models.Model):
+    STATS_TYPE = (
+        (1, "Всего"),
+        (2, "Нокаут"),
+        (3, "Сабмишин"),
+        (4, "Решением"),
+    )
+    fighters = models.ForeignKey(Fighters, verbose_name="Имя бойца")
+    type = models.IntegerField(choices=STATS_TYPE, default=1, verbose_name="Тип")
+    victory = models.IntegerField(default=0, verbose_name="Побед")
+    defeat = models.IntegerField(default=0, verbose_name="Поражений")
+
+    def __str__(self):
+        return self.get_type_display()
+
+    class Meta:
+        unique_together = ('fighters', 'type',)
+        ordering = ['type']
+        verbose_name_plural = "Статистика"
+        verbose_name = "Статистика"
+        
+    def proc_victory(self): # функция вычисляет проценты от количества побед
+        if self.victory > 0 and self.defeat == 0:
+            res = 100
+        elif self.victory == 0 and self.defeat == 0:
+            res = 0
+        else:
+            res = (self.victory*100)/(self.victory+self.defeat)
+        return round(res)
+    
+    def proc_defeat(self): # функция вычисляет проценты от количества поражений
+        if self.defeat > 0 and self.victory == 0:
+            res = 100
+        elif self.defeat == 0 and self.victory == 0:
+            res = 0
+        else:
+            res = (self.defeat*100)/(self.defeat+self.victory)
+        return round(res)    
     
 class Events(models.Model):
     name = models.CharField(max_length=100, verbose_name="Название", help_text="Введите название события (не более 100 символов)")
@@ -60,6 +99,8 @@ class EventPair(models.Model):
     fighters_2 = models.ForeignKey(Fighters, verbose_name="Боец №2", help_text="Выберите бойца из списка или заведите нового", related_name="second_fighter")
     vote_1 = models.IntegerField(default=0, verbose_name="Голоса", help_text="Количество голосов за бойца №1")
     vote_2 = models.IntegerField(default=0, verbose_name="Голоса", help_text="Количество голосов за бойца №2")
+    defeat_1 = models.BooleanField(default=0, verbose_name="Поражение бойца 1?", help_text="Означает что данный боец потерпел поражение")
+    defeat_2 = models.BooleanField(default=0, verbose_name="Поражение бойца 2?", help_text="Означает что данный боец потерпел поражение")
     betting_odds_1 = models.DecimalField(default=0.00, verbose_name="Коэффцицент", help_text="Букмекерский коэффцицент для бойца №1", max_digits=5, decimal_places=2)
     betting_odds_2 = models.DecimalField(default=0.00, verbose_name="Коэффцицент", help_text="Букмекерский коэффцицент для бойца №2", max_digits=5, decimal_places=2)   
     country_1 = models.ForeignKey(Country, verbose_name="Страна ", help_text="Выберите Страну из списка для бойца №1", related_name="country_1")
@@ -72,6 +113,18 @@ class EventPair(models.Model):
     weight_2 = models.DecimalField(default=0.00, verbose_name="Вес", help_text="Укажите вес бойца №2", max_digits=5, decimal_places=2)
     record_1 = models.CharField(max_length=11, verbose_name="Рекорд", help_text="Укажите значение Рекорд бойца №1")
     record_2 = models.CharField(max_length=11, verbose_name="Рекорд", help_text="Укажите значение Рекорд бойца №1")   
+    punches_head_1 = models.IntegerField(default=0, verbose_name="Удары руками в голову")
+    punches_body_1 = models.IntegerField(default=0, verbose_name="Удары руками в корпус")
+    kicks_head_1 = models.IntegerField(default=0, verbose_name="Удары ногами в голову")
+    kicks_body_1 = models.IntegerField(default=0, verbose_name="Удары ногами в корпус")
+    throws_1 = models.IntegerField(default=0, verbose_name="Броски")
+    punches_head_2 = models.IntegerField(default=0, verbose_name="Удары руками в голову")
+    punches_body_2 = models.IntegerField(default=0, verbose_name="Удары руками в корпус")
+    kicks_head_2 = models.IntegerField(default=0, verbose_name="Удары ногами в голову")
+    kicks_body_2 = models.IntegerField(default=0, verbose_name="Удары ногами в корпус")
+    throws_2 = models.IntegerField(default=0, verbose_name="Броски")
+    content_stats = RedactorField(blank=True, verbose_name="Произвольный контент")
+    enable_stats = models.BooleanField(default=0, verbose_name="Включить отображение статистики?")
     events = models.ForeignKey(Events, verbose_name="Событие", help_text="Укажите событие к котору относится данная пара")
     in_mainpage = models.BooleanField(default=0, verbose_name="На главной?", help_text="Отображать данное событие на главной странице. Если отметить несколько событий, то будет отображать")
     weight = models.IntegerField(default=0, verbose_name="Значимость", help_text="Чем больше значение, тем выше будет отображена пара")
@@ -103,3 +156,29 @@ class EventPair(models.Model):
         else:
             pass
         return request.session["vote_pair_%s" % self.id]
+    
+    def __str__(self):
+        result = self.events.name + ': ' + self.fighters_1.fullname + ' VS ' + self.fighters_2.fullname
+        return result
+
+    
+class EventPair_Statistics(models.Model):
+    punches_head_1 = models.IntegerField(default=0, verbose_name="Удары руками в голову")
+    punches_body_1 = models.IntegerField(default=0, verbose_name="Удары руками в корпус")
+    kicks_head_1 = models.IntegerField(default=0, verbose_name="Удары ногами в голову")
+    kicks_body_1 = models.IntegerField(default=0, verbose_name="Удары ногами в корпус")
+    throws_1 = models.IntegerField(default=0, verbose_name="Броски")
+    punches_head_2 = models.IntegerField(default=0, verbose_name="Удары руками в голову")
+    punches_body_2 = models.IntegerField(default=0, verbose_name="Удары руками в корпус")
+    kicks_head_2 = models.IntegerField(default=0, verbose_name="Удары ногами в голову")
+    kicks_body_2 = models.IntegerField(default=0, verbose_name="Удары ногами в корпус")
+    throws_2 = models.IntegerField(default=0, verbose_name="Броски")
+
+class Battles(models.Model):
+
+    fighters = models.ForeignKey(Fighters, verbose_name="Имя бойца")
+    eventpair = models.ForeignKey(EventPair, verbose_name="Пара бойцов")
+
+    class Meta:
+        verbose_name_plural = "Бои"
+        verbose_name = "Бой"

@@ -1,14 +1,17 @@
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
-from .models import Fighters, Events, EventPair
+from .models import Fighters, Events, EventPair, Statistics, Battles
 from piece.models import Seo
 
 
 def fighters(request, slug, template='fighters.html'):
     """По заданному ключу категории отображает все элементы этой категории."""
+    fighter = get_object_or_404(Fighters, slug=slug)
     context = {
-        'fighter': get_object_or_404(Fighters, slug=slug),
+        'fighter': fighter,
+        'stats': Statistics.objects.filter(fighters=fighter.id),
+        'battles' : Battles.objects.filter(fighters=fighter.id),
     }
     return render_to_response(template, context, RequestContext(request))
 
@@ -70,3 +73,12 @@ def pair_vote(request, id, vote):
     
     return_path  = request.META.get('HTTP_REFERER','/')
     return redirect(return_path)
+
+def statistics(request, id, template='statistics.html'):
+    stat = get_object_or_404(EventPair, id=id)
+    event_id = stat.events.id
+    context = {
+        'stat': stat,
+        'pairs': EventPair.objects.exclude(id__exact=id).filter(events=event_id).order_by('weight'),
+    }
+    return render_to_response(template, context, RequestContext(request))
