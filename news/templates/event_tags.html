@@ -1,87 +1,87 @@
 
-
-                <h2>События</h2>
-                <div class="row statistic">
-                    <div class="col-lg-12">
+                <div class="right-block">
+                    <h3 class="title">События</h3>
+                    <div class="event-over">
                         {% for pair in pairs %}
-                        <div class="jum">
-                            <div class="row">
-                                <center><h3><a href="{{ pair.events.get_absolute_url }}">{{ pair.events }}</a></h3></center>
-                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="event-block">
+                            <h3 class="title-event"><a href="{{ pair.events.get_absolute_url }}">{{ pair.events }}</a></h3>
+                            <div class="over">
+                                <div class="event-left-block">
                                     <div class="progress">    
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ pair.proc_vote_1 }}%;"><p class="text-center">{{ pair.proc_vote_1 }}%</p></div>
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ pair.proc_vote_1 }}%;">
+                                            <p class="text-center">{{ pair.proc_vote_1 }}%</p>
+                                        </div>
                                     </div>
-                                    <div class="img-inner center">
-                                        <a href="{% url 'fighters' pair.fighters_1.slug %}"><img src="{{ MEDIA_URL }}{{ pair.fighters_1.photo }}" style="width: 200px;height: 200px; border: 4px solid #000000;"></a>
+                                    <div class="event-pic">
+                                        <a href="{% url 'fighters' pair.fighters_1.slug %}"><img src="{{ MEDIA_URL }}{{ pair.fighters_1.photo }}" width="183" height="183" /></a>    
                                     </div>
+                                    <div class="event-name">{{ pair.fighters_1 }}</div>
                                 </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <div class="event-right-block">
                                     <div class="progress">    
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ pair.proc_vote_2 }}%;"><p class="text-center">{{ pair.proc_vote_2 }}%</p></div>
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ pair.proc_vote_2 }}%;">
+                                            <p class="text-center">{{ pair.proc_vote_2 }}%</p>
+                                        </div>
                                     </div>
-                                    <div class="img-inner center">
-                                        <a href="{% url 'fighters' pair.fighters_2.slug %}"><img src="{{ MEDIA_URL }}{{ pair.fighters_2.photo }}" style="width: 200px;height: 200px; border: 4px solid #000000;"></a>
+                                    <div class="event-pic">
+                                        <a href="{% url 'fighters' pair.fighters_2.slug %}"><img src="{{ MEDIA_URL }}{{ pair.fighters_2.photo }}" width="183" height="183" /></a>    
                                     </div>
+                                    <div class="event-name">{{ pair.fighters_2 }}</div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                    <span class="result-inner left-result">{{ pair.fighters_1 }}</span>
-                                </div>
-                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 coefficient">
-                                    <span></span>
-                                </div>
-                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                    <span class="result-inner right-result">{{ pair.fighters_2 }}</span>
-                                </div>
-                            </div>
+                            <div class="vs">VS</div>
                         </div>
-                        <a href="{{ pair.events.get_absolute_url }}" class="pull-right more-info">Подробнее...</a>
-                        <br><br>
-                        {% endfor %} 
-
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-md-offset-1" style="margin: 25px">
+                        {% endfor %}
+                    </div>
+                    <div class="only-desktop">
+                        <div class="baner">
                             <a href='https://spadsmedia.com/aff/ln/ru/71889015' target='_blank'><img src='https://spadsmedia.com/adv/ln/ru/468x60.gif?t=4' border='0' alt='Букмекерская контора "ЛЕОН" - ставки на спорт'/></a>
-                        </div>    
-
-
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin: 5px 5px 5px 5px;">    
-                            <script type="text/javascript" src="//vk.com/js/api/openapi.js?120"></script>
+                        </div>
+                        {% comment %}
+                        <div class="title">Галерея</div>
+                        <div class="gallery-block">
+                            <a href="/">
+                                <img src="images/Conor-Mc.png" width="759" height="475" alt=""/>
+                                Название
+                            </a>
+                        </div>
+                        {% endcomment %}
+                        <div class="widget"> 
+                            <script type="text/javascript" src="js/openapi0.js"></script>
                             <div id="vk_groups"></div>
                             <script type="text/javascript">
-                                VK.Widgets.Group("vk_groups", {mode: 0, width: "500", height: "285", color1: 'FFFFFF', color2: '2B587A', color3: '5B7FA6'}, 97689143);
+                                VK.Widgets.Group("vk_groups", {mode: 0, width: "398", height: "285", color1: 'FFFFFF', color2: '2B587A', color3: '5B7FA6'}, 97689143);
                             </script>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin: 5px 5px 5px 5px;">                                
+                        <div class="widget">                               
                             <div id="ok_group_widget"></div>
-                                <script>
-                                    !function (d, id, did, st) {
-                                    var js = d.createElement("script");
-                                    js.src = "https://connect.ok.ru/connect.js";
-                                    js.onload = js.onreadystatechange = function () {
-                                    if (!this.readyState || this.readyState == "loaded" || this.readyState == "complete") {
-                                        if (!this.executed) {
-                                            this.executed = true;
-                                            setTimeout(function () {
-                                                OK.CONNECT.insertGroupWidget(id,did,st);
-                                            }, 0);
-                                        }
-                                    }}
-                                    d.documentElement.appendChild(js);
-                                    }(document,"ok_group_widget","52695768170670","{width:500,height:285}");
-                                </script>
-                        </div> 
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin: 5px 5px 5px 5px;">
-                            
-                        <div id="fb-root"></div>
-                            <script>(function(d, s, id) {
-                                  var js, fjs = d.getElementsByTagName(s)[0];
-                                  if (d.getElementById(id)) return;
-                                  js = d.createElement(s); js.id = id;
-                                  js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.5";
-                                  fjs.parentNode.insertBefore(js, fjs);
-                            }(document, 'script', 'facebook-jssdk'));</script>
-                        <div class="fb-page" data-href="https://www.facebook.com/mixisport" data-width="500" data-height="285" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/mixisport"><a href="https://www.facebook.com/mixisport">MIXIsport.com</a></blockquote></div></div>                        
-                        </div>    
+                            <script>
+                                !function (d, id, did, st) {
+                                var js = d.createElement("script");
+                                js.src = "https://connect.ok.ru/connect.js";
+                                js.onload = js.onreadystatechange = function () {
+                                if (!this.readyState || this.readyState == "loaded" || this.readyState == "complete") {
+                                    if (!this.executed) {
+                                        this.executed = true;
+                                        setTimeout(function () {
+                                            OK.CONNECT.insertGroupWidget(id,did,st);
+                                        }, 0);
+                                    }
+                                }}
+                                d.documentElement.appendChild(js);
+                                }(document,"ok_group_widget","52695768170670","{width:398,height:285}");
+                            </script>
+                        </div>
+                        <div class="widget">
+                            <div id="fb-root"></div>
+                                <script>(function(d, s, id) {
+                                      var js, fjs = d.getElementsByTagName(s)[0];
+                                      if (d.getElementById(id)) return;
+                                      js = d.createElement(s); js.id = id;
+                                      js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.5";
+                                      fjs.parentNode.insertBefore(js, fjs);
+                                }(document, 'script', 'facebook-jssdk'));</script>
+                            <div class="fb-page" data-href="https://www.facebook.com/mixisport" data-width="398" data-height="285" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/mixisport"><a href="https://www.facebook.com/mixisport">MIXIsport.com</a></blockquote></div></div>                        
+                        </div>
                     </div>
                 </div>

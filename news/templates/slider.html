@@ -1,52 +1,12 @@
-    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 1140px;height: 713px;">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        {% for step in steps %}
-        <li data-target="#myCarousel" data-slide-to="{{ step }}" class=""></li>
-        {% endfor %}
-      </ol>
-      <div class="carousel-inner" role="listbox">
-          
-        <div class="item next left">
-          <a href="{{ firstslide.url_button }}"><img class="first-slide" src="{{ MEDIA_URL }}{{ firstslide.image }}" style="width: 1140px;height: 713px;"></a>
-          {% if firstslide.text != "" %}
-          <div class="container">
-            <div class="carousel-caption" style="right: 2%;left: 2%;">
-              <p style="font-size: 150%">{{ firstslide.text }}</p>
-            </div>
-          </div>
-          {% endif %}
-        </div>
-        {% for slide in middleslide %}  
-        <div class="item">
-          <a href="{{ slide.url_button }}"><img class="second-slide" src="{{ MEDIA_URL }}{{ slide.image }}" style="width: 1140px;height: 713px;"></a>
-          {% if slide.text != "" %}
-          <div class="container">              
-            <div class="carousel-caption" style="right: 2%;left: 2%;">
-              <p style="font-size: 150%">{{ slide.text }}</p>
-            </div>                            
-          </div>
-          {% endif %}
-        </div>
-        {% endfor %}  
-        <div class="item active left">
-          <a href="{{ lastslide.url_button }}"><img class="third-slide" src="{{ MEDIA_URL }}{{ lastslide.image }}" style="width: 1140px;height: 713px;"></a>
-          {% if lastslide.text != "" %}
-          <div class="container">              
-            <div class="carousel-caption" style="right: 2%;left: 2%;">
-              <p style="font-size: 150%">{{ lastslide.text }}</p>
-            </div>                            
-          </div>
-          {% endif %}
-        </div>
-      </div>
-      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Назад</span>
-      </a>
-      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Вперед</span>
-      </a>
-    </div>
+                    <div class="slider-block">
+                        <div class="flexslider">
+                            <ul class="slides">
+                                {% for slideritem in slideritems %}
+                                <li>
+                                    <a href="{{ slide.url_button }}"><img src="{{ MEDIA_URL }}{{ slideritem.image }}" width="759" height="475" alt=""/></a>
+                                    <div class="slider-text">{{ slideritem.text }}</div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>

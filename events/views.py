@@ -80,5 +80,6 @@ def statistics(request, id, template='statistics.html'):
     context = {
         'stat': stat,
         'pairs': EventPair.objects.exclude(id__exact=id).filter(events=event_id).order_by('weight'),
+        'fighters_stat': zip(Statistics.objects.filter(fighters=stat.fighters_1), Statistics.objects.filter(fighters=stat.fighters_2)),
     }
     return render_to_response(template, context, RequestContext(request))

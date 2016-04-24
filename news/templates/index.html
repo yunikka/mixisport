@@ -4,25 +4,22 @@
 {% load ticker %}
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
-{% show_slider %}
 {% load event_tags %}
-        <h3 class="marquee"><span>{% show_ticker %}</span></h3>
-        <div class="row content">
-            <div class="col-sm-6 col-md-6 col-lg-6 news-block" {#style=" width: 835px;"#}>
-                <h2>Новости</h2>
-
-                {% include page_template %}
-                
-                {% block js %}
-                    {{ block.super }}
-                        <script src="{% static 'endless_pagination/js/endless-pagination.js' %}"></script>
-                        <script>$.endlessPaginate({paginateOnScroll: true, paginateOnScrollMargin: 20, paginateOnScrollChunkSize: 5});</script>
-                {% endblock %}
-                
+           <h3 class="marquee">
+                <span>{% show_ticker %}</span>
+            </h3>
+            <div class="over">
+                {% show_event_tags %}
+                <div class="left-block">
+                    {% show_slider %}
+                    <h3 class="title">Новости</h3>
+                    {% include page_template %}
+                    {% block js %}
+                        {{ block.super }}
+                            <script src="{% static 'endless_pagination/js/endless-pagination.js' %}"></script>
+                            <script>$.endlessPaginate({paginateOnScroll: true, paginateOnScrollMargin: 20, paginateOnScrollChunkSize: 5});</script>
+                    {% endblock %}
+                </div>
             </div>
-            <div class="col-md-6 col-lg-6">
-            {% show_event_tags %}
-            </div>
-        </div>
-        <br><br>
+        </div> 
 {% endblock %}

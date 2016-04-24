@@ -7,16 +7,58 @@
 {% block content %}
 
 
-                <div class="row news-inner">
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left: 0%;padding-right: 0%;left: 13%;border-right-width: 10%;margin-bottom: 120px;">
-                        <h3 style=" margin-top: 50px;"><strong>{{ news.title }}</strong></h3>
+            <div class="over">
+                <div class="right-block">
+                    <div class="only-desktop">
+                        <div class="widget"> 
+                            <script type="text/javascript" src="js/openapi0.js"></script>
+                            <div id="vk_groups"></div>
+                            <script type="text/javascript">
+                                VK.Widgets.Group("vk_groups", {mode: 0, width: "398", height: "285", color1: 'FFFFFF', color2: '2B587A', color3: '5B7FA6'}, 97689143);
+                            </script>
+                        </div>
+                        <div class="widget">                               
+                            <div id="ok_group_widget"></div>
+                            <script>
+                                !function (d, id, did, st) {
+                                var js = d.createElement("script");
+                                js.src = "https://connect.ok.ru/connect.js";
+                                js.onload = js.onreadystatechange = function () {
+                                if (!this.readyState || this.readyState == "loaded" || this.readyState == "complete") {
+                                    if (!this.executed) {
+                                        this.executed = true;
+                                        setTimeout(function () {
+                                            OK.CONNECT.insertGroupWidget(id,did,st);
+                                        }, 0);
+                                    }
+                                }}
+                                d.documentElement.appendChild(js);
+                                }(document,"ok_group_widget","52695768170670","{width:398,height:285}");
+                            </script>
+                        </div>
+                        <div class="widget">
+                            <div id="fb-root"></div>
+                                <script>(function(d, s, id) {
+                                      var js, fjs = d.getElementsByTagName(s)[0];
+                                      if (d.getElementById(id)) return;
+                                      js = d.createElement(s); js.id = id;
+                                      js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.5";
+                                      fjs.parentNode.insertBefore(js, fjs);
+                                }(document, 'script', 'facebook-jssdk'));</script>
+                            <div class="fb-page" data-href="https://www.facebook.com/mixisport" data-width="398" data-height="285" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/mixisport"><a href="https://www.facebook.com/mixisport">MIXIsport.com</a></blockquote></div></div>                        
+                        </div>
+                    </div>
+                </div>
+                <div class="left-block">
+                    <div class="article">
+                        <h3 class="title">{{ news.title }}</h3>   
                         <ul class="blog-post-info list-inline">
                             <li>{{ news.created }}</li>
                             <li><a href="{% url 'news-category' news.category.slug %}">{{ news.category }}</a></li>
                         </ul>    
                         <ul class="list-inline">
                             <li>
-                                <script type="text/javascript" src="http://vk.com/js/api/share.js?93" charset="windows-1251"></script>
+                                <script type="text/javascript" src="js/share.js" charset="windows-1251"></script>
                                 <script type="text/javascript"><!--
                                     document.write(VK.Share.button(false,{type: "round", text: "Поделиться"}));
                                 --></script>                                
@@ -49,46 +91,42 @@
                                   js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.5";
                                   fjs.parentNode.insertBefore(js, fjs);
                                 }(document, 'script', 'facebook-jssdk'));</script>
-
+    
                                 <div class="fb-share-button" data-layout="button_count" style="top: -6px;"></div>   
                             </li>
                             <li>
-                                <script type="text/javascript" src="http://webdiscover.ru/engine/api/share/share.js" charset="windows-1251"></script>
+                                <script type="text/javascript" src="js/share1.js" charset="windows-1251"></script>
                                 <script type="text/javascript"><!--
                                     document.write(WD.Share.button(false,{id: 2, width: 100, text: "Share"}));
                                 --></script>
                             </li>
-                        </ul>
-                        <center><img alt="" src="{{ news.image_after.medium.url }}"/></a></center>
-                        <p>{{ news.content|safe }}</p>                        
+                        </ul> 
+                        <div class="article-picture"><img src="{{ news.image_after.medium.url }}" width="640" height="369" alt=""/></div>
+                        <p>{{ news.content|safe }}</p>                    </div>
+
+                    <div id="disqus_thread"></div>
+                    <script>
+                        /**
+                        * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                        * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+                        */
+                       
+                        var disqus_config = function () {
+                        this.page.url = 'http://mixisport.com/news/ben-askren-sobiraetsya-zavershit-kareru-v-skorom-v/'; // Replace PAGE_URL with your page's canonical URL variable
+                        this.page.identifier = 884; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                        };
                         
-                        <div id="disqus_thread"></div>
-                        <script>
-                            /**
-                            * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-                            * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
-                            */
-                           
-                            var disqus_config = function () {
-                            this.page.url = 'http://mixisport.com{{ news.get_absolute_url }}'; // Replace PAGE_URL with your page's canonical URL variable
-                            this.page.identifier = {{ news.pk }}; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                            };
-                            
-                            (function() { // DON'T EDIT BELOW THIS LINE
-                            var d = document, s = d.createElement('script');
+                        (function() { // DON'T EDIT BELOW THIS LINE
+                        var d = document, s = d.createElement('script');
 
-                            s.src = '//mixisport.disqus.com/embed.js';
+                        s.src = '//mixisport.disqus.com/embed.js';
 
-                            s.setAttribute('data-timestamp', +new Date());
-                            (d.head || d.body).appendChild(s);
-                            })();
-                        </script>
-                        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-
-                    </div>
-                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="left: 21%;margin-top: 200px;">
-                        {% show_informer_left %}
-                    </div>
-                </div>
+                        s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                        })();
+                    </script>
+                </div>    
+            </div>
+        </div>    
       
 {% endblock %}
