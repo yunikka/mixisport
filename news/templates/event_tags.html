@@ -1,3 +1,4 @@
+{% load staticfiles %}
 
                 <div class="right-block">
                     <h3 class="title">События</h3>
@@ -34,9 +35,11 @@
                         {% endfor %}
                     </div>
                     <div class="only-desktop">
+                        {% comment %}
                         <div class="baner">
                             <a href='https://spadsmedia.com/aff/ln/ru/71889015' target='_blank'><img src='https://spadsmedia.com/adv/ln/ru/468x60.gif?t=4' border='0' alt='Букмекерская контора "ЛЕОН" - ставки на спорт'/></a>
                         </div>
+                        {% endcomment %}
                         {% comment %}
                         <div class="title">Галерея</div>
                         <div class="gallery-block">
@@ -47,7 +50,7 @@
                         </div>
                         {% endcomment %}
                         <div class="widget"> 
-                            <script type="text/javascript" src="js/openapi0.js"></script>
+                            <script type="text/javascript" src="{% static 'js/openapi0.js' %}"></script>
                             <div id="vk_groups"></div>
                             <script type="text/javascript">
                                 VK.Widgets.Group("vk_groups", {mode: 0, width: "398", height: "285", color1: 'FFFFFF', color2: '2B587A', color3: '5B7FA6'}, 97689143);

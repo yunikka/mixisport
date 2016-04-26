@@ -1,96 +1,149 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block title %}{{ fighter.fullname }}{% endblock %}
 
 {% block content %}
 
 
-               <div class="row">
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        {% if fighter.photo_left %}
-                        <img src="{{ fighter.photo_left.url }}" style="width:100%" />
-                        {% endif %}
+            <div class="over">
+                <div class="right-block">
+                    <div class="only-desktop">
+                        <div class="widget"> 
+                            <script type="text/javascript" src="{% static 'js/openapi0.js' %}"></script>
+                            <div id="vk_groups"></div>
+                            <script type="text/javascript">
+                                VK.Widgets.Group("vk_groups", {mode: 0, width: "398", height: "285", color1: 'FFFFFF', color2: '2B587A', color3: '5B7FA6'}, 97689143);
+                            </script>
+                        </div>
+                        <div class="widget">                               
+                            <div id="ok_group_widget"></div>
+                            <script>
+                                !function (d, id, did, st) {
+                                var js = d.createElement("script");
+                                js.src = "https://connect.ok.ru/connect.js";
+                                js.onload = js.onreadystatechange = function () {
+                                if (!this.readyState || this.readyState == "loaded" || this.readyState == "complete") {
+                                    if (!this.executed) {
+                                        this.executed = true;
+                                        setTimeout(function () {
+                                            OK.CONNECT.insertGroupWidget(id,did,st);
+                                        }, 0);
+                                    }
+                                }}
+                                d.documentElement.appendChild(js);
+                                }(document,"ok_group_widget","52695768170670","{width:398,height:285}");
+                            </script>
+                        </div>
+                        <div class="widget">
+                            <div id="fb-root"></div>
+                                <script>(function(d, s, id) {
+                                      var js, fjs = d.getElementsByTagName(s)[0];
+                                      if (d.getElementById(id)) return;
+                                      js = d.createElement(s); js.id = id;
+                                      js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.5";
+                                      fjs.parentNode.insertBefore(js, fjs);
+                                }(document, 'script', 'facebook-jssdk'));</script>
+                            <div class="fb-page" data-href="https://www.facebook.com/mixisport" data-width="398" data-height="285" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/mixisport"><a href="https://www.facebook.com/mixisport">MIXIsport.com</a></blockquote></div></div>                        
+                        </div>
                     </div>
-                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                            <div class="text-left">
-                                <h3><strong>{{ fighter.fullname }}</strong></h3>
+                </div>
+                <div class="left-block">
+                    <div class="info-block">
+                        {% if fighter.photo_left %}
+                        <div class="info-figter-pic"><img src="{{ fighter.photo_left.url }}" width="1000" height="1613" alt=""/></div>
+                        {% endif %}
+                        <div>
+                            <h3 class="title">{{ fighter.fullname }}</h3>
+                            <div class="over only-mobil">
+                                <div class="small-pic"><img src="{{ MEDIA_URL }}/{{ fighter.photo }}" width="282" height="183" alt=""/></div>
                             </div>
-
-                          <ul class="nav nav-tabs" role="tablist">
-                            <li class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Инфо</a></li>
-                            <li><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Биография</a></li>
-                            <li><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Бои</a></li>
-                          </ul>
-                        
-                        
-                          <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane active" id="home">
-                                <br>
-                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                                    <table class="table table-striped table-condensed table-bordered" >
-                                        <tbody>
-                                            <tr>
-                                                <td><strong>Рост</strong></td>
-                                                <td>{{ fighter.height }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Вес</strong></td>
-                                                <td>{{ fighter.weight }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Возраст</strong></td>
-                                                <td>{{ fighter.birthdate }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Рекорд</strong></td>
-                                                <td>{{ fighter.record }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Страна</strong></td>
-                                                <td>{{ fighter.country }}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><img src="{{ MEDIA_URL }}{{ fighter.photo }}"></div>
-                                
-                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                            <p class="text-danger text-center"><strong>Победы</strong></p>
+                            <div class="tabs">
+                                <ul class="bookmark">
+                                    <li>Инфо</li>
+                                    <li>Биография</li>
+                                    <li>Бои</li>
+                                    <li>Фото</li>
+                                </ul>
+                                <div class="bookmarker-box">
+                                    <div class="info-figter">
+                                        <div class="small-pic only-desktop-pl"><img src="{{ MEDIA_URL }}/{{ fighter.photo }}" width="282" height="183" alt=""/></div>
+                                        <div class="info-table">
+                                            <table>
+                                                <tr>
+                                                    <td><strong>Возраст</strong></td>
+                                                    <td>{{ fighter.birthdate }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Страна</strong></td>
+                                                    <td>{{ fighter.country }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Рост</strong></td>
+                                                    <td>{{ fighter.height }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Вес</strong></td>
+                                                    <td>{{ fighter.weight }}</td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <td><strong>Рекорд</strong></td>
+                                                    <td>{{ fighter.record }}</td>
+                                                </tr>
+                                                
+                                            </table>
+                                        </div>
+                                        <h3 class="title-spec">Победы</h3>
+                                        <div class="statistics-figter">
                                             {% for stat in stats %}
-                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><p class="text-warning">{{ stat.get_type_display }}</p></td></div>
-                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                                <div class="progress">
-                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{stat.proc_victory}}%;"><p class="text-center">{{ stat.victory }} ({{stat.proc_victory}}%)</p></div>
+                                            <div>
+                                                <label>{{ stat.get_type_display }}</label>
+                                                <div class="progress">    
+                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{stat.proc_victory}}%;">
+                                                        <p class="text-center">{{stat.proc_victory}}%</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                             {% endfor %}
                                         </div>
-
-                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                            <p class="text-danger text-center"><strong>Поражения</strong></p>
+                                        <h3 class="title-spec">Поражения</h3>
+                                        <div class="statistics-figter">
                                             {% for stat in stats %}
-                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><p class="text-warning">{{ stat.get_type_display }}</p></td></div>
-                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                                <div class="progress">
-                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{stat.proc_defeat}}%;"><p class="text-center">{{ stat.defeat }} ({{stat.proc_defeat}}%)</p></div>
+                                            <div>
+                                                <label>{{ stat.get_type_display }}</label>
+                                                <div class="progress">    
+                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{stat.proc_defeat}}%;">
+                                                        <p class="text-center">{{stat.proc_defeat}}%</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                             {% endfor %}
-                                        </div>                                 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bookmarker-box">
+                                    <div class="biography">
+                                        <p>{{ fighter.biography|safe }}</p>
+                                    </div>
+                                </div>
+                                <div class="bookmarker-box">
+                                    {% for battle in battles %}
+                                    <div class="link-battles">
+                                        <a href="{% url 'statistics' battle.eventpair.id %}"><b>{{ battle.eventpair.events.name }}</b> : {{ battle.eventpair.fighters_1 }} VS {{ battle.eventpair.fighters_2 }}</a>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="bookmarker-box">
+                                    <div class="info-gallery">
+                                    </div>
+                                </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane" id="profile">{{ fighter.biography|safe }}</div>
-                            <div role="tabpanel" class="tab-pane" id="messages">
-                            {% for battle in battles %}
-                                <a href="{% url 'statistics' battle.eventpair.id %}"><h4><strong>{{ battle.eventpair.events.name }}</strong>: {{ battle.eventpair.fighters_1 }} VS {{ battle.eventpair.fighters_2 }}</h4></a>
-                                
-                            {% endfor %}
-                            </div>
-                          </div>
-                            
-
-                        
-                    </div>
-                </div>
+                        </div>
+                    </div>    
+                </div>    
+            </div>
+        </div>
 
 
                                     

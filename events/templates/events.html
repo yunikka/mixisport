@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load comments %}
+{% load staticfiles %}
 
 {% block title %}{{ event.name }}{% endblock %}
 
@@ -15,7 +16,7 @@
                 <div class="right-block">
                     <div class="only-desktop">
                         <div class="widget"> 
-                            <script type="text/javascript" src="js/openapi0.js"></script>
+                            <script type="text/javascript" src="{% static 'js/openapi0.js' %}"></script>
                             <div id="vk_groups"></div>
                             <script type="text/javascript">
                                 VK.Widgets.Group("vk_groups", {mode: 0, width: "398", height: "285", color1: 'FFFFFF', color2: '2B587A', color3: '5B7FA6'}, 97689143);
@@ -99,9 +100,11 @@
                             <div class="fb-share-button" data-layout="button_count" style="top: -6px;"></div>   
                         </li>
                     </ul>
+                    {% comment %}
                     <div class="over">
                         <a class="make-bet" href="https://spadsmedia.com/aff/ln/ru/71889015">Сделать ставку (БК Леон)</a>
                     </div>
+                    {% endcomment %}
                     <hr />
                     {% for pair in pairs %} {% with j=forloop.counter0 %}
                     <div class="couple-block">

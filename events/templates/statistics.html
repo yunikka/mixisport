@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Статистика боя {{ stat.fighters_1 }} VS {{ stat.fighters_2 }}{% endblock %}
+
+{% block content %}
+
+            <div class="over">
+                <div class="right-block">
+                    <h3 class="title only-desktop">Другие бои</h3>
+                    <div class="fights-block">
+                        <div class="open-fights">Другие бои</div>
+                        <div class="fights">
+                           {% for pair in pairs %}
+                            <div><a href="{% url 'statistics' pair.id %}">{{ pair.fighters_1.fullname }} VS {{ pair.fighters_2.fullname }}</a></div>
+                           {% endfor %}
+                        </div>
+                    </div>
+                    <div class="only-desktop">
+                        <div class="widget"> 
+                            <script type="text/javascript" src="{% static 'js/openapi0.js' %}"></script>
+                            <div id="vk_groups"></div>
+                            <script type="text/javascript">
+                                VK.Widgets.Group("vk_groups", {mode: 0, width: "398", height: "285", color1: 'FFFFFF', color2: '2B587A', color3: '5B7FA6'}, 97689143);
+                            </script>
+                        </div>
+                        <div class="widget">                               
+                            <div id="ok_group_widget"></div>
+                            <script>
+                                !function (d, id, did, st) {
+                                var js = d.createElement("script");
+                                js.src = "https://connect.ok.ru/connect.js";
+                                js.onload = js.onreadystatechange = function () {
+                                if (!this.readyState || this.readyState == "loaded" || this.readyState == "complete") {
+                                    if (!this.executed) {
+                                        this.executed = true;
+                                        setTimeout(function () {
+                                            OK.CONNECT.insertGroupWidget(id,did,st);
+                                        }, 0);
+                                    }
+                                }}
+                                d.documentElement.appendChild(js);
+                                }(document,"ok_group_widget","52695768170670","{width:398,height:285}");
+                            </script>
+                        </div>
+                        <div class="widget">
+                            <div id="fb-root"></div>
+                                <script>(function(d, s, id) {
+                                      var js, fjs = d.getElementsByTagName(s)[0];
+                                      if (d.getElementById(id)) return;
+                                      js = d.createElement(s); js.id = id;
+                                      js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.5";
+                                      fjs.parentNode.insertBefore(js, fjs);
+                                }(document, 'script', 'facebook-jssdk'));</script>
+                            <div class="fb-page" data-href="https://www.facebook.com/mixisport" data-width="398" data-height="285" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/mixisport"><a href="https://www.facebook.com/mixisport">MIXIsport.com</a></blockquote></div></div>                        
+                        </div>
+                    </div>
+                </div>
+                <div class="left-block">
+                    <div class="statistics-blocl">
+                        <div class="couple-left">
+                            <div class="couple-pic"><img src="{{ MEDIA_URL }}{{ stat.fighters_1.photo }}" width="183" height="183" alt=""/></div>    
+                            <div class="couple-name"><a href="{% url 'fighters' stat.fighters_1.slug %}">{{ stat.fighters_1.fullname }}</a></div>
+                        </div>
+                        <div class="couple-right">
+                            <div class="couple-pic"><img src="{{ MEDIA_URL }}/{{ stat.fighters_2.photo }}" width="183" height="183" alt=""/></div>    
+                            <div class="couple-name"><a href="{% url 'fighters' stat.fighters_2.slug %}">{{ stat.fighters_2.fullname }}</a></div>
+                        </div>
+                        <div class="statistics-table">
+                            <table>
+                                <tr>
+                                    <td>{{ stat.punches_head_1 }}</td>
+                                    <td><b>Удары руками в голову</b></td>
+                                    <td>{{ stat.punches_head_2 }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ stat.punches_body_1 }}</td>
+                                    <td><b>Удары руками в корпус</b></td>
+                                    <td>{{ stat.punches_body_2 }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ stat.kicks_head_1 }}</td>
+                                    <td><b>Удары ногами в голову</b></td>
+                                    <td>{{ stat.kicks_head_2 }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ stat.kicks_body_1 }}</td>
+                                    <td><b>Удары ногами в корпус</b></td>
+                                    <td>{{ stat.kicks_body_2 }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ stat.throws_1 }}</td>
+                                    <td><b>Броски</b></td>
+                                    <td>{{ stat.throws_2 }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>  
+                    <div class="statistical-comparison">
+                        {% for fighter1, fighter2 in fighters_stat %}
+                        <div class="statistics-figter text-center"><label>{{ fighter1.get_type_display }}</label></div>
+                        <div class="over">
+                            <div class="couple-left">
+                                <div class="statistics-figter">
+                                    <div class="progress">    
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ fighter1.proc_victory }}%;">
+                                            <p class="text-center">{{ fighter1.proc_victory }}%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="couple-right">
+                                <div class="statistics-figter">
+                                    <div class="progress">    
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ fighter2.proc_victory }}%;">
+                                            <p class="text-center">{{ fighter2.proc_victory }}%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {{ stat.content_stats|safe }}
+                    <br />
+                    <br />
+                    <div id="disqus_thread"></div>
+                    <script>
+                        /**
+                        * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                        * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+                        */
+                       
+                        var disqus_config = function () {
+                        this.page.url = 'http://mixisport.com/news/ben-askren-sobiraetsya-zavershit-kareru-v-skorom-v/'; // Replace PAGE_URL with your page's canonical URL variable
+                        this.page.identifier = 884; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                        };
+                        
+                        (function() { // DON'T EDIT BELOW THIS LINE
+                        var d = document, s = d.createElement('script');
+
+                        s.src = '//mixisport.disqus.com/embed.js';
+
+                        s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                        })();
+                    </script>
+                    <br />
+                    <br />
+                </div>    
+            </div>
+        </div>  
+
+
+{% endblock %}
