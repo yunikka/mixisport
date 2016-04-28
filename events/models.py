@@ -13,7 +13,7 @@ class Fighters(models.Model):
     fullname = models.CharField(max_length=40, verbose_name="Полное имя", help_text="Введите полное имя бойца (не более 40 символов)")
     slug = models.SlugField(verbose_name="Путь", help_text="Путь - уникальное имя страницы, которое будет присутствовать в адресной строке")
     photo = ResizeImageField(upload_to='img/fighters', thumb_width=316, thumb_height=316, verbose_name="Фото в разделе ИНФО", help_text="Размер изображения будет изменен на 316х316, желательно предварительно кадрировать в виде квадрата")
-    photo_left = models.ImageField(upload_to='img/fighters_left', default=None, verbose_name="Фото слева", help_text="Размер изображения будет растянуто. Рекомендуется вертикальное позиционирование")
+    photo_left = models.ImageField(upload_to='img/fighters_left', default=None, verbose_name="Фото слева", help_text="Размер изображения будет растянуто. Рекомендуется вертикальное позиционирование", blank=True)
     country = models.ForeignKey(Country, verbose_name="Страна", help_text="Выберите Страну из списка")
     birthdate = models.DateField(verbose_name="Дата рождения", help_text="Укажите дату рождения бойца")
     height = models.DecimalField(default=0.00, verbose_name="Рост", help_text="Укажите рост бойца №1", max_digits=5, decimal_places=2)
