@@ -3,8 +3,9 @@ from django.utils.feedgenerator import Rss201rev2Feed
 from django.utils import timezone
 import datetime
 import re
+from django.shortcuts import get_object_or_404
 
-from news.models import News
+from news.models import News, Category
 from piece.models import Seo
 
 class DefaultRSS(Feed):
@@ -54,3 +55,27 @@ class SocialRSS(Feed):
 
     def items(self):
         return News.objects.filter(status__in=[3,4]).filter(created__gt=(timezone.now() - datetime.timedelta(days=1))).order_by('-created')
+    
+class BodibildingRSS(Feed):
+    title = Seo.objects.get(tag=1)
+    link = "/"
+
+    def items(self):
+        category = get_object_or_404(Category, slug='bodibilding')
+        return News.objects.filter(status__in=[3,4]).filter(created__gt=(timezone.now() - datetime.timedelta(days=1))).filter(category=category).order_by('-created')
+    
+class MmaRSS(Feed):
+    title = Seo.objects.get(tag=1)
+    link = "/"
+
+    def items(self):
+        category = get_object_or_404(Category, slug='mma')
+        return News.objects.filter(status__in=[3,4]).filter(created__gt=(timezone.now() - datetime.timedelta(days=1))).filter(category=category).order_by('-created')
+
+class BoksRSS(Feed):
+    title = Seo.objects.get(tag=1)
+    link = "/"
+
+    def items(self):
+        category = get_object_or_404(Category, slug='boks')
+        return News.objects.filter(status__in=[3,4]).filter(created__gt=(timezone.now() - datetime.timedelta(days=1))).filter(category=category).order_by('-created')
