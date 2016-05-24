@@ -3,7 +3,7 @@
                             <ul class="slides">
                                 {% for slideritem in slideritems %}
                                 <li>
-                                    <a href="{{ slide.url_button }}"><img src="{{ MEDIA_URL }}{{ slideritem.image }}" width="759" height="475" alt=""/></a>
+                                    <a href="{{ slideritem.url_button }}"><img src="{{ MEDIA_URL }}{{ slideritem.image }}" width="759" height="475" alt=""/></a>
                                     <div class="slider-text">{{ slideritem.text }}</div>
                                 </li>
                                 {% endfor %}
