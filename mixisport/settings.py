@@ -50,7 +50,6 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'endless_pagination',
     'smart_selects',
-    'django_comments',
     'news',
     'regions',   
     'piece',
