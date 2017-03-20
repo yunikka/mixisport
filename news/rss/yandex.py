@@ -49,8 +49,14 @@ class RssYandex(Rss):
         
 class YandexRSS(Feed):
     feed_type = RssYandex
-    title = Seo.objects.get(tag=1)
-    description = Seo.objects.get(tag=2)
+    try:
+        title = Seo.objects.get(tag=1)
+    except:
+        title = None
+    try:
+        description = Seo.objects.get(tag=2)
+    except:
+        description = None
     
     link = "/"
     

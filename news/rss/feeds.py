@@ -9,8 +9,15 @@ from news.models import News, Category
 from piece.models import Seo
 
 class DefaultRSS(Feed):
-    title = Seo.objects.get(tag=1)
-    description = Seo.objects.get(tag=2)
+    try:
+        title = Seo.objects.get(tag=1)
+    except:
+        title = None
+    try:
+        description = Seo.objects.get(tag=2)
+    except:
+        description = None
+
     link = "/"
 
     def items(self):
@@ -26,8 +33,15 @@ class DefaultRSS(Feed):
         return item.content
     
 class RSS_limit_content(Feed):
-    title = Seo.objects.get(tag=1)
-    description = Seo.objects.get(tag=2)
+    try:
+        title = Seo.objects.get(tag=1)
+    except:
+        title = None
+    try:
+        description = Seo.objects.get(tag=2)
+    except:
+        description = None
+
     link = "/"
 
     def items(self):
@@ -50,14 +64,22 @@ class RSS_limit_content(Feed):
         #return item.content
 
 class SocialRSS(Feed):
-    title = Seo.objects.get(tag=1)
+    try:
+        title = Seo.objects.get(tag=1)
+    except:
+        title = None
+
     link = "/"
 
     def items(self):
         return News.objects.filter(status__in=[3,4]).filter(created__gt=(timezone.now() - datetime.timedelta(days=1))).order_by('-created')
     
 class BodibildingRSS(Feed):
-    title = Seo.objects.get(tag=1)
+    try:
+        title = Seo.objects.get(tag=1)
+    except:
+        title = None
+
     link = "/"
 
     def items(self):
@@ -65,7 +87,11 @@ class BodibildingRSS(Feed):
         return News.objects.filter(status__in=[3,4]).filter(created__gt=(timezone.now() - datetime.timedelta(days=1))).filter(category=category).order_by('-created')
     
 class MmaRSS(Feed):
-    title = Seo.objects.get(tag=1)
+    try:
+        title = Seo.objects.get(tag=1)
+    except:
+        title = None
+
     link = "/"
 
     def items(self):
@@ -73,7 +99,11 @@ class MmaRSS(Feed):
         return News.objects.filter(status__in=[3,4]).filter(created__gt=(timezone.now() - datetime.timedelta(days=1))).filter(category=category).order_by('-created')
 
 class BoksRSS(Feed):
-    title = Seo.objects.get(tag=1)
+    try:
+        title = Seo.objects.get(tag=1)
+    except:
+        title = None
+
     link = "/"
 
     def items(self):
