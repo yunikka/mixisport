@@ -1,6 +1,7 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
+from django.contrib.sitemaps.views import sitemap
 from lib.sitemaps import *
 
 sitemaps = {
@@ -20,7 +21,7 @@ urlpatterns = [
 
     #   
     url(r'^redactor/', include('redactor.urls')),
-    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
     url(r'^chaining/', include('smart_selects.urls')),
     url(r'^comments/', include('django_comments.urls')),
     
