@@ -17,7 +17,7 @@ urlpatterns = [
     url(r'^news/', include('news.urls')),
     url(r'^pages/', include('pages.urls')),
     url(r'^events/', include('events.urls')),
-    url(r'^$', include('news.urls')),
+    url(r'^', include('news.urls')),
 
     #   
     url(r'^redactor/', include('redactor.urls')),
