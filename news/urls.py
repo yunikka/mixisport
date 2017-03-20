@@ -6,12 +6,9 @@ from .rss.feeds import DefaultRSS, SocialRSS, RSS_limit_content, BodibildingRSS,
 from .rss.yandex import YandexRSS
 
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^(?P<slug>[-\w]+)/$', StoryDetailView.as_view(), name="news"),
     url(r'^$', StoryListView),
-)
-
-urlpatterns += patterns('.views',
     url(r'^category/(?P<slug>[-\w]+)/$', category, name="news-category"),
     url(r'^contact$', contact, name="contact"),
     url(r'^rss.xml$', DefaultRSS()),
@@ -20,5 +17,5 @@ urlpatterns += patterns('.views',
     url(r'^rss/limit.xml$', RSS_limit_content()),
     url(r'^category/bodibilding/rss.xml$', BodibildingRSS()),
     url(r'^category/mma/rss.xml$', MmaRSS()),
-    url(r'^category/boks/rss.xml$', BoksRSS()),
-)
+    url(r'^category/boks/rss.xml$', BoksRSS()),    
+]
