@@ -6,16 +6,18 @@ from .models import News, Category
 from piece.models import Seo
 from .forms import NameForm
 
+from piece.utils import SeoTags
+
 
 def StoryListView(request, template='index.html', page_template='index_page.html'):
     context = {
         'news_list': News.objects.filter(status__in=[3,4]),
         'page_template': page_template,
-        'title' : Seo.objects.get(tag=1)
+        'title' : SeoTags.title()
     }
     if request.is_ajax():
         template = page_template
-    return render_to_response(template, context, RequestContext(request))
+    return render(request, template, context)
 
 
 class StoryDetailView(DetailView):
