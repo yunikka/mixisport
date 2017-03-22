@@ -9,14 +9,11 @@ from .forms import NameForm
 from piece.utils import SeoTags
 
 
-def StoryListView(request, template='index.html', page_template='index_page.html'):
+def StoryListView(request, template='index.html'):
     context = {
         'news_list': News.objects.filter(status__in=[3,4]),
-        'page_template': page_template,
         'title' : SeoTags.title()
     }
-    if request.is_ajax():
-        template = page_template
     return render(request, template, context)
 
 

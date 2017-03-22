@@ -48,7 +48,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
     'django.contrib.sites',
-    'endless_pagination',
     'smart_selects',
     'news',
     'regions',   
