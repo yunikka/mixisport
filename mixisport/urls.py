@@ -4,6 +4,8 @@ from django.conf import settings
 from django.contrib.sitemaps.views import sitemap
 from lib.sitemaps import *
 
+from django.conf.urls.static import static
+
 sitemaps = {
     'news': NewsSitemap(),
     'pages': PagesSitemap(),
@@ -25,3 +27,5 @@ urlpatterns = [
     url(r'^chaining/', include('smart_selects.urls')),
     
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

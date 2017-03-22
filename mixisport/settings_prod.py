@@ -122,12 +122,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-#STATIC_ROOT = os.path.join("/var/www/mixisport.com/static/")
-STATIC_ROOT = os.path.join("/var/www/stage1.dev.mixisport.com/static/")
+
+STATIC_ROOT = [
+	os.path.join(BASE_DIR, "static/")
+]
 
 MEDIA_URL = '/media/'
-#MEDIA_ROOT = os.path.join("/var/www/mixisport.com/media/")
-MEDIA_ROOT = os.path.join("/var/www/stage1.dev.mixisport.com/media/")
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 REDACTOR_OPTIONS = {
                        'lang': 'ru',

@@ -80,6 +80,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
             ],
         },
     },
@@ -115,12 +117,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-#STATIC_ROOT = os.path.join("/var/www/mixisport.com/static/")
-STATIC_ROOT = os.path.join("/var/www/stage1.dev.mixisport.com/static/")
+
+#STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+
+STATICFILES_DIRS = [
+	os.path.join(BASE_DIR, "static"),
+]
 
 MEDIA_URL = '/media/'
-#MEDIA_ROOT = os.path.join("/var/www/mixisport.com/media/")
-MEDIA_ROOT = os.path.join("/var/www/stage1.dev.mixisport.com/media/")
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
+
 
 REDACTOR_OPTIONS = {
                        'lang': 'ru',
