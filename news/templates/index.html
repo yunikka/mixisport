@@ -13,12 +13,20 @@
                 <div class="left-block">
                     {% show_slider %}
                     <h3 class="title">Новости</h3>
-                    {% include page_template %}
-                    {% block js %}
-                        {{ block.super }}
-                            <script src="{% static 'endless_pagination/js/endless-pagination.js' %}"></script>
-                            <script>$.endlessPaginate({paginateOnScroll: true, paginateOnScrollMargin: 20, paginateOnScrollChunkSize: 5});</script>
-                    {% endblock %}
+					{% for news in news_list %}                
+		                    <div class="news-block">
+		                        <a class="news-pic" href="/"><img src="{{ MEDIA_URL }}{{ news.image }}" width="160" height="160" alt=""/></a>
+		                        <div>
+		                            <h3 class="title-news">
+		                                <a href="{{ news.get_absolute_url }}">{{ news.title }}</a>
+		                            </h3>
+		                            <ul class="list-news">
+		                                <li>{{ news.created }}</li>
+		                                <li><a href="{% url 'news-category' news.category.slug %}">{{ news.category }}</a></li>
+		                            </ul>
+		                        </div>
+		                    </div>
+					{% endfor %}
                 </div>
             </div>
         </div> 

@@ -1,12 +1,12 @@
 from django import template
-from piece.models import Seo
+from piece.utils import SeoTags
 
 register = template.Library() 
 
 @register.inclusion_tag("seo_tags.html")
 def show_seotags():
     context = {
-        'description': Seo.objects.get(tag=2),
-        'keywords': Seo.objects.get(tag=3),
+        'description': SeoTags.description(),
+        'keywords': SeoTags.keywords(),
     }
     return context

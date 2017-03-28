@@ -1,0 +1,246 @@
+@media screen and (max-width: 1190px){
+    #container {
+	width: 98%;
+}
+}
+
+@media screen and (max-width: 1020px){
+
+#site {
+    overflow: hidden;
+}
+
+.footer .fixed {
+	width: 98%;
+}
+
+.menu li a {
+    padding: 8px 25px;
+}
+
+.only-desktop, .marquee, .fights {display: none;}
+
+.right-block, .left-block {
+    float: none;
+    width: 100%;
+}
+.event-pic {
+    width: 180px;
+    height: 180px;
+}
+
+.event-block {
+    display: none;
+}
+
+.event-block:first-child {
+    display: block;
+}
+
+.make-bet {
+    float: none;
+    width: auto;
+}
+
+.open-fights {display: block;}
+
+.statistics-blocl .couple-left, .statistics-blocl .couple-right {
+    width: 45%;
+    max-width: 300px;
+}
+
+.statistics-table {
+    width: 100%;
+    margin: 10px auto;
+}
+    
+}
+
+@media screen and (max-width: 760px){
+.menu-mobil {
+    display: block;
+}
+
+.menu {
+    display: none;
+    margin: 0;
+    position: absolute;
+    right: 0;
+    top: 94px;
+    width: 300px;
+}
+
+.menu li {
+    float: none;
+    border-top: 1px solid #fff;
+}
+
+.menu li:first-child {
+    border-top: none;
+}
+
+.menu > li:before {
+    display: none;
+}
+
+.menu li a {
+    padding: 8px 10px;
+}
+
+.menu li .sub-menu {
+    position: static;
+    left: auto;
+    width: 100%;
+    margin-top: 0px;
+}
+
+.menu li .sub-menu li {
+    border-top: none;
+}
+
+.event-pic {
+    width: 120px;
+    height: 120px;
+}
+
+.flex-control-nav {
+  bottom: 5px;
+}
+
+.slider-text {
+    bottom: 0;
+}
+
+.news-pic {
+    width: 120px;
+}
+
+.news-pic + div {
+    margin-left: 130px;
+}
+
+.title-news, .title-news a {
+    font-size: 18px;
+}
+
+#container {
+    padding-bottom: 55px;
+}
+
+.footer {
+    height: 50px;
+}
+
+.copyright {
+    text-align: center;
+}
+
+.social {
+    float: none;
+    margin: 0 0 5px 0;
+    text-align: center;
+}
+
+.info-figter-pic {
+    display: none;
+}
+
+.info-figter-pic + div {
+    margin-left: 0;
+}
+
+.bookmark li {
+    padding: 0 8px;
+    font-size: 14px;
+}
+
+.info-block .title {
+    text-align: center;
+    font-size: 25px;    
+}
+
+.small-pic {
+    float: none;
+    margin: 15px auto;
+    width: 140px;
+    height: 140px;
+}
+
+.small-pic + div {
+    margin-right: 0;
+}
+
+.only-mobil {
+    display: block;
+}
+.only-desktop-pl {
+    display: none;
+}
+
+.list-inline  > li {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.more-foto {
+    width: auto;
+}
+
+.characteristic-table {
+    width: 100%;
+}
+
+.couple-vs {
+    font-size: 30px;
+    margin-top: 120px;
+}
+
+.coefficient, .coefficient-title {
+    font-size: 14px;
+}
+.characteristic-table table td {
+    font-size: 16px;
+}
+
+.title {
+    font-size: 25px;
+}
+
+.event-title {
+    font-size: 22px;
+}
+
+.couple-name {
+    font-size: 15px;
+}
+
+.couple-title {
+    font-size: 20px;
+}
+
+.location {
+    font-size: 16px;
+}
+
+.coefficient-block {
+    margin: 10px 0;
+    height: 20px;
+}
+
+.statistics, .characteristic {
+    margin: 10px 0;
+}
+
+.gallery {
+    text-align: center;
+}
+.statistics-figter.text-center {
+    margin-bottom: 5px;
+}
+
+}
+
+
+
+
+

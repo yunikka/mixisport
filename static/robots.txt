@@ -1,0 +1,13 @@
+User-agent: Yandex
+Disallow: /admin
+Host: mixisport.com
+Sitemap: http://mixisport.com/sitemap.xml
+
+User-agent: Googlebot
+Disallow: /admin
+Sitemap: http://mixisport.com/sitemap.xml
+
+User-agent: *
+Crawl-delay: 30
+Disallow: /admin
+Sitemap: http://mixisport.com/sitemap.xml

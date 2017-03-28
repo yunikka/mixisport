@@ -2,3 +2,8 @@
 *.sh
 */migrations/
 .DS_Store
+db.sqlite3
+static/admin
+static/smart-selects
+static/redactor
+media/*/*

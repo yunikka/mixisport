@@ -1,7 +1,10 @@
-from django.conf.urls import include, url, patterns
+from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
+from django.contrib.sitemaps.views import sitemap
 from lib.sitemaps import *
+
+from django.conf.urls.static import static
 
 sitemaps = {
     'news': NewsSitemap(),
@@ -16,14 +19,13 @@ urlpatterns = [
     url(r'^news/', include('news.urls')),
     url(r'^pages/', include('pages.urls')),
     url(r'^events/', include('events.urls')),
-    url(r'^$', include('news.urls')),
+    url(r'^', include('news.urls')),
+
+    #   
+    url(r'^redactor/', include('redactor.urls')),
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
+    url(r'^chaining/', include('smart_selects.urls')),
+    
 ]
 
-
-
-urlpatterns += patterns('',
-    url(r'^redactor/', include('redactor.urls')),
-    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
-    url(r'^chaining/', include('smart_selects.urls')),
-    url(r'^comments/', include('django_comments.urls')),
-)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
