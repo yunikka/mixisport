@@ -32,7 +32,7 @@ SECRET_KEY = '5iha1g1d%23kz2w!!i#tu!+4k_we=b21(-3tm_v%jtud@7v+@7'
 DEBUG = True
 #DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['stage.dev.mixisport.com',]
 #ALLOWED_HOSTS = ['*']
 
 # Application definition
