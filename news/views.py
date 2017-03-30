@@ -11,8 +11,11 @@ from piece.utils import SeoTags
 
 
 def StoryListView(request, template='index.html'):
+
+    news_list = pagination_page(request, News.objects.filter(status__in=[3,4]), 10)
+
     context = {
-        'news_list': pagination_page(request, News.objects.filter(status__in=[3,4]), 10),
+        'news_list': news_list,
         'title' : SeoTags.title()
     }
     return render(request, template, context)
