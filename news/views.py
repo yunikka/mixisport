@@ -31,7 +31,7 @@ def category(request, slug, template='index.html', page_template='index_page.htm
     context = {
         'news_list': News.objects.filter(status__in=[3,4]).filter(category=category),
         'page_template': page_template,
-        'title' : Seo.objects.get(tag=1),
+        'title' : SeoTags.title()
     }
     if request.is_ajax():
         template = page_template
