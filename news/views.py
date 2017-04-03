@@ -2,6 +2,7 @@ from django.shortcuts import render_to_response, get_object_or_404, render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.views.generic import DetailView
+from lib.custom import pagination_page
 from .models import News, Category
 from piece.models import Seo
 from .forms import NameForm
@@ -10,8 +11,11 @@ from piece.utils import SeoTags
 
 
 def StoryListView(request, template='index.html'):
+
+    news_list = pagination_page(request, News.objects.filter(status__in=[3,4]), 10)
+
     context = {
-        'news_list': News.objects.filter(status__in=[3,4]),
+        'news_list': news_list,
         'title' : SeoTags.title()
     }
     return render(request, template, context)

@@ -55,12 +55,32 @@
                             <li>местные</li>
                         </ul>
                         <div class="bookmarker-box">                            
-                            {% include page_template %}                
-                            {% block js %}
-                                {{ block.super }}
-                                    <script src="{% static 'endless_pagination/js/endless-pagination.js' %}"></script>
-                                    <script>$.endlessPaginate({paginateOnScroll: true, paginateOnScrollMargin: 20, paginateOnScrollChunkSize: 5});</script>
-                            {% endblock %}                            
+
+							{% for event in event_list %}
+
+                            <div class="news-block">
+                                {% if event.image_thumbnail %}
+                                <a class="news-pic" href="{{ event.get_absolute_url }}"><img src="{{ event.image_thumbnail.thumbnail.url }}" width="160" height="160" alt=""/></a>
+                                {% endif %}
+                                <div>
+                                    <h3 class="title-news">
+                                        <a href="{{ event.get_absolute_url }}">{{ event.name }}</a>
+                                    </h3>
+                                    <ul class="list-news">
+                                        <li>{{ event.start_time }}</li>
+                                        <li>{{ event.location }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+						{% endfor %}
+						{% if archive == 0 %}
+						<a href="{% url 'event_list_archive' %}">Архив событий</a>
+						{% else %}
+						<a href="{% url 'event_list' %}">К списку текущих событий</a>
+						{% endif %}
+
+
                         </div>
                         <div class="bookmarker-box">
                         </div>

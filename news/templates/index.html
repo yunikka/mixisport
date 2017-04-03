@@ -27,7 +27,22 @@
 		                        </div>
 		                    </div>
 					{% endfor %}
+
+
+					<ul class="pager">
+				    {% if news_list %}
+						{% if news_list.has_previous %}
+						    <li><a class="btn btn-default" href="?page={{ news_list.previous_page_number }}" role="button">Назад</a></li>
+						{% endif %}
+						<li>Страница {{ news_list.number }} из {{ news_list.paginator.num_pages }}</li>
+						{% if news_list.has_next %}
+						<li><a class="btn btn-default" href="?page={{ news_list.next_page_number }}" role="button">Вперед</a></li>
+						{% endif %}
+					{% endif %}
+					</ul>
+
                 </div>
             </div>
         </div> 
+
 {% endblock %}

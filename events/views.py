@@ -2,7 +2,7 @@ from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from .models import Fighters, Events, EventPair, Statistics, Battles
-from piece.models import Seo
+from piece.utils import SeoTags
 
 
 def fighters(request, slug, template='fighters.html'):
@@ -36,19 +36,16 @@ def events(request, slug, template='events.html'):
     }
     return render_to_response(template, context, RequestContext(request))
 
-def event_list(request, template='event_list.html', page_template='event_list_page.html'):
+def event_list(request, template='event_list.html',):
     if 'archive' in request.path:
         archive = 1
     else:
         archive = 0
     context = {
         'event_list': Events.objects.filter(archive=archive),
-        'page_template': page_template,
-        'title' : Seo.objects.get(tag=1),
+        'title' : SeoTags.title(),
         'archive' : archive,
     }
-    if request.is_ajax():
-        template = page_template
     return render_to_response(template, context, RequestContext(request))
 
 def pair_vote(request, id, vote):
