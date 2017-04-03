@@ -25,17 +25,14 @@ class StoryDetailView(DetailView):
     model = News
     template_name = "article.html"
 
-def category(request, slug, template='index.html', page_template='index_page.html'):
+def category(request, slug, template='index.html'):
     """По заданному ключу категории отображает все элементы этой категории."""
     category = get_object_or_404(Category, slug=slug)
     context = {
         'news_list': News.objects.filter(status__in=[3,4]).filter(category=category),
-        'page_template': page_template,
         'title' : SeoTags.title()
     }
-    if request.is_ajax():
-        template = page_template
-    return render_to_response(template, context, RequestContext(request))
+    return render(request, template, context)
 
 def contact(request):
     if request.method == 'POST':
