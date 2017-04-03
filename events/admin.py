@@ -34,9 +34,9 @@ class EventsInline(admin.StackedInline):
     
 class EventsAdmin(admin.ModelAdmin):
     inlines = [EventsInline]
-    list_display = ('name', 'location',)
-    search_fields = ('name', 'location',)
-    list_filter = ('location', 'start_time',) 
+    list_display = ('name', 'location', 'archive',)
+    search_fields = ('name', 'location', 'archive',)
+    list_filter = ('location', 'start_time', 'archive',)
     prepopulated_fields = {'slug': ('name',)}
 
     
