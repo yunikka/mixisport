@@ -14,7 +14,7 @@ def fighters(request, slug, template='fighters.html'):
         'stats': Statistics.objects.filter(fighters=fighter.id),
         'battles' : Battles.objects.filter(fighters=fighter.id),
     }
-    return render_to_response(template, context, RequestContext(request))
+    return render(request, template, context)
 
 def events(request, slug, template='events.html'):
     """Отображает события"""
@@ -35,7 +35,7 @@ def events(request, slug, template='events.html'):
         'pairs': EventPair.objects.filter(events=event.id).order_by('weight'),
         'session_flag': session_flag,
     }
-    return render_to_response(template, context, RequestContext(request))
+    return render(request, template, context)
 
 def event_list(request, template='event_list.html',):
 
@@ -84,4 +84,4 @@ def statistics(request, id, template='statistics.html'):
         'pairs': EventPair.objects.exclude(id__exact=id).filter(events=event_id).order_by('weight'),
         'fighters_stat': zip(Statistics.objects.filter(fighters=stat.fighters_1).exclude(type=1), Statistics.objects.filter(fighters=stat.fighters_2).exclude(type=1)),
     }
-    return render_to_response(template, context, RequestContext(request))
+    return render(request, template, context)
