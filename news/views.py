@@ -28,8 +28,9 @@ class StoryDetailView(DetailView):
 def category(request, slug, template='index.html'):
     """По заданному ключу категории отображает все элементы этой категории."""
     category = get_object_or_404(Category, slug=slug)
+    news_list = pagination_page(request, News.objects.filter(status__in=[3,4]).filter(category=category), 10)
     context = {
-        'news_list': News.objects.filter(status__in=[3,4]).filter(category=category),
+        'news_list': news_list,
         'title' : SeoTags.title()
     }
     return render(request, template, context)
