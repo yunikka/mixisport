@@ -74,6 +74,20 @@
                             </div>
 
 						{% endfor %}
+
+						<ul class="pager">
+					    {% if event_list.has_previous or event_list.has_next %}
+							{% if event_list.has_previous %}
+							    <li><a class="btn btn-default" href="?page={{ event_list.previous_page_number }}" role="button">Назад</a></li>
+							{% endif %}
+							<li>Страница {{ event_list.number }} из {{ event_list.paginator.num_pages }}</li>
+							{% if event_list.has_next %}
+							<li><a class="btn btn-default" href="?page={{ event_list.next_page_number }}" role="button">Вперед</a></li>
+							{% endif %}
+						{% endif %}
+						</ul>
+
+
 						{% if archive == 0 %}
 						<a href="{% url 'event_list_archive' %}">Архив событий</a>
 						{% else %}

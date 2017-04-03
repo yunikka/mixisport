@@ -30,7 +30,7 @@
 
 
 					<ul class="pager">
-				    {% if news_list %}
+				    {% if news_list.has_previous or news_list.has_next %}
 						{% if news_list.has_previous %}
 						    <li><a class="btn btn-default" href="?page={{ news_list.previous_page_number }}" role="button">Назад</a></li>
 						{% endif %}
