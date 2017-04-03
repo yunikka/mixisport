@@ -1,4 +1,4 @@
-from django.contrib import admin
+from django.contrib import admin, messages
 
 from .models import Fighters, EventPair, Events, Statistics, Battles
 
@@ -22,6 +22,16 @@ class FightersAdmin(admin.ModelAdmin):
 
 admin.site.register(Fighters, FightersAdmin)
 
+def event_to_archive(modeladmin, request, queryset):
+    for item in queryset:
+        item.archive = True
+        item.save()
+
+    messages.add_message(request, messages.INFO, 'Событие(я) отправлено(ы) в архив')
+
+event_to_archive.short_description = 'В архив'
+
+
 class EventsInline(admin.StackedInline):
     model = EventPair
     extra = 0
@@ -31,13 +41,14 @@ class EventsInline(admin.StackedInline):
         ('Статистика', {'fields': (('punches_head_1','punches_head_2',),('punches_body_1','punches_body_2',),('kicks_head_1','kicks_head_2',),('kicks_body_1','kicks_body_2',),('throws_1','throws_2',),'content_stats','enable_stats'), 'classes': ['collapse',]}),
         ('Дополнительные настройки', {'fields': ('in_mainpage','weight',),}),
     ]
-    
+
 class EventsAdmin(admin.ModelAdmin):
     inlines = [EventsInline]
     list_display = ('name', 'location', 'archive',)
     search_fields = ('name', 'location', 'archive',)
     list_filter = ('location', 'start_time', 'archive',)
     prepopulated_fields = {'slug': ('name',)}
+    actions = [event_to_archive,]
 
     
 admin.site.register(Events, EventsAdmin)

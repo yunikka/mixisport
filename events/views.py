@@ -1,8 +1,9 @@
-from django.shortcuts import render_to_response, get_object_or_404, redirect
+from django.shortcuts import render_to_response, get_object_or_404, redirect, render
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from .models import Fighters, Events, EventPair, Statistics, Battles
 from piece.utils import SeoTags
+from lib.custom import pagination_page
 
 
 def fighters(request, slug, template='fighters.html'):
@@ -37,16 +38,20 @@ def events(request, slug, template='events.html'):
     return render_to_response(template, context, RequestContext(request))
 
 def event_list(request, template='event_list.html',):
+
     if 'archive' in request.path:
         archive = 1
     else:
         archive = 0
+
+    event_list = pagination_page(request, Events.objects.filter(archive=archive), 10)
+
     context = {
-        'event_list': Events.objects.filter(archive=archive),
+        'event_list': event_list,
         'title' : SeoTags.title(),
         'archive' : archive,
     }
-    return render_to_response(template, context, RequestContext(request))
+    return render(request, template, context)
 
 def pair_vote(request, id, vote):
     # Ссылка для голосования
