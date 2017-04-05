@@ -9,14 +9,14 @@
             <div class="over">
                 <div class="right-block">
                     <div class="only-desktop">
-                        <div class="widget"> 
+                        <div class="widget">
                             <script type="text/javascript" src="{% static 'js/openapi0.js' %}"></script>
                             <div id="vk_groups"></div>
                             <script type="text/javascript">
                                 VK.Widgets.Group("vk_groups", {mode: 0, width: "398", height: "285", color1: 'FFFFFF', color2: '2B587A', color3: '5B7FA6'}, 97689143);
                             </script>
                         </div>
-                        <div class="widget">                               
+                        <div class="widget">
                             <div id="ok_group_widget"></div>
                             <script>
                                 !function (d, id, did, st) {
@@ -44,7 +44,7 @@
                                       js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.5";
                                       fjs.parentNode.insertBefore(js, fjs);
                                 }(document, 'script', 'facebook-jssdk'));</script>
-                            <div class="fb-page" data-href="https://www.facebook.com/mixisport" data-width="398" data-height="285" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/mixisport"><a href="https://www.facebook.com/mixisport">MIXIsport.com</a></blockquote></div></div>                        
+                            <div class="fb-page" data-href="https://www.facebook.com/mixisport" data-width="398" data-height="285" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/mixisport"><a href="https://www.facebook.com/mixisport">MIXIsport.com</a></blockquote></div></div>
                         </div>
                     </div>
                 </div>
@@ -86,40 +86,86 @@
                                                     <td><strong>Вес</strong></td>
                                                     <td>{{ fighter.weight }}</td>
                                                 </tr>
-                                                
+
                                                 <tr>
                                                     <td><strong>Рекорд</strong></td>
                                                     <td>{{ fighter.record }}</td>
                                                 </tr>
-                                                
+
                                             </table>
                                         </div>
                                         <h3 class="title-spec">Победы</h3>
                                         <div class="statistics-figter">
-                                            {% for stat in stats %}
                                             <div>
-                                                <label>{{ stat.get_type_display }} {{stat.victory}}</label>
-                                                <div class="progress">    
-                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{stat.proc_victory}}%;">
-                                                        <p class="text-center">{{stat.proc_victory}}%</p>
+                                                <label>Всего {{total_victory}}</label>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{total_victory_proc}}%;">
+                                                        <p class="text-center">{{total_victory_proc}}%</p>
                                                     </div>
                                                 </div>
                                             </div>
-                                            {% endfor %}
+                                            <div>
+                                                <label>Нокаут {{knockout_victory}}</label>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{knockout_victory_proc}}%;">
+                                                        <p class="text-center">{{knockout_victory_proc}}%</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label>Сабмишин {{submission_victory}}</label>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{submission_victory_proc}}%;">
+                                                        <p class="text-center">{{submission_victory_proc}}%</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label>Решением {{decision_victory}}</label>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{decision_victory_proc}}%;">
+                                                        <p class="text-center">{{decision_victory_proc}}%</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
                                         </div>
                                         <h3 class="title-spec">Поражения</h3>
                                         <div class="statistics-figter">
-                                            {% for stat in stats %}
                                             <div>
-                                                <label>{{ stat.get_type_display }} {{stat.defeat}}</label>
-                                                <div class="progress">    
-                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{stat.proc_defeat}}%;">
-                                                        <p class="text-center">{{stat.proc_defeat}}%</p>
+                                                <label>Всего {{total_defeat}}</label>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{total_defeat_proc}}%;">
+                                                        <p class="text-center">{{total_defeat_proc}}%</p>
                                                     </div>
                                                 </div>
                                             </div>
-                                            {% endfor %}
-                                        </div>
+                                            <div>
+                                                <label>Нокаут {{knockout_defeat}}</label>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{knockout_defeat_proc}}%;">
+                                                        <p class="text-center">{{knockout_defeat_proc}}%</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label>Сабмишин {{submission_defeat}}</label>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{submission_defeat_proc}}%;">
+                                                        <p class="text-center">{{submission_defeat_proc}}%</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label>Решением {{decision_defeat}}</label>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{decision_defeat_proc}}%;">
+                                                        <p class="text-center">{{decision_defeat_proc}}%</p>
+                                                    </div>
+                                                </div>
+                                            </div>                                        </div>
                                     </div>
                                 </div>
                                 <div class="bookmarker-box">
@@ -140,12 +186,12 @@
                                 </div>
                             </div>
                         </div>
-                    </div>    
-                </div>    
+                    </div>
+                </div>
             </div>
         </div>
 
 
-                                    
+
 
 {% endblock %}
