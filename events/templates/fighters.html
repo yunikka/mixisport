@@ -97,34 +97,34 @@
                                         <h3 class="title-spec">Победы</h3>
                                         <div class="statistics-figter">
                                             <div>
-                                                <label>Всего {{total_victory}}</label>
+                                                <label>Всего {{fighter_stat.total_victory}}</label>
                                                 <div class="progress">
-                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{total_victory_proc}}%;">
-                                                        <p class="text-center">{{total_victory_proc}}%</p>
+                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{fighter_stat.total_victory_proc}}%;">
+                                                        <p class="text-center">{{fighter_stat.total_victory_proc}}%</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div>
-                                                <label>Нокаут {{knockout_victory}}</label>
+                                                <label>Нокаут {{fighter_stat.knockout_victory}}</label>
                                                 <div class="progress">
-                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{knockout_victory_proc}}%;">
-                                                        <p class="text-center">{{knockout_victory_proc}}%</p>
+                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{fighter_stat.knockout_victory_proc}}%;">
+                                                        <p class="text-center">{{fighter_stat.knockout_victory_proc}}%</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div>
-                                                <label>Сабмишин {{submission_victory}}</label>
+                                                <label>Сабмишин {{fighter_stat.submission_victory}}</label>
                                                 <div class="progress">
-                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{submission_victory_proc}}%;">
-                                                        <p class="text-center">{{submission_victory_proc}}%</p>
+                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{fighter_stat.submission_victory_proc}}%;">
+                                                        <p class="text-center">{{fighter_stat.submission_victory_proc}}%</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div>
-                                                <label>Решением {{decision_victory}}</label>
+                                                <label>Решением {{fighter_stat.decision_victory}}</label>
                                                 <div class="progress">
-                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{decision_victory_proc}}%;">
-                                                        <p class="text-center">{{decision_victory_proc}}%</p>
+                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{fighter_stat.decision_victory_proc}}%;">
+                                                        <p class="text-center">{{fighter_stat.decision_victory_proc}}%</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -134,38 +134,41 @@
                                         </div>
                                         <h3 class="title-spec">Поражения</h3>
                                         <div class="statistics-figter">
+
                                             <div>
-                                                <label>Всего {{total_defeat}}</label>
+                                                <label>Всего {{fighter_stat.total_defeat}}</label>
                                                 <div class="progress">
-                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{total_defeat_proc}}%;">
-                                                        <p class="text-center">{{total_defeat_proc}}%</p>
+                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{fighter_stat.total_defeat_proc}}%;">
+                                                        <p class="text-center">{{fighter_stat.total_defeat_proc}}%</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div>
-                                                <label>Нокаут {{knockout_defeat}}</label>
+                                                <label>Нокаут {{fighter_stat.knockout_defeat}}</label>
                                                 <div class="progress">
-                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{knockout_defeat_proc}}%;">
-                                                        <p class="text-center">{{knockout_defeat_proc}}%</p>
+                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{fighter_stat.knockout_defeat_proc}}%;">
+                                                        <p class="text-center">{{fighter_stat.knockout_defeat_proc}}%</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div>
-                                                <label>Сабмишин {{submission_defeat}}</label>
+                                                <label>Сабмишин {{fighter_stat.submission_defeat}}</label>
                                                 <div class="progress">
-                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{submission_defeat_proc}}%;">
-                                                        <p class="text-center">{{submission_defeat_proc}}%</p>
+                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{fighter_stat.submission_defeat_proc}}%;">
+                                                        <p class="text-center">{{fighter_stat.submission_defeat_proc}}%</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div>
-                                                <label>Решением {{decision_defeat}}</label>
+                                                <label>Решением {{fighter_stat.decision_defeat}}</label>
                                                 <div class="progress">
-                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{decision_defeat_proc}}%;">
-                                                        <p class="text-center">{{decision_defeat_proc}}%</p>
+                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{fighter_stat.decision_defeat_proc}}%;">
+                                                        <p class="text-center">{{fighter_stat.decision_defeat_proc}}%</p>
                                                     </div>
                                                 </div>
-                                            </div>                                        </div>
+                                            </div>
+
+										 </div>
                                     </div>
                                 </div>
                                 <div class="bookmarker-box">

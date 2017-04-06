@@ -3,83 +3,17 @@ from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from .models import Fighters, Events, EventPair, Statistics, Battles
 from piece.utils import SeoTags
-from lib.custom import pagination_page
+from lib.custom import pagination_page, FightersStat
 
 
 def fighters(request, slug, template='fighters.html'):
     """По заданному ключу категории отображает все элементы этой категории."""
     fighter = get_object_or_404(Fighters, slug=slug)
-    stats = Statistics.objects.filter(fighters=fighter.id)
-
-    # находим полное число побед и поражений
-    total_victory = 0
-    total_defeat = 0
-    for stat in stats:
-        if stat.type != 1: # исключаем ВСЕГО
-            total_victory += stat.victory
-            total_defeat += stat.defeat
-        else:
-            pass
-
-    # считаем проценты побед
-    if total_victory > 0 and total_defeat == 0:
-        total_victory_proc = 100
-    elif total_victory == 0 and total_victory == 0:
-        total_victory_proc = 0
-    else:
-        total_victory_proc = (total_victory*100)/(total_victory+total_defeat)
-    total_victory_proc = round(total_victory_proc)
-
-    # считаем проценты
-    if total_defeat > 0 and total_defeat == 0:
-        total_defeat_proc = 100
-    elif total_defeat == 0 and total_defeat == 0:
-        total_defeat_proc = 0
-    else:
-        total_defeat_proc = (total_defeat*100)/(total_victory+total_defeat)
-    total_defeat_proc = round(total_defeat_proc)
-
-
-    for stat in stats:
-        if stat.type == 2: # Считаем нокауты
-            knockout_victory = stat.victory
-            knockout_defeat = stat.defeat
-            knockout_victory_proc = round((knockout_victory*100)/total_victory)
-            knockout_defeat_proc = round((knockout_defeat*100)/total_defeat)
-        elif stat.type == 3: # Считаем сабмишин
-            submission_victory = stat.victory
-            submission_defeat = stat.defeat
-            submission_victory_proc = round((submission_victory*100)/total_victory)
-            submission_defeat_proc = round((submission_defeat*100)/total_defeat)
-        elif stat.type == 4: # Считаем решением
-            decision_victory = stat.victory
-            decision_defeat = stat.defeat
-            decision_victory_proc = round((decision_victory*100)/total_victory)
-            decision_defeat_proc = round((decision_defeat*100)/total_defeat)
-        else:
-            pass
-
-
 
     context = {
         'fighter': fighter,
         'battles' : Battles.objects.filter(fighters=fighter.id),
-        'total_victory' : total_victory,
-        'total_victory_proc' : total_victory_proc,
-        'total_defeat_proc' : total_defeat_proc,
-        'total_defeat' : total_defeat,
-        'knockout_victory' : knockout_victory,
-        'knockout_defeat' : knockout_defeat,
-        'knockout_victory_proc' : knockout_victory_proc,
-        'knockout_defeat_proc' : knockout_defeat_proc,
-        'submission_victory' : submission_victory,
-        'submission_defeat' : submission_defeat,
-        'submission_victory_proc' : submission_victory_proc,
-        'submission_defeat_proc' : submission_defeat_proc,
-        'decision_victory' : decision_victory,
-        'decision_defeat' : decision_defeat,
-        'decision_victory_proc' : decision_victory_proc,
-        'decision_defeat_proc' : decision_defeat_proc,
+        'fighter_stat' : FightersStat(fighter.id),
     }
     return render(request, template, context)
 
