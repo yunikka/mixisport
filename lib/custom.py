@@ -131,14 +131,8 @@ class FightersStat(object):
 
     def decision_victory_proc(self):
         '''Функция подсчета процентов побед решением'''
-        if self.total_victory() == 0 or self.decision_victory() == 0:
-            return 0
-        else:
-            return round((self.decision_victory()*100)/self.total_victory())
+        return 100 - self.knockout_victory_proc() - self.submission_victory_proc()
 
     def decision_defeat_proc(self):
         '''Функция подсчета процентов поражений решением'''
-        if self.total_defeat() == 0 or self.decision_defeat() == 0:
-            return 0
-        else:
-            return round((self.decision_defeat()*100)/self.total_defeat())
+        return 100 - self.knockout_defeat_proc() - self.submission_defeat_proc()
