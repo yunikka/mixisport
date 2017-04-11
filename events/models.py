@@ -1,4 +1,5 @@
 import datetime, math
+from datetime import date
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import permalink
@@ -32,6 +33,15 @@ class Fighters(models.Model):
     @permalink
     def get_absolute_url(self):
         return ('fighters', (), {'slug': self.slug})
+
+    def get_age(self):
+        today = date.today()
+        age = today.year - self.birthdate.year
+        if today.month < self.birthdate.month:
+            age -= 1
+        elif today.month == self.birthdate.month and today.day < self.birthdate.day:
+            age -= 1
+        return age
     
 class Statistics(models.Model):
     STATS_TYPE = (

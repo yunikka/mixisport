@@ -72,7 +72,7 @@
                                             <table>
                                                 <tr>
                                                     <td><strong>Возраст</strong></td>
-                                                    <td>{{ fighter.birthdate }}</td>
+                                                    <td>{{ fighter.get_age }} ({{ fighter.birthdate|date:"d.m.Y" }})</td>
                                                 </tr>
                                                 <tr>
                                                     <td><strong>Страна</strong></td>
