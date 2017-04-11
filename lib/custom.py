@@ -43,7 +43,7 @@ class FightersStat(object):
         '''Функция подсчета процентов побед'''
         if self.total_victory() > 0 and self.total_defeat() == 0:
             total_victory_proc = 100
-        elif self.total_victory == 0 and self.total_victory == 0:
+        elif self.total_victory() == 0 and self.total_defeat() == 0:
             total_victory_proc = 0
         else:
             total_victory_proc = (self.total_victory()*100)/(self.total_victory()+self.total_defeat())
