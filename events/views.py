@@ -81,6 +81,8 @@ def statistics(request, id, template='statistics.html'):
     stat = get_object_or_404(EventPair, id=id)
     event_id = stat.events.id
     context = {
+        'fighter_1' : FightersStat(stat.fighters_1.id),
+        'fighter_2' : FightersStat(stat.fighters_2.id),
         'stat': stat,
         'pairs': EventPair.objects.exclude(id__exact=id).filter(events=event_id).order_by('weight'),
         'fighters_stat': zip(Statistics.objects.filter(fighters=stat.fighters_1).exclude(type=1), Statistics.objects.filter(fighters=stat.fighters_2).exclude(type=1)),
