@@ -32,7 +32,7 @@ SECRET_KEY = '5iha1g1d%23kz2w!!i#tu!+4k_we=b21(-3tm_v%jtud@7v+@7'
 DEBUG = True
 #DEBUG = False
 
-ALLOWED_HOSTS = ['stage.dev.mixisport.com',]
+ALLOWED_HOSTS = ['mixisport.com',]
 #ALLOWED_HOSTS = ['*']
 
 # Application definition
@@ -97,12 +97,12 @@ DATABASES = {
     'default': {
 #        'ENGINE': 'mysql.connector.django',
         'ENGINE':'django.db.backends.mysql',
-#        'NAME': 'mixisport',
-#        'USER': 'mixisport',
-#        'PASSWORD': 'mixisport',
-        'NAME': 'stagemixi',
-        'USER': 'stagemixi',
-        'PASSWORD': 'stagemixi',
+        'NAME': 'mixisport',
+        'USER': 'mixisport',
+        'PASSWORD': 'mixisport',
+#        'NAME': 'stagemixi',
+#        'USER': 'stagemixi',
+#        'PASSWORD': 'stagemixi',
         'OPTIONS': {
             'init_command': 'SET innodb_strict_mode=1',
         },
