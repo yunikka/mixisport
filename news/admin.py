@@ -12,6 +12,7 @@ class NewsAdmin(admin.ModelAdmin):
     search_fields = ('title', 'content_preview', 'content_main')
     list_filter = ('status', 'owner', 'created', 'modified')
     prepopulated_fields = {'slug': ('title',)}
+    exclude = ('image',)
     
 
 admin.site.register(News, NewsAdmin)

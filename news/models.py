@@ -50,11 +50,11 @@ class News(models.Model):
         show_all=False,
         auto_choose=True
     )
-    image = ResizeImageField(upload_to='img/title_images', verbose_name="Картинка для заголовка", thumb_width=160, thumb_height=160)
+    image = ResizeImageField(blank=True, upload_to='img/title_images', verbose_name="Картинка для заголовка", thumb_width=160, thumb_height=160)
 #    content = HTMLField(blank=True, verbose_name="Текст статьи")
+    image_after = StdImageField(blank=True, variations={'medium': {'width': 640,}}, upload_to='img/image_after', verbose_name="Изображение",)
     content = RedactorField(blank=True, verbose_name="Текст статьи")
 #    image_after = ResizeImageField(blank=True, upload_to='img/image_after', verbose_name="Картинка после текста", thumb_width=640)
-    image_after = StdImageField(blank=True, variations={'medium': {'width': 640,}}, upload_to='img/image_after', verbose_name="Картинка после текста",)
     owner = models.ForeignKey(User, verbose_name="Автор")
     status = models.IntegerField(choices=STATUS_CHOICES, default=1, verbose_name="Статус")
     created = models.DateTimeField(default=datetime.datetime.now, verbose_name="Создано")
