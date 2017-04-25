@@ -37,7 +37,6 @@ class EventsInline(admin.StackedInline):
     extra = 0
     fieldsets = [
         ('Бойцы', {'fields': (('fighters_1','fighters_2',),('defeat_1','defeat_2',),('betting_odds_1','betting_odds_2',),('vote_1','vote_2',)),}),
-        ('Харакетристики', {'fields': (('country_1','country_2',),('age_1','age_2',),('height_1','height_2',),('weight_1','weight_2',),('record_1','record_2',), )}),
         ('Статистика', {'fields': (('punches_head_1','punches_head_2',),('punches_body_1','punches_body_2',),('kicks_head_1','kicks_head_2',),('kicks_body_1','kicks_body_2',),('throws_1','throws_2',),'content_stats','enable_stats'), 'classes': ['collapse',]}),
         ('Дополнительные настройки', {'fields': ('in_mainpage','weight',),}),
     ]
