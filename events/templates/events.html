@@ -124,7 +124,7 @@
                                         <p class="text-center">{{ pair.proc_vote_1 }}%</p>
                                     </div>
                                 </div>
-                                <div class="couple-pic" {% if pair.defeat_1 %}style="-webkit-filter: grayscale(60%) brightness(50%) drop-shadow(0px 0px 30px red);"{% endif %}><img src="{{ MEDIA_URL }}{{ pair.fighters_1.photo }}" width="183" height="183" alt=""/></div>
+                                <div class="couple-pic {% if pair.defeat_1 %}red-background{% endif %}"><img src="{{ MEDIA_URL }}{{ pair.fighters_1.photo }}" width="183" height="183" alt=""/></div>
                                 <div class="couple-name"><a href="{% url 'fighters' pair.fighters_1.slug %}">{{ pair.fighters_1.fullname }}</a></div>
                             </div>
                             <div class="couple-right">
@@ -138,7 +138,7 @@
                                         <p class="text-center">{{ pair.proc_vote_2 }}%</p>
                                     </div>
                                 </div>
-                                <div class="couple-pic" {% if pair.defeat_2 %}style="-webkit-filter: grayscale(60%) brightness(50%) drop-shadow(0px 0px 30px red);"{% endif %}><img src="{{ MEDIA_URL }}/{{ pair.fighters_2.photo }}" width="183" height="183" alt=""/></div>
+                                <div class="couple-pic {% if pair.defeat_2 %}red-background-alt{% endif %}"><img src="{{ MEDIA_URL }}/{{ pair.fighters_2.photo }}" width="183" height="183" alt=""/></div>
                                 <div class="couple-name"><a href="{% url 'fighters' pair.fighters_2.slug %}">{{ pair.fighters_2.fullname }}</a></div>
                             </div>
                             <div class="couple-vs">vs</div>
