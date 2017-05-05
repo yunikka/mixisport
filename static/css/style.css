@@ -1132,7 +1132,3 @@ header {
 .red-background {
 	background-color: #FF0000;
 }
-
-.red-background-alt {
-	filter: grayscale(60%) brightness(50%) drop-shadow(0px 0px 30px red);
-}
