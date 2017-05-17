@@ -53,6 +53,13 @@
                         <ul class="bookmark">
                             <li>мировые</li>
                             <li>местные</li>
+							<li>
+								{% if archive == 0 %}
+								<a href="{% url 'event_list_archive' %}">Результаты</a>
+								{% else %}
+								<a href="{% url 'event_list' %}">К списку текущих событий</a>
+								{% endif %}
+							</li>
                         </ul>
                         <div class="bookmarker-box">                            
 
@@ -86,15 +93,6 @@
 							{% endif %}
 						{% endif %}
 						</ul>
-
-
-						{% if archive == 0 %}
-						<a href="{% url 'event_list_archive' %}">Архив событий</a>
-						{% else %}
-						<a href="{% url 'event_list' %}">К списку текущих событий</a>
-						{% endif %}
-
-
                         </div>
                         <div class="bookmarker-box">
                         </div>
