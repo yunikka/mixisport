@@ -92,7 +92,7 @@ class Events(models.Model):
     image_thumbnail = StdImageField(blank=True, variations={'thumbnail': {'width': 160,}}, upload_to='img/image_events/thumbnail', verbose_name="Миниатюра для заголовка")
 
     class Meta:
-        ordering = ['start_time']
+        ordering = ['-start_time']
         verbose_name_plural = "События"
         verbose_name = "Событие"
         
