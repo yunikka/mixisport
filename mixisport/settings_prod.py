@@ -29,11 +29,11 @@ except ImportError:
 SECRET_KEY = '5iha1g1d%23kz2w!!i#tu!+4k_we=b21(-3tm_v%jtud@7v+@7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-#DEBUG = False
+#DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['mixisport.com',]
-#ALLOWED_HOSTS = ['*']
+#ALLOWED_HOSTS = ['mixisport.com',]
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
