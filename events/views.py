@@ -42,10 +42,11 @@ def event_list(request, template='event_list.html',):
 
     if 'archive' in request.path:
         archive = 1
+        event_list = pagination_page(request, Events.objects.filter(archive=archive).order_by('-start_time'), 10)
     else:
         archive = 0
+        event_list = pagination_page(request, Events.objects.filter(archive=archive).order_by('start_time'), 10)
 
-    event_list = pagination_page(request, Events.objects.filter(archive=archive), 10)
 
     context = {
         'event_list': event_list,

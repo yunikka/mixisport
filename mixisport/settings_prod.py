@@ -141,8 +141,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 REDACTOR_OPTIONS = {
                        'lang': 'ru',
                        'imageFloatMargin': '15px',
-                       'plugins': ['fontsize',],                       
+                       'plugins': ['fontsize','source',],
 }
+
 REDACTOR_UPLOAD = 'images/'
 
 SITE_ID = 1
