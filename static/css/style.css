@@ -1141,3 +1141,10 @@ header {
 	clear: both;
 }
 
+.video-container {
+	max-width: 500px;
+}
+
+.video-container iframe {
+	width: 100%!important;
+}
