@@ -5,10 +5,11 @@
 		return {
 			reUrlYoutube: /https?:\/\/(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\w\-\s])([\w\-]{11})(?=[^\w\-]|$)(?![?=&+%\w.-]*(?:['"][^<>]*>|<\/a>))[?=&+%\w.-]*/ig,
 			reUrlVimeo: /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/,
+                        reUrlVK: /https?:\/\/(www\.)?vk.com\/(.*)/,
 			langs: {
 				en: {
 					"video": "Video",
-					"video-html-code": "Video Embed Code or Youtube/Vimeo Link"
+					"video-html-code": "Video Embed Code or Youtube/Vimeo/VK Link"
 				}
 			},
 			getTemplate: function()
@@ -64,8 +65,11 @@
 					this.opts.videoContainerClass = (typeof this.opts.videoContainerClass === 'undefined') ? 'video-container' : this.opts.videoContainerClass;
 
 					// parse if it is link on youtube & vimeo
-					var iframeStart = '<div class="' + this.opts.videoContainerClass + '"><iframe style="width: 500px; height: 281px;" src="',
-						iframeEnd = '" frameborder="0" allowfullscreen></iframe></div>';
+					//var iframeStart = '<div class="' + this.opts.videoContainerClass + '"><iframe style="width: 500px; height: 281px;" src="',
+					//	iframeEnd = '" frameborder="0" allowfullscreen></iframe></div>';
+
+                                        var iframeStart = '<div class="' + this.opts.videoContainerClass + '"><span class="embed-youtube"><iframe style="width: 1000px; height: 520px" src="',
+                                                iframeEnd = '" frameborder="0" allowfullscreen></iframe></span></div>';
 
 					if (data.match(this.video.reUrlYoutube))
 					{
@@ -75,6 +79,10 @@
 					{
 						data = data.replace(this.video.reUrlVimeo, iframeStart + '//player.vimeo.com/video/$2' + iframeEnd);
 					}
+                                        else if (data.match(this.video.reUrlVK))
+                                        {
+                                                data = data.replace(this.video.reUrlVK, iframeStart + '//vk.com/$2' + iframeEnd);
+                                        }
 				}
 
 				this.modal.close();
