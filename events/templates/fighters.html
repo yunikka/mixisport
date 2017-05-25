@@ -179,7 +179,7 @@
                                 <div class="bookmarker-box">
                                     {% for battle in battles %}
                                     <div class="link-battles">
-                                        <a href="{% url 'statistics' battle.eventpair.id %}"><b>{{ battle.eventpair.events.name }}</b> : {{ battle.eventpair.fighters_1 }} VS {{ battle.eventpair.fighters_2 }}</a>
+                                        <a href="{% url 'statistics' battle.eventpair.id %}">VS {{ battle.eventpair.fighters_2 }}</a>
                                     </div>
                                     {% endfor %}
                                 </div>
