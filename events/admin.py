@@ -16,7 +16,7 @@ class FightersPairInline(admin.StackedInline):
 class FightersAdmin(admin.ModelAdmin):
     inlines = [FightersInline,FightersPairInline]
     list_display = ('fullname', 'country', 'birthdate', 'height', 'weight', 'record')
-    search_fields = ('fullname', 'country', 'birthdate', 'height', 'weight', 'record', 'biography')
+    search_fields = ('fullname', 'country__name', 'height', 'weight', 'record', 'biography')
     list_filter = ('country',)
     prepopulated_fields = {'slug': ('fullname',)}
 
