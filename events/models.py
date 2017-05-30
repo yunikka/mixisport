@@ -130,7 +130,7 @@ class EventPair(models.Model):
     weight = models.IntegerField(default=0, verbose_name="Значимость", help_text="Чем больше значение, тем выше будет отображена пара")
     
     class Meta:
-        ordering = ["-id"]
+        ordering = ["events__name"]
 
     def proc_vote_1(self): # функция вычисляет проценты голосова для первого бойца
         if self.vote_1 > 0 and self.vote_2 == 0:
