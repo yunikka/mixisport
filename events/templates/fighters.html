@@ -181,11 +181,11 @@
                                     <div class="link-battles">
                                         <a href="{% url 'statistics' battle.eventpair.id %}">
 											{% if battle.eventpair.defeat_1 and not battle.eventpair.defeat_2 %}
-												<span class="glyphicon glyphicon-certificate" style="color:red"></span>
+												<button type="button" class="btn btn-danger">LOSS</button>
 											{% elif not battle.eventpair.defeat_1 and battle.eventpair.defeat_2 %}
-												<span class="glyphicon glyphicon-certificate" style="color:green"></span>
+												<button type="button" class="btn btn-success">WIN</button>
 											{% else %}
-											    <span class="glyphicon glyphicon-certificate" style="color:yellow"></span>
+											    <button type="button" class="btn btn-warning">VOID</button>
 											{% endif %}
 											VS {{ battle.eventpair.fighters_2 }}
 										</a>
@@ -195,11 +195,11 @@
                                     <div class="link-battles">
                                         <a href="{% url 'statistics' battle.eventpair.id %}">
 											{% if battle.eventpair.defeat_1 and not battle.eventpair.defeat_2 %}
-												<span class="glyphicon glyphicon-certificate" style="color:green"></span>
+												<button type="button" class="btn btn-success">WIN</button>
 											{% elif not battle.eventpair.defeat_1 and battle.eventpair.defeat_2 %}
-												<span class="glyphicon glyphicon-certificate" style="color:red"></span>
+												<button type="button" class="btn btn-danger">LOSS</button>
 											{% else %}
-											    <span class="glyphicon glyphicon-certificate" style="color:yellow"></span>
+											    <button type="button" class="btn btn-warning">VOID</button>
 											{% endif %}
 											VS {{ battle.eventpair.fighters_1 }}
 										</a>
