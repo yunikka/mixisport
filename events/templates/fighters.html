@@ -189,6 +189,7 @@
 											{% endif %}
 											VS {{ battle.eventpair.fighters_2 }}
 										</a>
+										{{ battle.eventpair.events.start_time | date:'d.m' }}<br>{{ battle.eventpair.events.start_time | date:'Y' }}
                                     </div>
                                     {% endfor %}
                                     {% for battle in battles2 %}
@@ -203,6 +204,7 @@
 											{% endif %}
 											VS {{ battle.eventpair.fighters_1 }}
 										</a>
+										{{ battle.eventpair.events.start_time | date:'d.m' }}<br>{{ battle.eventpair.events.start_time | date:'Y' }}
                                     </div>
                                     {% endfor %}
 
