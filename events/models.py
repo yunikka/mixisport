@@ -105,6 +105,23 @@ class Events(models.Model):
 
     
 class EventPair(models.Model):
+
+    RESULT_TYPE = (
+        (1, "K.O"),
+        (2, "T.K.O"),
+        (3, "Сабмишин"),
+        (4, "Решением"),
+        (5, "Другое"),
+    )
+
+    RESULT_ROUND = (
+        (1, "Р1"),
+        (2, "Р2"),
+        (3, "Р3"),
+        (4, "Р4"),
+        (5, "Р5"),
+    )
+
     fighters_1 = models.ForeignKey(Fighters, verbose_name="Боец №1", help_text="Выберите бойца из списка или заведите нового", related_name="first_fighter")
     fighters_2 = models.ForeignKey(Fighters, verbose_name="Боец №2", help_text="Выберите бойца из списка или заведите нового", related_name="second_fighter")
     vote_1 = models.IntegerField(default=0, verbose_name="Голоса", help_text="Количество голосов за бойца №1")
@@ -128,6 +145,9 @@ class EventPair(models.Model):
     events = models.ForeignKey(Events, verbose_name="Событие", help_text="Укажите событие к котору относится данная пара")
     in_mainpage = models.BooleanField(default=0, verbose_name="На главной?", help_text="Отображать данное событие на главной странице. Если отметить несколько событий, то будет отображать")
     weight = models.IntegerField(default=0, verbose_name="Значимость", help_text="Чем больше значение, тем выше будет отображена пара")
+    result_type = models.IntegerField(blank=True, null=True, choices=RESULT_TYPE, default=None, verbose_name="Способ")
+    result_round = models.IntegerField(blank=True, null=True, choices=RESULT_ROUND, default=None, verbose_name="Раунд")
+    result_time = models.TimeField(blank=True, null=True, default=None, verbose_name="Время")
     
     class Meta:
         ordering = ["events__name"]

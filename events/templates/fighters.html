@@ -189,7 +189,14 @@
 											{% endif %}
 											VS {{ battle.eventpair.fighters_2 }}
 										</a>
-										{{ battle.eventpair.events.start_time | date:'d.m' }}<br>{{ battle.eventpair.events.start_time | date:'Y' }}
+										{{ battle.eventpair.events.start_time | date:'d.m' }}<br>
+										{{ battle.eventpair.events.start_time | date:'Y' }}<br>
+										{% if battle.eventpair.result_type %}
+											Результат — {{ battle.eventpair.get_result_type_display }}<br>
+										{% endif %}
+										{% if battle.eventpair.result_round %}
+											Раунд — {{ battle.eventpair.get_result_round_display }}
+										{% endif %}
                                     </div>
                                     {% endfor %}
                                     {% for battle in battles2 %}
@@ -204,7 +211,14 @@
 											{% endif %}
 											VS {{ battle.eventpair.fighters_1 }}
 										</a>
-										{{ battle.eventpair.events.start_time | date:'d.m' }}<br>{{ battle.eventpair.events.start_time | date:'Y' }}
+										{{ battle.eventpair.events.start_time | date:'d.m' }}<br>
+										{{ battle.eventpair.events.start_time | date:'Y' }}<br>
+										{% if battle.eventpair.result_type %}
+											Результат — {{ battle.eventpair.get_result_type_display }}<br>
+										{% endif %}
+										{% if battle.eventpair.result_round %}
+											Раунд — {{ battle.eventpair.get_result_round_display }}
+										{% endif %}
                                     </div>
                                     {% endfor %}
 
