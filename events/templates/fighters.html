@@ -198,7 +198,7 @@
 											{{ battle.eventpair.get_result_round_display }}<br>
 										{% endif %}
 										{% if battle.eventpair.result_time %}
-											{{ battle.eventpair.result_time }}
+											{{ battle.eventpair.result_time | date:'H:i:s' }}
 										{% endif %}
                                     </div>
                                     {% endfor %}
@@ -223,7 +223,7 @@
 											{{ battle.eventpair.get_result_round_display }}<br>
 										{% endif %}
 										{% if battle.eventpair.result_time %}
-											{{ battle.eventpair.result_time }}
+											{{ battle.eventpair.result_time | date:'H:i:s' }}
 										{% endif %}
                                     </div>
                                     {% endfor %}
