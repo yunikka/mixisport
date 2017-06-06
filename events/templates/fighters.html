@@ -192,10 +192,13 @@
 										{{ battle.eventpair.events.start_time | date:'d.m' }}<br>
 										{{ battle.eventpair.events.start_time | date:'Y' }}<br>
 										{% if battle.eventpair.result_type %}
-											Результат — {{ battle.eventpair.get_result_type_display }}<br>
+											{{ battle.eventpair.get_result_type_display }}<br>
 										{% endif %}
 										{% if battle.eventpair.result_round %}
-											Раунд — {{ battle.eventpair.get_result_round_display }}
+											{{ battle.eventpair.get_result_round_display }}<br>
+										{% endif %}
+										{% if battle.eventpair.result_time %}
+											{{ battle.eventpair.result_time }}
 										{% endif %}
                                     </div>
                                     {% endfor %}
@@ -214,10 +217,13 @@
 										{{ battle.eventpair.events.start_time | date:'d.m' }}<br>
 										{{ battle.eventpair.events.start_time | date:'Y' }}<br>
 										{% if battle.eventpair.result_type %}
-											Результат — {{ battle.eventpair.get_result_type_display }}<br>
+											{{ battle.eventpair.get_result_type_display }}<br>
 										{% endif %}
 										{% if battle.eventpair.result_round %}
-											Раунд — {{ battle.eventpair.get_result_round_display }}
+											{{ battle.eventpair.get_result_round_display }}<br>
+										{% endif %}
+										{% if battle.eventpair.result_time %}
+											{{ battle.eventpair.result_time }}
 										{% endif %}
                                     </div>
                                     {% endfor %}
