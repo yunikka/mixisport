@@ -199,6 +199,7 @@ class Battles(models.Model):
 
     fighters = models.ForeignKey(Fighters, verbose_name="Имя бойца")
     eventpair = models.ForeignKey(EventPair, verbose_name="Пара бойцов")
+    weight = models.IntegerField(default=0, verbose_name="Значимость", help_text="Чем больше значение, тем выше будет отображен бой")
 
     class Meta:
         verbose_name_plural = "Бои"
