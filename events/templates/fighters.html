@@ -180,12 +180,14 @@
                                     {% for battle in battles1 %}
                                     <div class="link-battles">
                                         <a href="{% url 'statistics' battle.eventpair.id %}">
-											{% if battle.eventpair.defeat_1 and not battle.eventpair.defeat_2 %}
+											{% if battle.eventpair.result_type == 6 %}
+												<button type="button" class="btn btn">N/A</button>
+											{% elif battle.eventpair.defeat_1 and not battle.eventpair.defeat_2 %}
 												<button type="button" class="btn btn-danger">LOSS</button>
 											{% elif not battle.eventpair.defeat_1 and battle.eventpair.defeat_2 %}
 												<button type="button" class="btn btn-success">WIN</button>
 											{% else %}
-											    <button type="button" class="btn btn-warning">VOID</button>
+											    <button type="button" class="btn btn-warning">DRAW</button>
 											{% endif %}
 											VS {{ battle.eventpair.fighters_2 }}
 										</a>
@@ -205,12 +207,14 @@
                                     {% for battle in battles2 %}
                                     <div class="link-battles">
                                         <a href="{% url 'statistics' battle.eventpair.id %}">
-											{% if battle.eventpair.defeat_1 and not battle.eventpair.defeat_2 %}
+											{% if battle.eventpair.result_type == 6 %}
+												<button type="button" class="btn btn">N/A</button>
+											{% elif battle.eventpair.defeat_1 and not battle.eventpair.defeat_2 %}
 												<button type="button" class="btn btn-success">WIN</button>
 											{% elif not battle.eventpair.defeat_1 and battle.eventpair.defeat_2 %}
 												<button type="button" class="btn btn-danger">LOSS</button>
 											{% else %}
-											    <button type="button" class="btn btn-warning">VOID</button>
+											    <button type="button" class="btn btn-warning">DRAW</button>
 											{% endif %}
 											VS {{ battle.eventpair.fighters_1 }}
 										</a>
