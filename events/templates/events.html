@@ -143,11 +143,32 @@
                             </div>
                             <div class="couple-vs">vs</div>
                         </div>
+
                         <div class="coefficient-block">
+							{% if not pair.result_type %}
                             <div class="coefficient coefficient-left">{{ pair.betting_odds_1 }}</div>
                             <div class="coefficient coefficient-right">{{ pair.betting_odds_2 }}</div>
                             <div class="coefficient-title">Коэффициент</div>
+							{% elif pair.result_type == 6 %}
+                            <div class="coefficient coefficient-left"><button type="button" class="btn btn">N/A</button></div>
+                            <div class="coefficient coefficient-right"><button type="button" class="btn btn">N/A</button></div>
+                            <div class="coefficient-title">{{ pair.get_result_type_display }}</div>
+							{% elif pair.defeat_1 and not pair.defeat_2 %}
+                            <div class="coefficient coefficient-left"><button type="button" class="btn btn-danger">LOSS</button></div>
+                            <div class="coefficient coefficient-right"><button type="button" class="btn btn-success">WIN</button></div>
+                            <div class="coefficient-title">{{ pair.get_result_type_display }} {{ pair.get_result_round_display }} {{ pair.result_time | date:'i:s' }}</div>
+							{% elif not pair.defeat_1 and pair.defeat_2 %}
+                            <div class="coefficient coefficient-left"><button type="button" class="btn btn-success">WIN</button></div>
+                            <div class="coefficient coefficient-right"><button type="button" class="btn btn-danger">LOSS</button></div>
+                            <div class="coefficient-title">{{ pair.get_result_type_display }} {{ pair.get_result_round_display }} {{ pair.result_time | date:'i:s' }}</div>
+							{% else %}
+                            <div class="coefficient coefficient-left"><button type="button" class="btn btn">N/A</button></div>
+                            <div class="coefficient coefficient-right"><button type="button" class="btn btn">N/A</button></div>
+                            <div class="coefficient-title">{{ pair.get_result_type_display }} {{ pair.get_result_round_display }} {{ pair.result_time | date:'i:s' }}</div>
+
+							{% endif %}
                         </div>
+
                     </div>
                     <a href="{% url 'statistics' pair.id %}" class="statistics">Статистика боя</a>
                     <div class="characteristic-block">
