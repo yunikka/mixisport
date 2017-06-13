@@ -8,3 +8,4 @@ static/smart-selects
 media/*/*
 mixisport/settings.py
 media/favicon.ico
+mixisport/gunicorn.conf.py
