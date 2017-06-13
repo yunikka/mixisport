@@ -191,16 +191,16 @@
 											{% endif %}
 											VS {{ battle.eventpair.fighters_2 }}
 										</a>
-										{{ battle.eventpair.events.start_time | date:'d.m' }}<br>
-										{{ battle.eventpair.events.start_time | date:'Y' }}<br>
+										<span> {{ battle.eventpair.events.start_time | date:'d.m' }}<br>
+										{{ battle.eventpair.events.start_time | date:'Y' }}</span>
 										{% if battle.eventpair.result_type %}
-											{{ battle.eventpair.get_result_type_display }}<br>
+											<span>{{ battle.eventpair.get_result_type_display }}</span>
 										{% endif %}
 										{% if battle.eventpair.result_round %}
-											{{ battle.eventpair.get_result_round_display }}<br>
+											<span>{{ battle.eventpair.get_result_round_display }}</span>
 										{% endif %}
 										{% if battle.eventpair.result_time %}
-											{{ battle.eventpair.result_time | date:'i:s' }}
+											<span>{{ battle.eventpair.result_time | date:'i:s' }}</span>
 										{% endif %}
                                     </div>
                                     {% endfor %}
@@ -218,16 +218,16 @@
 											{% endif %}
 											VS {{ battle.eventpair.fighters_1 }}
 										</a>
-										{{ battle.eventpair.events.start_time | date:'d.m' }}<br>
-										{{ battle.eventpair.events.start_time | date:'Y' }}<br>
+										<span> {{ battle.eventpair.events.start_time | date:'d.m' }}<br>
+										{{ battle.eventpair.events.start_time | date:'Y' }}</span>
 										{% if battle.eventpair.result_type %}
-											{{ battle.eventpair.get_result_type_display }}<br>
+											<span> {{ battle.eventpair.get_result_type_display }}</span>
 										{% endif %}
 										{% if battle.eventpair.result_round %}
-											{{ battle.eventpair.get_result_round_display }}<br>
+											<span> {{ battle.eventpair.get_result_round_display }}</span>
 										{% endif %}
 										{% if battle.eventpair.result_time %}
-											{{ battle.eventpair.result_time | date:'i:s' }}
+											<span> {{ battle.eventpair.result_time | date:'i:s' }}</span>
 										{% endif %}
                                     </div>
                                     {% endfor %}
