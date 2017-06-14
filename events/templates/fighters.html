@@ -177,11 +177,59 @@
                                     </div>
                                 </div>
                                 <div class="bookmarker-box">
-                                    {% for battle in battles %}
+                                    {% for battle in battles1 %}
                                     <div class="link-battles">
-                                        <a href="{% url 'statistics' battle.eventpair.id %}"><b>{{ battle.eventpair.events.name }}</b> : {{ battle.eventpair.fighters_1 }} VS {{ battle.eventpair.fighters_2 }}</a>
+                                        <a href="{% url 'statistics' battle.eventpair.id %}">
+											{% if battle.eventpair.result_type == 6 %}
+												<button type="button" class="btn btn">N/A</button>
+											{% elif battle.eventpair.defeat_1 and not battle.eventpair.defeat_2 %}
+												<button type="button" class="btn btn-danger">LOSS</button>
+											{% elif not battle.eventpair.defeat_1 and battle.eventpair.defeat_2 %}
+												<button type="button" class="btn btn-success">WIN</button>
+											{% else %}
+											    <button type="button" class="btn btn-warning">DRAW</button>
+											{% endif %}
+											VS {{ battle.eventpair.fighters_2 }}
+										</a>
+										<span> {{ battle.eventpair.events.start_time | date:'d.m.Y' }}</span>
+										{% if battle.eventpair.result_type %}
+											<span>{{ battle.eventpair.get_result_type_display }}</span>
+										{% endif %}
+										{% if battle.eventpair.result_round %}
+											<span>{{ battle.eventpair.get_result_round_display }}</span>
+										{% endif %}
+										{% if battle.eventpair.result_time %}
+											<span>{{ battle.eventpair.result_time | date:'i:s' }}</span>
+										{% endif %}
                                     </div>
                                     {% endfor %}
+                                    {% for battle in battles2 %}
+                                    <div class="link-battles">
+                                        <a href="{% url 'statistics' battle.eventpair.id %}">
+											{% if battle.eventpair.result_type == 6 %}
+												<button type="button" class="btn btn">N/A</button>
+											{% elif battle.eventpair.defeat_1 and not battle.eventpair.defeat_2 %}
+												<button type="button" class="btn btn-success">WIN</button>
+											{% elif not battle.eventpair.defeat_1 and battle.eventpair.defeat_2 %}
+												<button type="button" class="btn btn-danger">LOSS</button>
+											{% else %}
+											    <button type="button" class="btn btn-warning">DRAW</button>
+											{% endif %}
+											VS {{ battle.eventpair.fighters_1 }}
+										</a>
+										<span> {{ battle.eventpair.events.start_time | date:'d.m.Y' }}</span>
+										{% if battle.eventpair.result_type %}
+											<span> {{ battle.eventpair.get_result_type_display }}</span>
+										{% endif %}
+										{% if battle.eventpair.result_round %}
+											<span> {{ battle.eventpair.get_result_round_display }}</span>
+										{% endif %}
+										{% if battle.eventpair.result_time %}
+											<span> {{ battle.eventpair.result_time | date:'i:s' }}</span>
+										{% endif %}
+                                    </div>
+                                    {% endfor %}
+
                                 </div>
                                 <div class="bookmarker-box">
                                     <div class="info-gallery">

@@ -12,7 +12,8 @@ def fighters(request, slug, template='fighters.html'):
 
     context = {
         'fighter': fighter,
-        'battles' : Battles.objects.filter(fighters=fighter.id),
+        'battles1' : Battles.objects.filter(fighters=fighter.id).filter(eventpair__fighters_1=fighter.id).order_by('weight'),
+        'battles2' : Battles.objects.filter(fighters=fighter.id).filter(eventpair__fighters_2=fighter.id).order_by('weight'),
         'fighter_stat' : FightersStat(fighter.id),
     }
     return render(request, template, context)

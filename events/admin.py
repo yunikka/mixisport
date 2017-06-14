@@ -16,7 +16,7 @@ class FightersPairInline(admin.StackedInline):
 class FightersAdmin(admin.ModelAdmin):
     inlines = [FightersInline,FightersPairInline]
     list_display = ('fullname', 'country', 'birthdate', 'height', 'weight', 'record')
-    search_fields = ('fullname', 'country', 'birthdate', 'height', 'weight', 'record', 'biography')
+    search_fields = ('fullname', 'country__name', 'height', 'weight', 'record', 'biography')
     list_filter = ('country',)
     prepopulated_fields = {'slug': ('fullname',)}
 
@@ -37,6 +37,7 @@ class EventsInline(admin.StackedInline):
     extra = 0
     fieldsets = [
         ('Бойцы', {'fields': (('fighters_1','fighters_2',),('defeat_1','defeat_2',),('betting_odds_1','betting_odds_2',),('vote_1','vote_2',)),}),
+        ('Способ победы/поражения', {'fields': (('result_type','result_round','result_time',),),}),
         ('Статистика', {'fields': (('punches_head_1','punches_head_2',),('punches_body_1','punches_body_2',),('kicks_head_1','kicks_head_2',),('kicks_body_1','kicks_body_2',),('throws_1','throws_2',),'content_stats','enable_stats'), 'classes': ['collapse',]}),
         ('Дополнительные настройки', {'fields': ('in_mainpage','weight',),}),
     ]
