@@ -191,8 +191,7 @@
 											{% endif %}
 											VS {{ battle.eventpair.fighters_2 }}
 										</a>
-										<span> {{ battle.eventpair.events.start_time | date:'d.m' }}<br>
-										{{ battle.eventpair.events.start_time | date:'Y' }}</span>
+										<span> {{ battle.eventpair.events.start_time | date:'d.m.Y' }}</span>
 										{% if battle.eventpair.result_type %}
 											<span>{{ battle.eventpair.get_result_type_display }}</span>
 										{% endif %}
@@ -218,8 +217,7 @@
 											{% endif %}
 											VS {{ battle.eventpair.fighters_1 }}
 										</a>
-										<span> {{ battle.eventpair.events.start_time | date:'d.m' }}<br>
-										{{ battle.eventpair.events.start_time | date:'Y' }}</span>
+										<span> {{ battle.eventpair.events.start_time | date:'d.m.Y' }}</span>
 										{% if battle.eventpair.result_type %}
 											<span> {{ battle.eventpair.get_result_type_display }}</span>
 										{% endif %}
