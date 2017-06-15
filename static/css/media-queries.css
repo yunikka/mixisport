@@ -238,6 +238,29 @@
     margin-bottom: 5px;
 }
 
+.link-battles, .link-battles a {
+    display: block;
+    font-size: 12px;
+    vertical-align: middle;    
+}
+
+.link-battles a {
+    font-size: 14px;}
+
+.link-battles span {
+    display: inline-block;
+    zoom: 1;
+	*display: inline;
+	vertical-align: middle;
+    margin: 0 5px;
+}
+
+.link-battles span > span {
+    display: inline-block;
+    zoom: 1;
+	*display: inline;
+}
+
 }
 
 
