@@ -48,6 +48,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
     'django.contrib.sites',
+    'photologue',
+    'sortedm2m',
     'smart_selects',
     'news',
     'regions',   
