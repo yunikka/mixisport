@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^redactor/', include('redactor.urls')),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
     url(r'^chaining/', include('smart_selects.urls')),
+    url(r'^gallery/', include('photologue.urls', namespace='photologue')),
     
 ]
 
