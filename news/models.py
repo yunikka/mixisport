@@ -9,6 +9,8 @@ from regions.models import MacroRegion, Region
 from lib.fields import ResizeImageField
 from stdimage.models import StdImageField
 
+from photologue.models import Gallery
+
 
 
 VIEWABLE_STATUS = [3, 4]
@@ -29,6 +31,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.label
+
 
 class News(models.Model):
     """Элемент информационного наполнения нашего сайта,
@@ -73,3 +76,16 @@ class News(models.Model):
     @permalink
     def get_absolute_url(self):
         return ('news', (), {'slug': self.slug})
+
+
+class NewsGalleryExtended(models.Model):
+
+    gallery = models.OneToOneField(Gallery, related_name='extended')
+    news = models.ForeignKey(News, verbose_name="Автор")
+
+    class Meta:
+        verbose_name = 'Галерею'
+        verbose_name_plural = 'Галерея'
+
+    def __str__(self):
+        return self.gallery.title
