@@ -78,11 +78,14 @@ class News(models.Model):
         return ('news', (), {'slug': self.slug})
 
 
-class NewsGalleryExtended(models.Model):
+class GalleryExtended(models.Model):
 
-    gallery = models.OneToOneField(Gallery, related_name='extended')
-    news = models.ForeignKey(News, verbose_name="Автор")
+    # Link back to Photologue's Gallery model.
+    gallery = models.OneToOneField(Gallery, verbose_name="Галерея", related_name='gallery')
+    news = models.ForeignKey(News, verbose_name="Новость", related_name='news')
+    category = models.ForeignKey(Category, verbose_name="Категория")
 
+    # Boilerplate code to make a prettier display in the admin interface.
     class Meta:
         verbose_name = 'Галерею'
         verbose_name_plural = 'Галерея'

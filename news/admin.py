@@ -1,7 +1,8 @@
 from django.contrib import admin
 
-from .models import Category, News, NewsGalleryExtended
+from .models import Category, News, GalleryExtended
 
+from photologue.admin import GalleryAdmin as GalleryAdminDefault
 from photologue.models import Gallery
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -9,8 +10,9 @@ class CategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(Category, CategoryAdmin)
 
-class GalleryInline(admin.StackedInline):
-    model = NewsGalleryExtended
+class GalleryExtendedInline(admin.StackedInline):
+    model = GalleryExtended
+    can_delete = False
     extra = 0
 
 class NewsAdmin(admin.ModelAdmin):
@@ -19,7 +21,6 @@ class NewsAdmin(admin.ModelAdmin):
     list_filter = ('status', 'owner', 'created', 'modified')
     prepopulated_fields = {'slug': ('title',)}
     exclude = ('image',)
-    inlines = [GalleryInline, ]
-    
+    inlines = [GalleryExtendedInline, ]
 
 admin.site.register(News, NewsAdmin)
