@@ -81,8 +81,8 @@ class News(models.Model):
 class GalleryExtended(models.Model):
 
     # Link back to Photologue's Gallery model.
-    gallery = models.OneToOneField(Gallery, verbose_name="Галерея", related_name='gallery')
-    news = models.ForeignKey(News, verbose_name="Новость", related_name='news')
+    gallery = models.OneToOneField(Gallery, verbose_name="Галерея")
+    news = models.ForeignKey(News, verbose_name="Новость", related_name='gallery')
     category = models.ForeignKey(Category, verbose_name="Категория")
 
     # Boilerplate code to make a prettier display in the admin interface.
