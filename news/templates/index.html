@@ -15,7 +15,7 @@
                     <h3 class="title">Новости</h3>
 					{% for news in news_list %}                
 		                    <div class="news-block">
-		                        <a class="news-pic" href="/"><img src="{% if news.image_after %}{{ news.image_after.medium.url }}{% else %}{{ MEDIA_URL }}{{ news.image }}{% endif %}" width="160" height="160" alt=""/></a>
+		                        <a class="news-pic" href="{{ news.get_absolute_url }}"><img src="{% if news.image_after %}{{ news.image_after.medium.url }}{% else %}{{ MEDIA_URL }}{{ news.image }}{% endif %}" width="160" height="160" alt=""/></a>
 		                        <div>
 		                            <h3 class="title-news">
 		                                <a href="{{ news.get_absolute_url }}">{{ news.title }}</a>
