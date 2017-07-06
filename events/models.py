@@ -7,6 +7,8 @@ from redactor.fields import RedactorField
 from lib.fields import ResizeImageField
 from stdimage.models import StdImageField
 
+from photologue.models import Gallery
+
 from regions.models import Country
 
 
@@ -204,3 +206,15 @@ class Battles(models.Model):
     class Meta:
         verbose_name_plural = "Бои"
         verbose_name = "Бой"
+
+class GalleryExtendedFighters(models.Model):
+
+    gallery = models.ForeignKey(Gallery, verbose_name="Галерея")
+    fighters = models.ForeignKey(Fighters, verbose_name="Боец", related_name='gallery_fighters')
+
+    class Meta:
+        verbose_name = 'Галерею'
+        verbose_name_plural = 'Галерея'
+
+    def __str__(self):
+        return self.gallery.title
