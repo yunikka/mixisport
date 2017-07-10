@@ -104,6 +104,15 @@
                         <div class="article-picture"><img src="{{ news.image_after.medium.url }}" width="640" height="369" alt=""/></div>
                         <p>{{ news.content|safe }}</p>                    </div>
 
+						<link  href="{% static 'fotorama-4.6.4/fotorama.css' %}" rel="stylesheet"> <!-- 3 KB -->
+						<script src="{% static 'fotorama-4.6.4/fotorama.js' %}"></script> <!-- 16 KB -->
+
+						<div class="fotorama" data-nav="thumbs">
+							{% for photo in news.gallery.get.gallery.public %}
+								    <img src="{{ photo.image.url }}">
+							{% endfor %}
+						</div>
+
                     <div id="disqus_thread"></div>
                     <script>
                         /**

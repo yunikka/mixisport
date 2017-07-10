@@ -1,6 +1,10 @@
 from django.contrib import admin, messages
 
-from .models import Fighters, EventPair, Events, Statistics, Battles
+from .models import Fighters, EventPair, Events, Statistics, Battles, GalleryExtendedFighters
+
+from photologue.admin import GalleryAdmin as GalleryAdminDefault
+from photologue.models import Gallery
+
 
 class FightersInline(admin.StackedInline):
     model = Statistics
@@ -13,8 +17,13 @@ class FightersPairInline(admin.StackedInline):
     model = Battles
     extra = 0
 
+class GalleryExtendedFightersInline(admin.StackedInline):
+    model = GalleryExtendedFighters
+    can_delete = False
+    extra = 0
+
 class FightersAdmin(admin.ModelAdmin):
-    inlines = [FightersInline,FightersPairInline]
+    inlines = [FightersInline,FightersPairInline,GalleryExtendedFightersInline,]
     list_display = ('fullname', 'country', 'birthdate', 'height', 'weight', 'record')
     search_fields = ('fullname', 'country__name', 'height', 'weight', 'record', 'biography')
     list_filter = ('country',)

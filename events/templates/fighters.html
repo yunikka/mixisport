@@ -233,6 +233,13 @@
                                 </div>
                                 <div class="bookmarker-box">
                                     <div class="info-gallery">
+										<link  href="{% static 'fotorama-4.6.4/fotorama.css' %}" rel="stylesheet">
+										<script src="{% static 'fotorama-4.6.4/fotorama.js' %}"></script>
+										<div class="fotorama" data-nav="thumbs">
+											{% for photo in fighter.gallery_fighters.get.gallery.public %}
+												    <img src="{{ photo.image.url }}">
+											{% endfor %}
+										</div>
                                     </div>
                                 </div>
                             </div>
