@@ -1,0 +1,11 @@
+{% load staticfiles %}
+{% if galleries %}
+    {% for gallery in galleries %}
+		{% with gallery.sample|first as photo %}
+                        <a href="{{ gallery.get_absolute_url }}">
+                            <img src="{{ photo.get_display_url }}" width="759" height="475" alt="{{ gallery.title }}">
+                            {{ gallery.title }}
+                        </a>
+		{% endwith %}
+    {% endfor %}
+{% endif %}
