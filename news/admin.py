@@ -12,7 +12,6 @@ admin.site.register(Category, CategoryAdmin)
 
 class GalleryExtendedInline(admin.StackedInline):
     model = GalleryExtended
-    can_delete = False
     extra = 0
 
 class NewsAdmin(admin.ModelAdmin):

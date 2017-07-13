@@ -19,7 +19,6 @@ class FightersPairInline(admin.StackedInline):
 
 class GalleryExtendedFightersInline(admin.StackedInline):
     model = GalleryExtendedFighters
-    can_delete = False
     extra = 0
 
 class FightersAdmin(admin.ModelAdmin):
