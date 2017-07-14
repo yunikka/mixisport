@@ -5,6 +5,7 @@
 db.sqlite3
 static/admin
 static/smart-selects
+static/sortedm2m
 media/*/*
 mixisport/settings.py
 media/favicon.ico

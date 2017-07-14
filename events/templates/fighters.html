@@ -53,7 +53,7 @@
                         {% if fighter.photo_left %}
                         <div class="info-figter-pic"><img src="{{ fighter.photo_left.url }}" width="1000" height="1613" alt=""/></div>
                         {% endif %}
-                        <div>
+                        <div class="foto">
                             <h3 class="title">{{ fighter.fullname }}</h3>
                             <div class="over only-mobil">
                                 <div class="small-pic"><img src="{{ MEDIA_URL }}/{{ fighter.photo }}" width="282" height="183" alt=""/></div>
@@ -235,6 +235,18 @@
                                     <div class="info-gallery">
 										<link  href="{% static 'fotorama-4.6.4/fotorama.css' %}" rel="stylesheet">
 										<script src="{% static 'fotorama-4.6.4/fotorama.js' %}"></script>
+										<script>
+											$(function(){
+												$('.bookmark > li').click(function() {
+													$('.info-figter-pic').show();
+												})
+												$('.bookmark > li:contains("Фото")').click(function() {
+													$('.info-figter-pic').toggle();
+													$('.foto').css({'width' : '100%', 'margin' : '0'});
+													$('.fotorama').css({'width' : '640px', 'margin' : 'auto'});
+												})
+											});
+										</script>
 										<div class="fotorama" data-nav="thumbs">
 											{% for photo in fighter.gallery_fighters.get.gallery.public %}
 												    <img src="{{ photo.image.url }}">

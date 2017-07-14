@@ -5,17 +5,12 @@
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
 {% load event_tags %}
-{% load gallery_tags %}
            <h3 class="marquee">
                 <span>{% show_ticker %}</span>
             </h3>
             <div class="over">
 				<div class="right-block">
 	                {% show_event_tags %}
-					<div class="title">Галерея</div>
-					<div class="gallery-block">
-						{% show_gallery_tags %}
-                    </div>
 				</div>
                 <div class="left-block">
                     {% show_slider %}

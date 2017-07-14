@@ -5,9 +5,10 @@
 {% block title %}{{ news.title }}{% endblock %}
 
 {% block content %}
-
+{% load gallery_tags %}
 
             <div class="over">
+			
                 <div class="right-block">
                     <div class="only-desktop">
                         <div class="widget"> 
@@ -106,10 +107,31 @@
 
 						<link  href="{% static 'fotorama-4.6.4/fotorama.css' %}" rel="stylesheet"> <!-- 3 KB -->
 						<script src="{% static 'fotorama-4.6.4/fotorama.js' %}"></script> <!-- 16 KB -->
-
-						<div class="fotorama" data-nav="thumbs">
+						<style>
+							.title-foto {
+								margin: 20px 0;
+								text-align: center;
+								font-size: 18px;
+								line-height: 36px;
+								color: #333;
+								text-transform: uppercase;
+								text-decoration: none;
+								cursor: pointer;
+								color: #337ab7;
+							}
+						</style>
+						<script>
+							$(function(){
+								$(".title-foto").click(function(){
+									$(this).toggleClass("active");
+									$(this).parent().find(".fotorama").slideToggle();
+								});
+							});
+						</script>
+						<div class="title-foto">Ещё фото</div>
+						<div style="display: none;" class="fotorama" data-nav="thumbs">
 							{% for photo in news.gallery.get.gallery.public %}
-								    <img src="{{ photo.image.url }}">
+								<img src="{{ photo.image.url }}">
 							{% endfor %}
 						</div>
 

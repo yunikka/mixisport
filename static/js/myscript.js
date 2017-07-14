@@ -66,4 +66,9 @@ $(function(){
         $(this).parent().find(".fights").slideToggle();
     });
         
+	 $(".title-gallery").click(function(){
+        $(this).toggleClass("active");
+        $(this).parent().find(".gallery-block").slideToggle();
+    });
+	
 });//конец ready
