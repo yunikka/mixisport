@@ -7,6 +7,7 @@ static/admin
 static/smart-selects
 static/sortedm2m
 media/*/*
+!media/img/logo.png
 mixisport/settings.py
 media/favicon.ico
 mixisport/gunicorn.conf.py
