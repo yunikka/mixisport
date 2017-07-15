@@ -6,6 +6,7 @@ db.sqlite3
 static/admin
 static/smart-selects
 media/*/*
+!media/img/logo.png
 mixisport/settings.py
 media/favicon.ico
 mixisport/gunicorn.conf.py
