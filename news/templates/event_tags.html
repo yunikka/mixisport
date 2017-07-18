@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load gallery_tags %}
                     <h3 class="title">События</h3>
                     <div class="event-over">
                         {% for pair in pairs %}
@@ -32,7 +33,25 @@
                         </div>
                         {% endfor %}
                     </div>
-                    <div class="only-desktop">
+					<style>
+						
+						@media screen and (max-width: 480px) {
+							.gallery-block {
+							display: none;
+							}
+							.gallery-title {
+								display: none;
+							}
+							.menu li:nth-child(4) {
+								display: block;
+							}
+						}
+	                </style>
+					<div class="title gallery-title">Галерея</div>
+					<div class="gallery-block">
+						{% show_gallery_tags %}
+                    </div>
+					<div class="only-desktop">
                         {% comment %}
                         <div class="baner">
                             <a href='https://spadsmedia.com/aff/ln/ru/71889015' target='_blank'><img src='https://spadsmedia.com/adv/ln/ru/468x60.gif?t=4' border='0' alt='Букмекерская контора "ЛЕОН" - ставки на спорт'/></a>

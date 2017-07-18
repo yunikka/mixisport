@@ -57,7 +57,7 @@
 
 			    <div class="left-block">
 			        <h3 class="title">{{ gallery.title }}</h3>
-					{% if gallery.description %}{{ gallery.description|safe }}{% endif %}
+					
 					
                     <ul class="list-inline">
                         <li>
@@ -110,6 +110,7 @@
 						    <img src="{{ photo.image.url }}">
 						{% endfor %}
 					</div>
+          {% if gallery.description %}{{ gallery.description|safe }}{% endif %}
 			    </div>
 
 
@@ -163,7 +164,7 @@
 
 			    <div class="left-block">
 			        <h3 class="title">{{ gallery.title }}</h3>
-					{% if gallery.description %}{{ gallery.description|safe }}{% endif %}
+					
 					
                     <ul class="list-inline">
                         <li>
@@ -210,7 +211,7 @@
                             --></script>
                         </li>
                     </ul>
-					
+					{% if gallery.description %}{{ gallery.description|safe }}{% endif %}
 			        <div class="gallery">
 					    {% for photo in gallery.public %}
 			            <a href="{{ photo.get_absolute_url }}">

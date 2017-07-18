@@ -142,7 +142,7 @@
 }
 
 .info-figter-pic {
-    display: none;
+    display: none !important;
 }
 
 .info-figter-pic + div {
@@ -263,7 +263,17 @@
 
 }
 
-
+@media screen and (max-width: 480px) {
+  .gallery-block {
+    display: none;
+  }
+  .gallery-title {
+    display: none;
+  }
+  .title-gallery {
+    display: block;
+  }
+}
 
 
 
