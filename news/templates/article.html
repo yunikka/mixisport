@@ -128,13 +128,14 @@
 								});
 							});
 						</script>
+                        {% if news.gallery.get.gallery.public %}
 						<div class="title-foto">Ещё фото</div>
 						<div style="display: none;" class="fotorama" data-nav="thumbs">
 							{% for photo in news.gallery.get.gallery.public %}
 								<img src="{{ photo.image.url }}">
 							{% endfor %}
 						</div>
-
+                        {% endif %}
                     <div id="disqus_thread"></div>
                     <script>
                         /**

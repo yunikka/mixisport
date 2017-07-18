@@ -5,9 +5,9 @@
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
 {% load event_tags %}
-           <h3 class="marquee">
+           {% if show_ticker %}<h3 class="marquee">
                 <span>{% show_ticker %}</span>
-            </h3>
+            </h3>{% endif %}
             <div class="over">
 				<div class="right-block">
 	                {% show_event_tags %}

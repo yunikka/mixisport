@@ -142,7 +142,7 @@
 }
 
 .info-figter-pic {
-    display: none;
+    display: none !important;
 }
 
 .info-figter-pic + div {

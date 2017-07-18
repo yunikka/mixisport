@@ -170,6 +170,7 @@ header {
 
 .slider-block {
     margin-bottom: 20px;
+    margin-top: 10px;
 }
 
 .slider-text {
@@ -1211,4 +1212,7 @@ header {
     text-transform: uppercase;
     text-decoration: none;
     cursor: pointer;
+}
+.title-foto {
+    text-align: left !important;
 }
