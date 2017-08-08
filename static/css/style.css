@@ -78,6 +78,7 @@ header {
 	display: block;
     float: left;
 	width: 250px;
+    margin-bottom: 20px;
 }
 
 .logo img {
@@ -90,7 +91,7 @@ header {
     float: right;
     width: 34px;
     height: 37px;
-    margin: 30px 0;
+    margin: 0;
     background: url("../images/sprite_1.png") no-repeat 0 -122px;
 	cursor: pointer;
     border-radius: 2px;
@@ -98,7 +99,7 @@ header {
 
 .menu {
     float: right;
-    margin: 50px 0 0 0;
+    margin: 0 0 30px 0;
     list-style-position: outside;
 	list-style: none;
     position: relative;
@@ -284,7 +285,7 @@ header {
 
 .progress {
     background-color: #f5f5f5;
-    border-radius: 4px;
+    border-radius: 0;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
     height: 16px;
     margin-bottom: 10px;
@@ -303,8 +304,7 @@ header {
     text-align: center;
     transition: width 0.6s ease 0s;
     width: 0;
-    border-radius: 4px 0 0 4px;
-    min-width: 10%;    
+    border-radius: 0;   
 }
 
 .progress-bar-danger {
@@ -384,8 +384,15 @@ header {
 
 .gallery-block a {
     text-decoration: none;
-    font:600 24px/110% 'Open Sans', sans-serif;
+    font:600 20px/110% 'Open Sans', sans-serif;
 	color:#333;
+}
+
+.gallery-pic {
+    display: block;
+    max-width: 300px;
+    margin: 0 auto 5px auto;
+    text-align: center;
 }
 
 .widget {
@@ -633,6 +640,7 @@ header {
 	width: 200px;
     vertical-align: middle;
     margin: 0;
+    border-radius: 0px;
 }
 
 .biography p {
