@@ -70,5 +70,14 @@ $(function(){
         $(this).toggleClass("active");
         $(this).parent().find(".gallery-block").slideToggle();
     });
+    
+//
+$(".progress-bar").each(function(){
+    if($(this).width() < 20){
+        $(this).css("color","#000000");
+        
+    }
+});
+
 	
 });//конец ready

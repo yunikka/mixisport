@@ -25,8 +25,8 @@
     width: 100%;
 }
 .event-pic {
-    width: 180px;
-    height: 180px;
+    width: 250px;
+    height: 250px;
 }
 
 .event-block {
@@ -53,6 +53,10 @@
     width: 100%;
     margin: 10px auto;
 }
+
+.gallery-block, .gallery-title {display: none;}
+
+.vs {top: 160px;}
     
 }
 
@@ -66,7 +70,7 @@
     margin: 0;
     position: absolute;
     right: 0;
-    top: 94px;
+    top: 64px;
     width: 300px;
 }
 
@@ -260,6 +264,8 @@
     zoom: 1;
 	*display: inline;
 }
+
+.vs {top: 90px;}
 
 }
 

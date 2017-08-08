@@ -3,7 +3,7 @@
     {% for gallery in galleries %}
     {% with gallery.sample|first as photo %}
                         <a style="margin-bottom: 25px; display: block;" href="{{ gallery.get_absolute_url }}">
-                            <img src="{{ photo.get_display_url }}" width="370" height="475" alt="{{ gallery.title }}">
+                            <span class="gallery-pic"><img src="{{ photo.get_display_url }}" width="370" height="475" alt="{{ gallery.title }}"></span>
                             {{ gallery.title }}
                         </a>
     {% endwith %}
