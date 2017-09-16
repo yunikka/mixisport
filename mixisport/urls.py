@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^pages/', include('pages.urls')),
     url(r'^events/', include('events.urls')),
     url(r'^galleries/', GalleryListView.as_view(paginate_by=10), name='galleries'),
+    url(r'^videos/', include('videos.urls')),
     url(r'^', include('news.urls')),
 
     #   
