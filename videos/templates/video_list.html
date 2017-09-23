@@ -16,15 +16,30 @@
                     {% show_slider %}
                     <h3 class="title">Видео</h3>
 
+					{% for video in video_list %}
+		                    <div class="news-block">
+		                        <div>
+		                            <h3 class="title-news">
+		                                <a>{{ video.title }}</a>
+		                            </h3>
+		                            <ul class="list-news">
+		                                <li>{{ video.created }}</li>
+		                                <li><a>{{ video.category }}</a></li>
+										{{ video.content|safe }}
+		                            </ul>
+		                        </div>
+		                    </div>
+					{% endfor %}
+
 
 					<ul class="pager">
-				    {% if news_list.has_previous or news_list.has_next %}
-						{% if news_list.has_previous %}
-						    <li><a class="btn btn-default" href="?page={{ news_list.previous_page_number }}" role="button">Назад</a></li>
+				    {% if video_list.has_previous or video_list.has_next %}
+						{% if video_list.has_previous %}
+						    <li><a class="btn btn-default" href="?page={{ video_list.previous_page_number }}" role="button">Назад</a></li>
 						{% endif %}
-						<li>Страница {{ news_list.number }} из {{ news_list.paginator.num_pages }}</li>
-						{% if news_list.has_next %}
-						<li><a class="btn btn-default" href="?page={{ news_list.next_page_number }}" role="button">Вперед</a></li>
+						<li>Страница {{ video_list.number }} из {{ video_list.paginator.num_pages }}</li>
+						{% if video_list.has_next %}
+						<li><a class="btn btn-default" href="?page={{ video_list.next_page_number }}" role="button">Вперед</a></li>
 						{% endif %}
 					{% endif %}
 					</ul>
