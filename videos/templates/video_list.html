@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load slider %}
+{% load staticfiles %}
+{% load ticker %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+{% load event_tags %}
+           {% if show_ticker %}<h3 class="marquee">
+                <span>{% show_ticker %}</span>
+            </h3>{% endif %}
+            <div class="over">
+				<div class="right-block">
+	                {% show_event_tags %}
+				</div>
+                <div class="left-block">
+                    {% show_slider %}
+                    <h3 class="title">Видео</h3>
+
+					{% for video in video_list %}
+		                    <div class="news-block">
+		                        <div>
+                                    <div class="video-container">
+                                        <span class="embed-youtube">
+                                            {{ video.content|safe }}
+                                        </span>
+                                    </div>
+		                            <h3 class="title-news">
+		                                <a>{{ video.title }}</a>
+		                            </h3>
+		                            <ul class="list-news">
+		                                <li>{{ video.created }}</li>
+		                                <li><a>{{ video.category }}</a></li>
+		                            </ul>
+		                        </div>
+		                    </div>
+					{% endfor %}
+
+
+					<ul class="pager">
+				    {% if video_list.has_previous or video_list.has_next %}
+						{% if video_list.has_previous %}
+						    <li><a class="btn btn-default" href="?page={{ video_list.previous_page_number }}" role="button">Назад</a></li>
+						{% endif %}
+						<li>Страница {{ video_list.number }} из {{ video_list.paginator.num_pages }}</li>
+						{% if video_list.has_next %}
+						<li><a class="btn btn-default" href="?page={{ video_list.next_page_number }}" role="button">Вперед</a></li>
+						{% endif %}
+					{% endif %}
+					</ul>
+
+                </div>
+            </div>
+        </div> 
+
+{% endblock %}

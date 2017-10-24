@@ -1224,3 +1224,9 @@ header {
 .title-foto {
     text-align: left !important;
 }
+
+.video-container {margin: 10px 0;}
+
+.video-page {
+    display: none;
+}
