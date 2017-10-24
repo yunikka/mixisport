@@ -19,13 +19,17 @@
 					{% for video in video_list %}
 		                    <div class="news-block">
 		                        <div>
+                                    <div class="video-container">
+                                        <span class="embed-youtube">
+                                            {{ video.content|safe }}
+                                        </span>
+                                    </div>
 		                            <h3 class="title-news">
 		                                <a>{{ video.title }}</a>
 		                            </h3>
 		                            <ul class="list-news">
 		                                <li>{{ video.created }}</li>
 		                                <li><a>{{ video.category }}</a></li>
-										{{ video.content|safe }}
 		                            </ul>
 		                        </div>
 		                    </div>

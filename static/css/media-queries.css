@@ -79,6 +79,8 @@
     border-top: 1px solid #fff;
 }
 
+.video-page {display: block;}
+
 .menu li:first-child {
     border-top: none;
 }
