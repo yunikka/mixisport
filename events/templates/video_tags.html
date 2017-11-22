@@ -1,0 +1,17 @@
+{% load staticfiles %}
+{% if videos %}
+    {% for video in videos %}
+            <div>
+                <div class="video-container">
+                    <span class="embed-youtube">
+                        {{ video.content|safe }}
+                    </span>
+                </div>
+                <h3 class="title-news">
+                    <a>{{ video.title }}</a>
+                </h3>
+            </div>
+    {% endfor %}
+	<br>
+	<a style="display: block; margin-top: -30px; float: right; color: #337ab7; margin-right: 30px;" href="{% url 'video_list' %}">Ещё</a>
+{% endif %}
