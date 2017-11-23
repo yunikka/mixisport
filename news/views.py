@@ -12,7 +12,7 @@ from piece.utils import SeoTags
 
 def StoryListView(request, template='index.html'):
 
-    news_list = pagination_page(request, News.objects.filter(status__in=[3,4]), 20)
+    news_list = pagination_page(request, News.objects.filter(status__in=[3,4]), 25)
 
     context = {
         'news_list': news_list,
